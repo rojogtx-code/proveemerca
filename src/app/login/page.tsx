@@ -8,28 +8,51 @@ import Image from "next/image";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [success, setSuccess] = useState("");
   const router = useRouter();
   const supabase = createClient();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccess("");
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    if (isRegistering) {
+      // Validación alfanumérica de 6 dígitos
+      const regex = /^[a-zA-Z0-9]{6}$/;
+      if (!regex.test(password)) {
+        setError("La contraseña debe ser alfanumérica de exactamente 6 caracteres.");
+        setLoading(false);
+        return;
+      }
 
-    if (error) {
-      setError("Credenciales inválidas. Verifique su correo y contraseña.");
-      setLoading(false);
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setSuccess("Registro exitoso. Ya puedes iniciar sesión.");
+        setIsRegistering(false);
+      }
     } else {
-      router.push("/admin");
-      router.refresh();
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setError("Credenciales inválidas. Verifique su correo y contraseña.");
+      } else {
+        router.push("/admin");
+        router.refresh();
+      }
     }
+    setLoading(false);
   };
 
   return (
@@ -46,13 +69,20 @@ export default function LoginPage() {
                 priority
               />
           </div>
-          <h2 className="text-white text-xl font-bold">Panel Administrativo</h2>
+          <h2 className="text-white text-xl font-bold">
+            {isRegistering ? "Crear Nueva Cuenta" : "Panel Administrativo"}
+          </h2>
         </div>
 
-        <form onSubmit={handleLogin} className="p-8 space-y-6">
+        <form onSubmit={handleAuth} className="p-8 space-y-6">
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-4 rounded-xl text-center">
               {error}
+            </div>
+          )}
+          {success && (
+            <div className="bg-green-50 border border-green-200 text-green-600 text-sm p-4 rounded-xl text-center">
+              {success}
             </div>
           )}
 
@@ -89,11 +119,22 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-mercasa-red text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-red-dark shadow-lg shadow-red-900/20 transition-all active:scale-[0.98] disabled:opacity-50"
           >
-            {loading ? "Iniciando sesión..." : "Ingresar al Panel"}
+            {loading ? "Procesando..." : isRegistering ? "Registrarse" : "Ingresar al Panel"}
           </button>
           
-          <div className="text-center">
-            <p className="text-xs text-slate-400">
+          <div className="text-center space-y-4">
+            <button
+              type="button"
+              onClick={() => {
+                setIsRegistering(!isRegistering);
+                setError("");
+                setSuccess("");
+              }}
+              className="text-sm text-mercasa-blue font-semibold hover:underline"
+            >
+              {isRegistering ? "¿Ya tienes cuenta? Inicia sesión" : "¿No tienes cuenta? Regístrate aquí"}
+            </button>
+            <p className="text-xs text-slate-400 pt-2 border-t border-slate-100">
               Solo personal autorizado de Mercasa.
             </p>
           </div>
