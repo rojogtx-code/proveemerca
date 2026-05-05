@@ -31,17 +31,16 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const isAdmin = request.cookies.get("admin_session")?.value === "true";
+  const { pathname } = request.nextUrl;
 
-  // Si intenta entrar a /admin y no está logueado, redirigir a /login
-  if (request.nextUrl.pathname.startsWith("/admin") && !user) {
+  // Si intenta entrar a /admin y no es admin, redirigir a /login
+  if (pathname.startsWith("/admin") && !isAdmin) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Si ya está logueado e intenta ir a /login, redirigir a /admin
-  if (request.nextUrl.pathname.startsWith("/login") && user) {
+  // Si ya es admin e intenta ir a /login, redirigir a /admin
+  if (pathname === "/login" && isAdmin) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 
