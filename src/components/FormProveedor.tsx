@@ -26,6 +26,8 @@ export default function FormProveedor() {
   const [enviando, setEnviando] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [existeRegistro, setExisteRegistro] = useState(false);
+  const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
+  const [datosPendientes, setDatosPendientes] = useState<ProveedorFormData | null>(null);
 
   const {
     register,
@@ -74,6 +76,15 @@ export default function FormProveedor() {
   }
 
   async function onSubmit(data: ProveedorFormData) {
+    if (existeRegistro) {
+      setDatosPendientes(data);
+      setMostrarConfirmacion(true);
+      return;
+    }
+    await enviarDatos(data);
+  }
+
+  async function enviarDatos(data: ProveedorFormData) {
     setEnviando(true);
     try {
       const payload = { ...data, actualizar: existeRegistro };
@@ -88,6 +99,8 @@ export default function FormProveedor() {
       setCedula("");
       setDatosHacienda(null);
       setExisteRegistro(false);
+      setMostrarConfirmacion(false);
+      setDatosPendientes(null);
     } catch {
       alert("Ocurrió un error al enviar el formulario. Intente de nuevo.");
     } finally {
@@ -114,133 +127,178 @@ export default function FormProveedor() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-
-      {/* Cédula */}
-      <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-gray-700">
-          Número de Identificación
-        </label>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={cedula}
-            onChange={(e) => {
-              setCedula(e.target.value.replace(/\D/g, ""));
-              setErrorHacienda("");
-              setDatosHacienda(null);
-              setExisteRegistro(false);
-            }}
-            placeholder="Ej: 3101123456"
-            maxLength={12}
-            className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-          />
-          <button
-            type="button"
-            onClick={buscarCedula}
-            disabled={cedula.length < 9 || buscando}
-            className="bg-mercasa-blue text-white px-6 py-2 rounded-xl text-sm font-semibold hover:bg-mercasa-blue-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-95"
-          >
-            {buscando ? "..." : "Validar"}
-          </button>
-        </div>
-        {errorHacienda && (
-          <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-sm text-red-700">
-            ❌ {errorHacienda}
-          </div>
-        )}
-      </div>
-
-      {/* Datos Hacienda */}
-      {datosHacienda && (
-        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 flex flex-col gap-4 transition-all">
-          {existeRegistro && (
-            <div className="bg-amber-100 border border-amber-300 text-amber-800 text-xs px-4 py-3 rounded-xl mb-2 flex items-start gap-2">
-              <span className="text-lg">⚠️</span>
-              <span>Ya tenemos un registro con esta cédula. Tus datos serán <strong>actualizados</strong> al enviar.</span>
+    <>
+      {/* Modal de Confirmación */}
+      {mostrarConfirmacion && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300 border border-slate-100">
+            <div className="p-8 text-center">
+              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                ⚠️
+              </div>
+              <h3 className="text-xl font-bold text-slate-800 mb-2">Registro Duplicado</h3>
+              <p className="text-slate-500 text-sm leading-relaxed">
+                Ya tenemos un registro con esta cédula. <br />
+                <span className="font-bold text-slate-700">¿Deseas actualizar la información existente con estos nuevos datos?</span>
+              </p>
             </div>
-          )}
-          <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
-            Datos Fiscales
-          </h3>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-700">
-              Nombre del Proveedor
-            </label>
+            <div className="flex border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => {
+                  setMostrarConfirmacion(false);
+                  setDatosPendientes(null);
+                }}
+                className="flex-1 px-6 py-4 text-sm font-semibold text-slate-500 hover:bg-slate-50 transition-colors border-r border-slate-100"
+              >
+                Mantener actuales
+              </button>
+              <button
+                type="button"
+                onClick={() => datosPendientes && enviarDatos(datosPendientes)}
+                className="flex-1 px-6 py-4 text-sm font-bold text-mercasa-blue hover:bg-blue-50 transition-colors"
+              >
+                Sí, actualizar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+
+        {/* Cédula */}
+        <div className="flex flex-col gap-1">
+          <label className="text-sm font-medium text-gray-700">
+            Número de Identificación
+          </label>
+          <div className="flex gap-2">
             <input
               type="text"
-              readOnly
-              value={datosHacienda.nombre}
-              className="border border-gray-200 bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-600 cursor-not-allowed"
+              value={cedula}
+              onChange={(e) => {
+                setCedula(e.target.value.replace(/\D/g, ""));
+                setErrorHacienda("");
+                setDatosHacienda(null);
+                setExisteRegistro(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  buscarCedula();
+                }
+              }}
+              placeholder="Ej: 3101123456"
+              maxLength={12}
+              className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
             />
-            <input type="hidden" {...register("nombreProveedor")} />
+            <button
+              type="button"
+              onClick={buscarCedula}
+              disabled={cedula.length < 9 || buscando}
+              className="bg-mercasa-blue text-white px-6 py-2 rounded-xl text-sm font-semibold hover:bg-mercasa-blue-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-95"
+            >
+              {buscando ? "..." : "Validar"}
+            </button>
           </div>
+          {errorHacienda && (
+            <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-sm text-red-700">
+              ❌ {errorHacienda}
+            </div>
+          )}
+        </div>
+
+        {/* Datos Hacienda */}
+        {datosHacienda && (
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 flex flex-col gap-4 transition-all">
+            {existeRegistro && (
+              <div className="bg-amber-100 border border-amber-300 text-amber-800 text-xs px-4 py-3 rounded-xl mb-2 flex items-start gap-2">
+                <span className="text-lg">⚠️</span>
+                <span>Ya tenemos un registro con esta cédula. Tus datos serán <strong>actualizados</strong> al enviar.</span>
+              </div>
+            )}
+            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
+              Datos Fiscales
+            </h3>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">
+                Nombre del Proveedor
+              </label>
+              <input
+                type="text"
+                readOnly
+                value={datosHacienda.nombre}
+                className="border border-gray-200 bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-600 cursor-not-allowed"
+              />
+              <input type="hidden" {...register("nombreProveedor")} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">
+                Actividad Económica Principal
+              </label>
+              <select
+                {...register("actEconomicaPrincipal")}
+                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+              >
+                <option value="">Seleccione una actividad</option>
+                {datosHacienda.actividades
+                  ?.filter((act) => act.estado === "A")
+                  .map((act) => (
+                    <option key={act.codigo} value={`${act.codigo} - ${act.descripcion}`}>
+                      {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
+                    </option>
+                  ))}
+              </select>
+              {errors.actEconomicaPrincipal && (
+                <span className="text-xs text-red-500">
+                  {errors.actEconomicaPrincipal.message}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Ubicación */}
+        {datosHacienda && (
+          <div className="flex flex-col gap-3">
+            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+              Ubicación
+            </h3>
+            <UbicacionCR register={register} setValue={setValue} errors={errors} />
+          </div>
+        )}
+
+        {/* Dirección */}
+        {datosHacienda && (
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-700">
-              Actividad Económica Principal
+              Dirección Exacta
             </label>
-            <select
-              {...register("actEconomicaPrincipal")}
-              className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
-            >
-              <option value="">Seleccione una actividad</option>
-              {datosHacienda.actividades
-                ?.filter((act) => act.estado === "A")
-                .map((act) => (
-                  <option key={act.codigo} value={`${act.codigo} - ${act.descripcion}`}>
-                    {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
-                  </option>
-                ))}
-            </select>
-            {errors.actEconomicaPrincipal && (
+            <textarea
+              {...register("direccionExacta")}
+              rows={3}
+              placeholder="Ej: 200 metros norte de la iglesia, casa azul con portón negro"
+              className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all resize-none"
+            />
+            {errors.direccionExacta && (
               <span className="text-xs text-red-500">
-                {errors.actEconomicaPrincipal.message}
+                {errors.direccionExacta.message}
               </span>
             )}
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Ubicación */}
-      {datosHacienda && (
-        <div className="flex flex-col gap-3">
-          <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
-            Ubicación
-          </h3>
-          <UbicacionCR register={register} setValue={setValue} errors={errors} />
-        </div>
-      )}
-
-      {/* Dirección */}
-      {datosHacienda && (
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-gray-700">
-            Dirección Exacta
-          </label>
-          <textarea
-            {...register("direccionExacta")}
-            rows={3}
-            placeholder="Ej: 200 metros norte de la iglesia, casa azul con portón negro"
-            className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all resize-none"
-          />
-          {errors.direccionExacta && (
-            <span className="text-xs text-red-500">
-              {errors.direccionExacta.message}
-            </span>
-          )}
-        </div>
-      )}
-
-      {/* Botón enviar */}
-      {datosHacienda && (
-        <button
-          type="submit"
-          disabled={enviando}
-          className="bg-mercasa-red text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-red-dark shadow-lg shadow-red-900/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mt-4"
-        >
-          {enviando ? "Procesando..." : "Enviar Información Actualizada"}
-        </button>
-      )}
-    </form>
+        {/* Botón enviar */}
+        {datosHacienda && (
+          <button
+            type="submit"
+            disabled={enviando}
+            className="bg-mercasa-red text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-red-dark shadow-lg shadow-red-900/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+          >
+            {enviando ? "Procesando..." : "Enviar Información Actualizada"}
+          </button>
+        )}
+      </form>
+    </>
   );
 }
