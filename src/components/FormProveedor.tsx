@@ -38,6 +38,10 @@ export default function FormProveedor() {
     reset,
   } = useForm<ProveedorFormData>({
     resolver: zodResolver(proveedorSchema),
+    defaultValues: {
+      telefono: "+506",
+      whatsapp: "+506",
+    },
   });
 
   async function buscarCedula() {
@@ -322,6 +326,71 @@ export default function FormProveedor() {
                 {errors.direccionExacta.message}
               </span>
             )}
+          </div>
+        )}
+
+        {/* Información de Contacto */}
+        {datosHacienda && (
+          <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">
+            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
+              Información de Contacto
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Email Factura Electrónica</label>
+                <input
+                  type="email"
+                  {...register("emailFactura")}
+                  placeholder="facturacion@ejemplo.com"
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                />
+                {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Email de Contacto</label>
+                <input
+                  type="email"
+                  {...register("emailContacto")}
+                  placeholder="contacto@ejemplo.com"
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                />
+                {errors.emailContacto && <span className="text-xs text-red-500">{errors.emailContacto.message}</span>}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">Nombre de la Persona de Contacto</label>
+              <input
+                type="text"
+                {...register("nombreContacto")}
+                placeholder="Nombre Apellido1 Apellido2"
+                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+              />
+              <p className="text-[10px] text-slate-400 mt-1 uppercase font-semibold">Debe incluir Nombre y ambos Apellidos</p>
+              {errors.nombreContacto && <span className="text-xs text-red-500">{errors.nombreContacto.message}</span>}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Número de Teléfono</label>
+                <input
+                  type="text"
+                  {...register("telefono")}
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                />
+                {errors.telefono && <span className="text-xs text-red-500">{errors.telefono.message}</span>}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Número de WhatsApp</label>
+                <input
+                  type="text"
+                  {...register("whatsapp")}
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                />
+                {errors.whatsapp && <span className="text-xs text-red-500">{errors.whatsapp.message}</span>}
+              </div>
+            </div>
           </div>
         )}
 

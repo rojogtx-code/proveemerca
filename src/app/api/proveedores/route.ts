@@ -20,6 +20,11 @@ export async function POST(req: NextRequest) {
       barrio: data.barrio,
       codigo_barrio: data.codigoBarrio,
       direccion_exacta: data.direccionExacta,
+      email_factura: data.emailFactura,
+      email_contacto: data.emailContacto,
+      nombre_contacto: data.nombreContacto,
+      telefono: data.telefono,
+      whatsapp: data.whatsapp,
     };
 
     if (body.actualizar) {

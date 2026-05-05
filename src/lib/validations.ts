@@ -19,6 +19,21 @@ export const proveedorSchema = z.object({
   direccionExacta: z
     .string()
     .min(10, "Por favor ingrese una dirección detallada"),
+  emailFactura: z.string().email("Correo electrónico de facturación inválido"),
+  emailContacto: z.string().email("Correo electrónico de contacto inválido"),
+  nombreContacto: z
+    .string()
+    .min(1, "Requerido")
+    .regex(
+      /^\S+\s+\S+\s+\S+$/,
+      "Debe incluir Nombre, Primer Apellido y Segundo Apellido"
+    ),
+  telefono: z
+    .string()
+    .regex(/^\+506\d{8}$/, "Formato inválido. Use +506 seguido de 8 dígitos"),
+  whatsapp: z
+    .string()
+    .regex(/^\+506\d{8}$/, "Formato inválido. Use +506 seguido de 8 dígitos"),
   actualizar: z.boolean().optional(),
 });
 
