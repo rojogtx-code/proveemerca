@@ -25,15 +25,15 @@ export const proveedorSchema = z.object({
     .string()
     .min(1, "Requerido")
     .regex(
-      /^\S+\s+\S+\s+\S+$/,
-      "Debe incluir Nombre, Primer Apellido y Segundo Apellido"
+      /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+\s+[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+\s+[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+$/,
+      "Use solo letras y complete Nombre, Primer Apellido y Segundo Apellido"
     ),
   telefono: z
     .string()
-    .regex(/^\+506\d{8}$/, "Formato inválido. Use +506 seguido de 8 dígitos"),
+    .regex(/^\+506 \d{4}-\d{4}$/, "Formato inválido. Use +506 0000-0000"),
   whatsapp: z
     .string()
-    .regex(/^\+506\d{8}$/, "Formato inválido. Use +506 seguido de 8 dígitos"),
+    .regex(/^\+506 \d{4}-\d{4}$/, "Formato inválido. Use +506 0000-0000"),
   actualizar: z.boolean().optional(),
 });
 

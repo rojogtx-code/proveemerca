@@ -39,10 +39,22 @@ export default function FormProveedor() {
   } = useForm<ProveedorFormData>({
     resolver: zodResolver(proveedorSchema),
     defaultValues: {
-      telefono: "+506",
-      whatsapp: "+506",
+      telefono: "+506 ",
+      whatsapp: "+506 ",
     },
   });
+
+  const formatPhoneNumber = (value: string) => {
+    // Quitar todo lo que no sea número después del +506
+    const numbers = value.replace("+506 ", "").replace(/\D/g, "");
+    const charCount = numbers.length;
+
+    if (charCount <= 4) {
+      return `+506 ${numbers}`;
+    } else {
+      return `+506 ${numbers.slice(0, 4)}-${numbers.slice(4, 8)}`;
+    }
+  };
 
   async function buscarCedula() {
     if (cedula.length < 9) return;
@@ -364,10 +376,15 @@ export default function FormProveedor() {
               <input
                 type="text"
                 {...register("nombreContacto")}
+                onChange={(e) => {
+                  // Solo letras y espacios
+                  const val = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, "");
+                  setValue("nombreContacto", val);
+                }}
                 placeholder="Nombre Apellido1 Apellido2"
                 className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
               />
-              <p className="text-[10px] text-slate-400 mt-1 uppercase font-semibold">Debe incluir Nombre y ambos Apellidos</p>
+              <p className="text-[10px] text-slate-400 mt-1 uppercase font-semibold">Solo letras. Debe incluir Nombre y ambos Apellidos</p>
               {errors.nombreContacto && <span className="text-xs text-red-500">{errors.nombreContacto.message}</span>}
             </div>
 
@@ -377,6 +394,10 @@ export default function FormProveedor() {
                 <input
                   type="text"
                   {...register("telefono")}
+                  onChange={(e) => {
+                    setValue("telefono", formatPhoneNumber(e.target.value));
+                  }}
+                  placeholder="+506 0000-0000"
                   className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
                 />
                 {errors.telefono && <span className="text-xs text-red-500">{errors.telefono.message}</span>}
@@ -386,6 +407,10 @@ export default function FormProveedor() {
                 <input
                   type="text"
                   {...register("whatsapp")}
+                  onChange={(e) => {
+                    setValue("whatsapp", formatPhoneNumber(e.target.value));
+                  }}
+                  placeholder="+506 0000-0000"
                   className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
                 />
                 {errors.whatsapp && <span className="text-xs text-red-500">{errors.whatsapp.message}</span>}
