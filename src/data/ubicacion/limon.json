@@ -1,0 +1,4812 @@
+{
+  "provincia": "Limon",
+  "codigo_provincia": "7",
+  "cantones": [
+    {
+      "canton": "Talamanca",
+      "codigo_canton": "704",
+      "distritos": [
+        {
+          "distrito": "Sixaola",
+          "codigo_distrito": "70402",
+          "barrios": [
+            {
+              "nombre": "Sixaola",
+              "codigo_barrio": "7-704-70402-001"
+            },
+            {
+              "nombre": "Ania",
+              "codigo_barrio": "7-704-70402-002"
+            },
+            {
+              "nombre": "Palma",
+              "codigo_barrio": "7-704-70402-003"
+            },
+            {
+              "nombre": "Gandoca",
+              "codigo_barrio": "7-704-70402-004"
+            },
+            {
+              "nombre": "Mata de Limon",
+              "codigo_barrio": "7-704-70402-005"
+            },
+            {
+              "nombre": "Celia",
+              "codigo_barrio": "7-704-70402-006"
+            },
+            {
+              "nombre": "Zavala",
+              "codigo_barrio": "7-704-70402-007"
+            },
+            {
+              "nombre": "Paraiso",
+              "codigo_barrio": "7-704-70402-008"
+            },
+            {
+              "nombre": "Virginia",
+              "codigo_barrio": "7-704-70402-009"
+            },
+            {
+              "nombre": "Daytonia",
+              "codigo_barrio": "7-704-70402-010"
+            },
+            {
+              "nombre": "Catarina",
+              "codigo_barrio": "7-704-70402-011"
+            },
+            {
+              "nombre": "San Miguel",
+              "codigo_barrio": "7-704-70402-012"
+            },
+            {
+              "nombre": "San Miguelito",
+              "codigo_barrio": "7-704-70402-013"
+            },
+            {
+              "nombre": "Noventa y Seis",
+              "codigo_barrio": "7-704-70402-014"
+            },
+            {
+              "nombre": "Parque",
+              "codigo_barrio": "7-704-70402-015"
+            },
+            {
+              "nombre": "Margarita",
+              "codigo_barrio": "7-704-70402-016"
+            },
+            {
+              "nombre": "Boca Sixaola",
+              "codigo_barrio": "7-704-70402-017"
+            },
+            {
+              "nombre": "San Rafael",
+              "codigo_barrio": "7-704-70402-018"
+            },
+            {
+              "nombre": "La Colina",
+              "codigo_barrio": "7-704-70402-019"
+            },
+            {
+              "nombre": "Costa Rica",
+              "codigo_barrio": "7-704-70402-020"
+            },
+            {
+              "nombre": "Las Brisas",
+              "codigo_barrio": "7-704-70402-021"
+            },
+            {
+              "nombre": "Las Vegas",
+              "codigo_barrio": "7-704-70402-022"
+            },
+            {
+              "nombre": "La Union",
+              "codigo_barrio": "7-704-70402-023"
+            },
+            {
+              "nombre": "Sitio Altos de Catarina",
+              "codigo_barrio": "7-704-70402-024"
+            },
+            {
+              "nombre": "Bonife",
+              "codigo_barrio": "7-704-70402-025"
+            },
+            {
+              "nombre": "angeles",
+              "codigo_barrio": "7-704-70402-026"
+            },
+            {
+              "nombre": "Lagos",
+              "codigo_barrio": "7-704-70402-027"
+            },
+            {
+              "nombre": "San Rafael Dos",
+              "codigo_barrio": "7-704-70402-028"
+            },
+            {
+              "nombre": "Ivannia",
+              "codigo_barrio": "7-704-70402-029"
+            },
+            {
+              "nombre": "Llano Grande",
+              "codigo_barrio": "7-704-70402-030"
+            },
+            {
+              "nombre": "Pueblo Civil",
+              "codigo_barrio": "7-704-70402-031"
+            },
+            {
+              "nombre": "Tanagra",
+              "codigo_barrio": "7-704-70402-032"
+            },
+            {
+              "nombre": "Los Amigos",
+              "codigo_barrio": "7-704-70402-033"
+            },
+            {
+              "nombre": "La Bribri",
+              "codigo_barrio": "7-704-70402-034"
+            },
+            {
+              "nombre": "Civil",
+              "codigo_barrio": "7-704-70402-035"
+            },
+            {
+              "nombre": "Suiza",
+              "codigo_barrio": "7-704-70402-036"
+            },
+            {
+              "nombre": "Clarita",
+              "codigo_barrio": "7-704-70402-037"
+            },
+            {
+              "nombre": "San Jose",
+              "codigo_barrio": "7-704-70402-038"
+            }
+          ]
+        },
+        {
+          "distrito": "Bratsi",
+          "codigo_distrito": "70401",
+          "barrios": [
+            {
+              "nombre": "Bribri",
+              "codigo_barrio": "7-704-70401-001"
+            },
+            {
+              "nombre": "Gavilan Canta",
+              "codigo_barrio": "7-704-70401-002"
+            },
+            {
+              "nombre": "Uatsi",
+              "codigo_barrio": "7-704-70401-003"
+            },
+            {
+              "nombre": "Fields",
+              "codigo_barrio": "7-704-70401-004"
+            },
+            {
+              "nombre": "Chase",
+              "codigo_barrio": "7-704-70401-005"
+            },
+            {
+              "nombre": "Olivia",
+              "codigo_barrio": "7-704-70401-006"
+            },
+            {
+              "nombre": "Cuabre",
+              "codigo_barrio": "7-704-70401-007"
+            },
+            {
+              "nombre": "Sand Box",
+              "codigo_barrio": "7-704-70401-008"
+            },
+            {
+              "nombre": "Sibuju",
+              "codigo_barrio": "7-704-70401-009"
+            },
+            {
+              "nombre": "Akberie (Piedra Grande)",
+              "codigo_barrio": "7-704-70401-010"
+            },
+            {
+              "nombre": "Meleruk",
+              "codigo_barrio": "7-704-70401-011"
+            },
+            {
+              "nombre": "Meleruk Dos",
+              "codigo_barrio": "7-704-70401-012"
+            },
+            {
+              "nombre": "Shiroles",
+              "codigo_barrio": "7-704-70401-013"
+            },
+            {
+              "nombre": "Monte Sion",
+              "codigo_barrio": "7-704-70401-014"
+            },
+            {
+              "nombre": "Rancho Grande (Ù Bërie)",
+              "codigo_barrio": "7-704-70401-015"
+            },
+            {
+              "nombre": "Bambu",
+              "codigo_barrio": "7-704-70401-016"
+            },
+            {
+              "nombre": "Suretka",
+              "codigo_barrio": "7-704-70401-017"
+            },
+            {
+              "nombre": "China Kicha",
+              "codigo_barrio": "7-704-70401-018"
+            },
+            {
+              "nombre": "Altamira",
+              "codigo_barrio": "7-704-70401-019"
+            },
+            {
+              "nombre": "Progreso",
+              "codigo_barrio": "7-704-70401-020"
+            },
+            {
+              "nombre": "Union",
+              "codigo_barrio": "7-704-70401-021"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-704-70401-022"
+            },
+            {
+              "nombre": "Balaspit",
+              "codigo_barrio": "7-704-70401-023"
+            }
+          ]
+        },
+        {
+          "distrito": "Telire",
+          "codigo_distrito": "70404",
+          "barrios": [
+            {
+              "nombre": "Amubri",
+              "codigo_barrio": "7-704-70404-001"
+            },
+            {
+              "nombre": "Orochico",
+              "codigo_barrio": "7-704-70404-002"
+            },
+            {
+              "nombre": "Rangalle",
+              "codigo_barrio": "7-704-70404-003"
+            },
+            {
+              "nombre": "Bajo Blei",
+              "codigo_barrio": "7-704-70404-004"
+            },
+            {
+              "nombre": "Arenal",
+              "codigo_barrio": "7-704-70404-005"
+            },
+            {
+              "nombre": "Kichuguecha",
+              "codigo_barrio": "7-704-70404-006"
+            },
+            {
+              "nombre": "Bajo Coen",
+              "codigo_barrio": "7-704-70404-007"
+            },
+            {
+              "nombre": "Mojoncito",
+              "codigo_barrio": "7-704-70404-008"
+            },
+            {
+              "nombre": "Alto Coen (Kjacka Bata)",
+              "codigo_barrio": "7-704-70404-009"
+            },
+            {
+              "nombre": "San Jose Cabecar (Sakaska)",
+              "codigo_barrio": "7-704-70404-010"
+            },
+            {
+              "nombre": "Sitio Surayo",
+              "codigo_barrio": "7-704-70404-011"
+            },
+            {
+              "nombre": "Alto Lari (Duriñak)",
+              "codigo_barrio": "7-704-70404-012"
+            },
+            {
+              "nombre": "Sitio Ourut",
+              "codigo_barrio": "7-704-70404-013"
+            },
+            {
+              "nombre": "Sitio Kivut",
+              "codigo_barrio": "7-704-70404-014"
+            },
+            {
+              "nombre": "Bajo Piedra Mesa (Jäbëjüktö)",
+              "codigo_barrio": "7-704-70404-015"
+            },
+            {
+              "nombre": "Sitio Tsaki",
+              "codigo_barrio": "7-704-70404-016"
+            },
+            {
+              "nombre": "Sitio Croriña",
+              "codigo_barrio": "7-704-70404-017"
+            },
+            {
+              "nombre": "Cachabri",
+              "codigo_barrio": "7-704-70404-018"
+            },
+            {
+              "nombre": "Namuwakir",
+              "codigo_barrio": "7-704-70404-019"
+            },
+            {
+              "nombre": "Turubokicha",
+              "codigo_barrio": "7-704-70404-020"
+            },
+            {
+              "nombre": "Sitio Purisqui",
+              "codigo_barrio": "7-704-70404-021"
+            },
+            {
+              "nombre": "Sitio Sukut",
+              "codigo_barrio": "7-704-70404-022"
+            },
+            {
+              "nombre": "Sitio Purita",
+              "codigo_barrio": "7-704-70404-023"
+            },
+            {
+              "nombre": "Alto Uren",
+              "codigo_barrio": "7-704-70404-024"
+            },
+            {
+              "nombre": "Sitio Guachalaba",
+              "codigo_barrio": "7-704-70404-025"
+            },
+            {
+              "nombre": "Uren",
+              "codigo_barrio": "7-704-70404-026"
+            },
+            {
+              "nombre": "Bris",
+              "codigo_barrio": "7-704-70404-027"
+            },
+            {
+              "nombre": "Soky",
+              "codigo_barrio": "7-704-70404-028"
+            },
+            {
+              "nombre": "Tsiuri",
+              "codigo_barrio": "7-704-70404-029"
+            },
+            {
+              "nombre": "Katsi",
+              "codigo_barrio": "7-704-70404-030"
+            },
+            {
+              "nombre": "Sheuab",
+              "codigo_barrio": "7-704-70404-031"
+            },
+            {
+              "nombre": "Coroma",
+              "codigo_barrio": "7-704-70404-032"
+            },
+            {
+              "nombre": "Sipurio",
+              "codigo_barrio": "7-704-70404-033"
+            },
+            {
+              "nombre": "Sepecue",
+              "codigo_barrio": "7-704-70404-034"
+            },
+            {
+              "nombre": "Dururpe",
+              "codigo_barrio": "7-704-70404-035"
+            },
+            {
+              "nombre": "Sorokicha",
+              "codigo_barrio": "7-704-70404-036"
+            },
+            {
+              "nombre": "Boca Uren",
+              "codigo_barrio": "7-704-70404-037"
+            },
+            {
+              "nombre": "Sitio Troque",
+              "codigo_barrio": "7-704-70404-038"
+            },
+            {
+              "nombre": "Sitio Sarke",
+              "codigo_barrio": "7-704-70404-039"
+            },
+            {
+              "nombre": "Sitio Piedra Grande",
+              "codigo_barrio": "7-704-70404-040"
+            },
+            {
+              "nombre": "Sitio Sabanas Durika",
+              "codigo_barrio": "7-704-70404-041"
+            },
+            {
+              "nombre": "Sitio Gavilan (Pjuju)",
+              "codigo_barrio": "7-704-70404-042"
+            },
+            {
+              "nombre": "Korbita",
+              "codigo_barrio": "7-704-70404-043"
+            },
+            {
+              "nombre": "Alto Cachabri",
+              "codigo_barrio": "7-704-70404-044"
+            },
+            {
+              "nombre": "Alto Katsi",
+              "codigo_barrio": "7-704-70404-045"
+            },
+            {
+              "nombre": "Döbri",
+              "codigo_barrio": "7-704-70404-046"
+            },
+            {
+              "nombre": "Alto Blei (Bleitö)",
+              "codigo_barrio": "7-704-70404-047"
+            },
+            {
+              "nombre": "Tsipiri (Kowa)",
+              "codigo_barrio": "7-704-70404-048"
+            },
+            {
+              "nombre": "Monteverde (Düchiribata)",
+              "codigo_barrio": "7-704-70404-049"
+            },
+            {
+              "nombre": "Guayabal",
+              "codigo_barrio": "7-704-70404-050"
+            },
+            {
+              "nombre": "Alto Piedra Mesa (Jäktögrö)",
+              "codigo_barrio": "7-704-70404-051"
+            },
+            {
+              "nombre": "Bajo Blei Norte",
+              "codigo_barrio": "7-704-70404-052"
+            },
+            {
+              "nombre": "Cartago (Kakal Kicha)",
+              "codigo_barrio": "7-704-70404-053"
+            },
+            {
+              "nombre": "Orochico Dos",
+              "codigo_barrio": "7-704-70404-054"
+            },
+            {
+              "nombre": "Sepecue Dos",
+              "codigo_barrio": "7-704-70404-055"
+            },
+            {
+              "nombre": "Sitio Bajo Parroquia",
+              "codigo_barrio": "7-704-70404-056"
+            },
+            {
+              "nombre": "Yorkin",
+              "codigo_barrio": "7-704-70404-057"
+            },
+            {
+              "nombre": "Sibodi",
+              "codigo_barrio": "7-704-70404-058"
+            },
+            {
+              "nombre": "Bajo Coen Dos",
+              "codigo_barrio": "7-704-70404-059"
+            },
+            {
+              "nombre": "Escalante",
+              "codigo_barrio": "7-704-70404-060"
+            },
+            {
+              "nombre": "Tsuiri Dos",
+              "codigo_barrio": "7-704-70404-061"
+            },
+            {
+              "nombre": "Bütubata",
+              "codigo_barrio": "7-704-70404-062"
+            },
+            {
+              "nombre": "Arcoiris (Shakkaba)",
+              "codigo_barrio": "7-704-70404-063"
+            },
+            {
+              "nombre": "Tskui",
+              "codigo_barrio": "7-704-70404-064"
+            },
+            {
+              "nombre": "Diques",
+              "codigo_barrio": "7-704-70404-065"
+            },
+            {
+              "nombre": "Las Palmas",
+              "codigo_barrio": "7-704-70404-066"
+            },
+            {
+              "nombre": "Jardin de Helechos",
+              "codigo_barrio": "7-704-70404-067"
+            }
+          ]
+        },
+        {
+          "distrito": "Cahuita",
+          "codigo_distrito": "70403",
+          "barrios": [
+            {
+              "nombre": "Cahuita",
+              "codigo_barrio": "7-704-70403-001"
+            },
+            {
+              "nombre": "Punta Mona",
+              "codigo_barrio": "7-704-70403-002"
+            },
+            {
+              "nombre": "Mile Creek",
+              "codigo_barrio": "7-704-70403-003"
+            },
+            {
+              "nombre": "Cocles",
+              "codigo_barrio": "7-704-70403-004"
+            },
+            {
+              "nombre": "Punta Uva",
+              "codigo_barrio": "7-704-70403-005"
+            },
+            {
+              "nombre": "Manzanillo",
+              "codigo_barrio": "7-704-70403-006"
+            },
+            {
+              "nombre": "Punta Cocles",
+              "codigo_barrio": "7-704-70403-007"
+            },
+            {
+              "nombre": "Playa Chiquita",
+              "codigo_barrio": "7-704-70403-008"
+            },
+            {
+              "nombre": "Patiño",
+              "codigo_barrio": "7-704-70403-009"
+            },
+            {
+              "nombre": "Carbon",
+              "codigo_barrio": "7-704-70403-010"
+            },
+            {
+              "nombre": "Këköldi",
+              "codigo_barrio": "7-704-70403-011"
+            },
+            {
+              "nombre": "Hotel Creek",
+              "codigo_barrio": "7-704-70403-012"
+            },
+            {
+              "nombre": "Catarata",
+              "codigo_barrio": "7-704-70403-013"
+            },
+            {
+              "nombre": "Hone Creek",
+              "codigo_barrio": "7-704-70403-014"
+            },
+            {
+              "nombre": "Puerto Viejo",
+              "codigo_barrio": "7-704-70403-015"
+            },
+            {
+              "nombre": "Bordon",
+              "codigo_barrio": "7-704-70403-016"
+            },
+            {
+              "nombre": "Limonal",
+              "codigo_barrio": "7-704-70403-017"
+            },
+            {
+              "nombre": "Comadre",
+              "codigo_barrio": "7-704-70403-018"
+            },
+            {
+              "nombre": "Dindiri",
+              "codigo_barrio": "7-704-70403-019"
+            },
+            {
+              "nombre": "Carbon 2",
+              "codigo_barrio": "7-704-70403-020"
+            },
+            {
+              "nombre": "Punta Caliente",
+              "codigo_barrio": "7-704-70403-021"
+            },
+            {
+              "nombre": "Gibraltar",
+              "codigo_barrio": "7-704-70403-022"
+            },
+            {
+              "nombre": "Tuba Creek",
+              "codigo_barrio": "7-704-70403-023"
+            },
+            {
+              "nombre": "Coquito",
+              "codigo_barrio": "7-704-70403-024"
+            },
+            {
+              "nombre": "Brisas del Rio",
+              "codigo_barrio": "7-704-70403-025"
+            },
+            {
+              "nombre": "Buenavista (Katuir)",
+              "codigo_barrio": "7-704-70403-026"
+            },
+            {
+              "nombre": "Carbon 1",
+              "codigo_barrio": "7-704-70403-027"
+            },
+            {
+              "nombre": "Lopez Tindal",
+              "codigo_barrio": "7-704-70403-028"
+            },
+            {
+              "nombre": "El Turrialbeño",
+              "codigo_barrio": "7-704-70403-029"
+            },
+            {
+              "nombre": "Pan Dulce",
+              "codigo_barrio": "7-704-70403-030"
+            },
+            {
+              "nombre": "Unido",
+              "codigo_barrio": "7-704-70403-031"
+            },
+            {
+              "nombre": "Cacao",
+              "codigo_barrio": "7-704-70403-032"
+            },
+            {
+              "nombre": "Bambusal",
+              "codigo_barrio": "7-704-70403-033"
+            },
+            {
+              "nombre": "La Union",
+              "codigo_barrio": "7-704-70403-034"
+            },
+            {
+              "nombre": "Loma",
+              "codigo_barrio": "7-704-70403-035"
+            },
+            {
+              "nombre": "Playa Negra",
+              "codigo_barrio": "7-704-70403-036"
+            },
+            {
+              "nombre": "Plaza Viquez",
+              "codigo_barrio": "7-704-70403-037"
+            },
+            {
+              "nombre": "Playa Negra de Puerto Viejo",
+              "codigo_barrio": "7-704-70403-038"
+            },
+            {
+              "nombre": "San Rafael",
+              "codigo_barrio": "7-704-70403-039"
+            },
+            {
+              "nombre": "Ebenezer",
+              "codigo_barrio": "7-704-70403-040"
+            },
+            {
+              "nombre": "Sagrada Familia",
+              "codigo_barrio": "7-704-70403-041"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canton": "Limon",
+      "codigo_canton": "701",
+      "distritos": [
+        {
+          "distrito": "Valle La Estrella",
+          "codigo_distrito": "70102",
+          "barrios": [
+            {
+              "nombre": "Pandora",
+              "codigo_barrio": "7-701-70102-001"
+            },
+            {
+              "nombre": "Moi (San Vicente)",
+              "codigo_barrio": "7-701-70102-002"
+            },
+            {
+              "nombre": "San Miguel",
+              "codigo_barrio": "7-701-70102-003"
+            },
+            {
+              "nombre": "Bananito Sur",
+              "codigo_barrio": "7-701-70102-004"
+            },
+            {
+              "nombre": "Burrico",
+              "codigo_barrio": "7-701-70102-005"
+            },
+            {
+              "nombre": "Progreso",
+              "codigo_barrio": "7-701-70102-006"
+            },
+            {
+              "nombre": "San Carlos",
+              "codigo_barrio": "7-701-70102-007"
+            },
+            {
+              "nombre": "Jabuy",
+              "codigo_barrio": "7-701-70102-008"
+            },
+            {
+              "nombre": "Suruy",
+              "codigo_barrio": "7-701-70102-009"
+            },
+            {
+              "nombre": "Vesta",
+              "codigo_barrio": "7-701-70102-010"
+            },
+            {
+              "nombre": "Cerere",
+              "codigo_barrio": "7-701-70102-011"
+            },
+            {
+              "nombre": "Calveri",
+              "codigo_barrio": "7-701-70102-012"
+            },
+            {
+              "nombre": "Gavilan",
+              "codigo_barrio": "7-701-70102-013"
+            },
+            {
+              "nombre": "Fortuna",
+              "codigo_barrio": "7-701-70102-014"
+            },
+            {
+              "nombre": "Cartagena",
+              "codigo_barrio": "7-701-70102-015"
+            },
+            {
+              "nombre": "Boca Cuen",
+              "codigo_barrio": "7-701-70102-016"
+            },
+            {
+              "nombre": "Llano Grande",
+              "codigo_barrio": "7-701-70102-017"
+            },
+            {
+              "nombre": "Casa Amarilla",
+              "codigo_barrio": "7-701-70102-018"
+            },
+            {
+              "nombre": "Vegas de Cerere",
+              "codigo_barrio": "7-701-70102-019"
+            },
+            {
+              "nombre": "Cuen",
+              "codigo_barrio": "7-701-70102-020"
+            },
+            {
+              "nombre": "Manu",
+              "codigo_barrio": "7-701-70102-021"
+            },
+            {
+              "nombre": "Nubes",
+              "codigo_barrio": "7-701-70102-022"
+            },
+            {
+              "nombre": "Tobruk",
+              "codigo_barrio": "7-701-70102-023"
+            },
+            {
+              "nombre": "Nanabre",
+              "codigo_barrio": "7-701-70102-024"
+            },
+            {
+              "nombre": "Rio Seco",
+              "codigo_barrio": "7-701-70102-025"
+            },
+            {
+              "nombre": "Porvenir",
+              "codigo_barrio": "7-701-70102-026"
+            },
+            {
+              "nombre": "Pleyades",
+              "codigo_barrio": "7-701-70102-027"
+            },
+            {
+              "nombre": "Penshurt",
+              "codigo_barrio": "7-701-70102-028"
+            },
+            {
+              "nombre": "I Griega",
+              "codigo_barrio": "7-701-70102-029"
+            },
+            {
+              "nombre": "Bonifacio",
+              "codigo_barrio": "7-701-70102-030"
+            },
+            {
+              "nombre": "San Rafael",
+              "codigo_barrio": "7-701-70102-031"
+            },
+            {
+              "nombre": "Buenavista",
+              "codigo_barrio": "7-701-70102-032"
+            },
+            {
+              "nombre": "San Clemente",
+              "codigo_barrio": "7-701-70102-033"
+            },
+            {
+              "nombre": "Boca Rio Estrella",
+              "codigo_barrio": "7-701-70102-034"
+            },
+            {
+              "nombre": "Talia",
+              "codigo_barrio": "7-701-70102-035"
+            },
+            {
+              "nombre": "Loras",
+              "codigo_barrio": "7-701-70102-036"
+            },
+            {
+              "nombre": "Duruy",
+              "codigo_barrio": "7-701-70102-037"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-701-70102-038"
+            },
+            {
+              "nombre": "Guaria",
+              "codigo_barrio": "7-701-70102-039"
+            },
+            {
+              "nombre": "Rio Ley",
+              "codigo_barrio": "7-701-70102-040"
+            },
+            {
+              "nombre": "Colonia",
+              "codigo_barrio": "7-701-70102-041"
+            },
+            {
+              "nombre": "Bocuare",
+              "codigo_barrio": "7-701-70102-042"
+            },
+            {
+              "nombre": "Alsacia",
+              "codigo_barrio": "7-701-70102-043"
+            },
+            {
+              "nombre": "Atalanta",
+              "codigo_barrio": "7-701-70102-044"
+            },
+            {
+              "nombre": "Valle de las Rosas",
+              "codigo_barrio": "7-701-70102-045"
+            },
+            {
+              "nombre": "Hueco",
+              "codigo_barrio": "7-701-70102-046"
+            },
+            {
+              "nombre": "Miramar",
+              "codigo_barrio": "7-701-70102-047"
+            },
+            {
+              "nombre": "San Andres",
+              "codigo_barrio": "7-701-70102-048"
+            },
+            {
+              "nombre": "Sitio Dos Bocas",
+              "codigo_barrio": "7-701-70102-049"
+            },
+            {
+              "nombre": "Caño Negro",
+              "codigo_barrio": "7-701-70102-050"
+            },
+            {
+              "nombre": "Concepcion",
+              "codigo_barrio": "7-701-70102-051"
+            },
+            {
+              "nombre": "Finca Ocho",
+              "codigo_barrio": "7-701-70102-052"
+            },
+            {
+              "nombre": "Progreso",
+              "codigo_barrio": "7-701-70102-053"
+            },
+            {
+              "nombre": "Pandora Oeste",
+              "codigo_barrio": "7-701-70102-054"
+            },
+            {
+              "nombre": "Armenia",
+              "codigo_barrio": "7-701-70102-055"
+            },
+            {
+              "nombre": "Estero Negro",
+              "codigo_barrio": "7-701-70102-056"
+            },
+            {
+              "nombre": "La Union",
+              "codigo_barrio": "7-701-70102-057"
+            },
+            {
+              "nombre": "Cabaña",
+              "codigo_barrio": "7-701-70102-058"
+            },
+            {
+              "nombre": "Los angeles",
+              "codigo_barrio": "7-701-70102-059"
+            },
+            {
+              "nombre": "Santa Teresita",
+              "codigo_barrio": "7-701-70102-060"
+            },
+            {
+              "nombre": "Caserio Casa Amarilla",
+              "codigo_barrio": "7-701-70102-061"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-701-70102-062"
+            },
+            {
+              "nombre": "Buenos Aires",
+              "codigo_barrio": "7-701-70102-063"
+            },
+            {
+              "nombre": "Siberia",
+              "codigo_barrio": "7-701-70102-064"
+            },
+            {
+              "nombre": "Wixca Bata",
+              "codigo_barrio": "7-701-70102-065"
+            },
+            {
+              "nombre": "Cwen de Alto Chirripo",
+              "codigo_barrio": "7-701-70102-066"
+            },
+            {
+              "nombre": "Coyol",
+              "codigo_barrio": "7-701-70102-067"
+            },
+            {
+              "nombre": "Bakche",
+              "codigo_barrio": "7-701-70102-068"
+            },
+            {
+              "nombre": "Duleca",
+              "codigo_barrio": "7-701-70102-069"
+            },
+            {
+              "nombre": "Joctali",
+              "codigo_barrio": "7-701-70102-070"
+            },
+            {
+              "nombre": "Miramar",
+              "codigo_barrio": "7-701-70102-071"
+            }
+          ]
+        },
+        {
+          "distrito": "Matama",
+          "codigo_distrito": "70104",
+          "barrios": [
+            {
+              "nombre": "Bomba",
+              "codigo_barrio": "7-701-70104-001"
+            },
+            {
+              "nombre": "Tigre",
+              "codigo_barrio": "7-701-70104-002"
+            },
+            {
+              "nombre": "Trebol",
+              "codigo_barrio": "7-701-70104-003"
+            },
+            {
+              "nombre": "Beverley",
+              "codigo_barrio": "7-701-70104-004"
+            },
+            {
+              "nombre": "Bearesem",
+              "codigo_barrio": "7-701-70104-005"
+            },
+            {
+              "nombre": "Westfalia",
+              "codigo_barrio": "7-701-70104-006"
+            },
+            {
+              "nombre": "Calle Tranvia",
+              "codigo_barrio": "7-701-70104-007"
+            },
+            {
+              "nombre": "Filadelfia Sur",
+              "codigo_barrio": "7-701-70104-008"
+            },
+            {
+              "nombre": "Castillo Nuevo",
+              "codigo_barrio": "7-701-70104-009"
+            },
+            {
+              "nombre": "Filadelfia Norte",
+              "codigo_barrio": "7-701-70104-010"
+            },
+            {
+              "nombre": "Rio Banano",
+              "codigo_barrio": "7-701-70104-011"
+            },
+            {
+              "nombre": "Quitaria",
+              "codigo_barrio": "7-701-70104-012"
+            },
+            {
+              "nombre": "Maria Luisa",
+              "codigo_barrio": "7-701-70104-013"
+            },
+            {
+              "nombre": "Mountain Cow",
+              "codigo_barrio": "7-701-70104-014"
+            },
+            {
+              "nombre": "Polonia",
+              "codigo_barrio": "7-701-70104-015"
+            },
+            {
+              "nombre": "Dondonia",
+              "codigo_barrio": "7-701-70104-016"
+            },
+            {
+              "nombre": "Kent",
+              "codigo_barrio": "7-701-70104-017"
+            },
+            {
+              "nombre": "Bananito Norte",
+              "codigo_barrio": "7-701-70104-018"
+            },
+            {
+              "nombre": "Aguas Zarcas",
+              "codigo_barrio": "7-701-70104-019"
+            },
+            {
+              "nombre": "Asuncion",
+              "codigo_barrio": "7-701-70104-020"
+            },
+            {
+              "nombre": "Paraiso",
+              "codigo_barrio": "7-701-70104-021"
+            },
+            {
+              "nombre": "San Cecilio",
+              "codigo_barrio": "7-701-70104-022"
+            },
+            {
+              "nombre": "Las Palmeras",
+              "codigo_barrio": "7-701-70104-023"
+            },
+            {
+              "nombre": "Solorzano",
+              "codigo_barrio": "7-701-70104-024"
+            },
+            {
+              "nombre": "El Zancudo",
+              "codigo_barrio": "7-701-70104-025"
+            },
+            {
+              "nombre": "Palmas",
+              "codigo_barrio": "7-701-70104-026"
+            },
+            {
+              "nombre": "Calle Bolivia",
+              "codigo_barrio": "7-701-70104-027"
+            }
+          ]
+        },
+        {
+          "distrito": "Rio Blanco",
+          "codigo_distrito": "70103",
+          "barrios": [
+            {
+              "nombre": "Liverpool",
+              "codigo_barrio": "7-701-70103-001"
+            },
+            {
+              "nombre": "Sandoval",
+              "codigo_barrio": "7-701-70103-002"
+            },
+            {
+              "nombre": "Loma Linda",
+              "codigo_barrio": "7-701-70103-003"
+            },
+            {
+              "nombre": "Mexico",
+              "codigo_barrio": "7-701-70103-004"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-701-70103-005"
+            },
+            {
+              "nombre": "Victoria",
+              "codigo_barrio": "7-701-70103-006"
+            },
+            {
+              "nombre": "Sitio Victoria",
+              "codigo_barrio": "7-701-70103-007"
+            },
+            {
+              "nombre": "Rio Quito",
+              "codigo_barrio": "7-701-70103-008"
+            },
+            {
+              "nombre": "Rio Madre",
+              "codigo_barrio": "7-701-70103-009"
+            },
+            {
+              "nombre": "Limon 2000",
+              "codigo_barrio": "7-701-70103-010"
+            },
+            {
+              "nombre": "Santa Rita",
+              "codigo_barrio": "7-701-70103-011"
+            },
+            {
+              "nombre": "Rio Blanco",
+              "codigo_barrio": "7-701-70103-012"
+            },
+            {
+              "nombre": "Miravalles",
+              "codigo_barrio": "7-701-70103-013"
+            },
+            {
+              "nombre": "Milla 9",
+              "codigo_barrio": "7-701-70103-014"
+            },
+            {
+              "nombre": "Rio Victoria",
+              "codigo_barrio": "7-701-70103-015"
+            },
+            {
+              "nombre": "Brisas de Veragua",
+              "codigo_barrio": "7-701-70103-016"
+            },
+            {
+              "nombre": "Bufalo",
+              "codigo_barrio": "7-701-70103-017"
+            },
+            {
+              "nombre": "Rio Cedro",
+              "codigo_barrio": "7-701-70103-018"
+            },
+            {
+              "nombre": "Altos De Victoria",
+              "codigo_barrio": "7-701-70103-019"
+            },
+            {
+              "nombre": "Altos Pozos",
+              "codigo_barrio": "7-701-70103-020"
+            },
+            {
+              "nombre": "Matamoros",
+              "codigo_barrio": "7-701-70103-021"
+            },
+            {
+              "nombre": "Caribe",
+              "codigo_barrio": "7-701-70103-022"
+            }
+          ]
+        },
+        {
+          "distrito": "Limon",
+          "codigo_distrito": "70101",
+          "barrios": [
+            {
+              "nombre": "Quinto",
+              "codigo_barrio": "7-701-70101-001"
+            },
+            {
+              "nombre": "Santa Rosa",
+              "codigo_barrio": "7-701-70101-002"
+            },
+            {
+              "nombre": "Empalme Moin",
+              "codigo_barrio": "7-701-70101-003"
+            },
+            {
+              "nombre": "Buenos Aires",
+              "codigo_barrio": "7-701-70101-004"
+            },
+            {
+              "nombre": "Villa Hermosa",
+              "codigo_barrio": "7-701-70101-005"
+            },
+            {
+              "nombre": "Valle Aurora",
+              "codigo_barrio": "7-701-70101-006"
+            },
+            {
+              "nombre": "Villas del Mar Uno",
+              "codigo_barrio": "7-701-70101-007"
+            },
+            {
+              "nombre": "Villas del Mar Dos",
+              "codigo_barrio": "7-701-70101-008"
+            },
+            {
+              "nombre": "Cocal",
+              "codigo_barrio": "7-701-70101-009"
+            },
+            {
+              "nombre": "Dos Bocas",
+              "codigo_barrio": "7-701-70101-010"
+            },
+            {
+              "nombre": "Milla Nueve",
+              "codigo_barrio": "7-701-70101-011"
+            },
+            {
+              "nombre": "Moin",
+              "codigo_barrio": "7-701-70101-012"
+            },
+            {
+              "nombre": "Limoncito",
+              "codigo_barrio": "7-701-70101-013"
+            },
+            {
+              "nombre": "Cieneguita",
+              "codigo_barrio": "7-701-70101-014"
+            },
+            {
+              "nombre": "Lirios",
+              "codigo_barrio": "7-701-70101-015"
+            },
+            {
+              "nombre": "Colina",
+              "codigo_barrio": "7-701-70101-016"
+            },
+            {
+              "nombre": "Japdeva",
+              "codigo_barrio": "7-701-70101-017"
+            },
+            {
+              "nombre": "Corales",
+              "codigo_barrio": "7-701-70101-018"
+            },
+            {
+              "nombre": "San Juan",
+              "codigo_barrio": "7-701-70101-019"
+            },
+            {
+              "nombre": "Bellavista",
+              "codigo_barrio": "7-701-70101-020"
+            },
+            {
+              "nombre": "Cielo Amarillo",
+              "codigo_barrio": "7-701-70101-021"
+            },
+            {
+              "nombre": "Portete",
+              "codigo_barrio": "7-701-70101-022"
+            },
+            {
+              "nombre": "Cangrejos",
+              "codigo_barrio": "7-701-70101-023"
+            },
+            {
+              "nombre": "Piuta",
+              "codigo_barrio": "7-701-70101-024"
+            },
+            {
+              "nombre": "Almendros",
+              "codigo_barrio": "7-701-70101-025"
+            },
+            {
+              "nombre": "Bosque",
+              "codigo_barrio": "7-701-70101-026"
+            },
+            {
+              "nombre": "Cariari",
+              "codigo_barrio": "7-701-70101-027"
+            },
+            {
+              "nombre": "Cerro Mocho",
+              "codigo_barrio": "7-701-70101-028"
+            },
+            {
+              "nombre": "Garron",
+              "codigo_barrio": "7-701-70101-029"
+            },
+            {
+              "nombre": "Hospital",
+              "codigo_barrio": "7-701-70101-030"
+            },
+            {
+              "nombre": "Jamaica Town",
+              "codigo_barrio": "7-701-70101-031"
+            },
+            {
+              "nombre": "Laureles",
+              "codigo_barrio": "7-701-70101-032"
+            },
+            {
+              "nombre": "Santa Eduvigis",
+              "codigo_barrio": "7-701-70101-033"
+            },
+            {
+              "nombre": "Trinidad",
+              "codigo_barrio": "7-701-70101-034"
+            },
+            {
+              "nombre": "Bohio",
+              "codigo_barrio": "7-701-70101-035"
+            },
+            {
+              "nombre": "Fortin",
+              "codigo_barrio": "7-701-70101-036"
+            },
+            {
+              "nombre": "Cruce",
+              "codigo_barrio": "7-701-70101-037"
+            },
+            {
+              "nombre": "Veracruz",
+              "codigo_barrio": "7-701-70101-038"
+            },
+            {
+              "nombre": "Siglo Veintiuno",
+              "codigo_barrio": "7-701-70101-039"
+            },
+            {
+              "nombre": "Villa Bavaria",
+              "codigo_barrio": "7-701-70101-040"
+            },
+            {
+              "nombre": "Colina (Sector 10)",
+              "codigo_barrio": "7-701-70101-041"
+            },
+            {
+              "nombre": "Isaias Marchena",
+              "codigo_barrio": "7-701-70101-042"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-701-70101-043"
+            },
+            {
+              "nombre": "Lincoln",
+              "codigo_barrio": "7-701-70101-044"
+            },
+            {
+              "nombre": "Los Cocos",
+              "codigo_barrio": "7-701-70101-045"
+            },
+            {
+              "nombre": "Pacuare Nuevo",
+              "codigo_barrio": "7-701-70101-046"
+            },
+            {
+              "nombre": "Pacuare Viejo",
+              "codigo_barrio": "7-701-70101-047"
+            },
+            {
+              "nombre": "Terrazas Del Mar",
+              "codigo_barrio": "7-701-70101-048"
+            },
+            {
+              "nombre": "Villas Cacao",
+              "codigo_barrio": "7-701-70101-049"
+            },
+            {
+              "nombre": "Triunfo",
+              "codigo_barrio": "7-701-70101-050"
+            },
+            {
+              "nombre": "El Cerro",
+              "codigo_barrio": "7-701-70101-051"
+            },
+            {
+              "nombre": "Ceibon",
+              "codigo_barrio": "7-701-70101-052"
+            },
+            {
+              "nombre": "Colina (Sector 9)",
+              "codigo_barrio": "7-701-70101-053"
+            },
+            {
+              "nombre": "Coopeutba",
+              "codigo_barrio": "7-701-70101-054"
+            },
+            {
+              "nombre": "Carmen",
+              "codigo_barrio": "7-701-70101-055"
+            },
+            {
+              "nombre": "Espiritu Santo",
+              "codigo_barrio": "7-701-70101-056"
+            },
+            {
+              "nombre": "Doña Gertrude",
+              "codigo_barrio": "7-701-70101-057"
+            },
+            {
+              "nombre": "Juan Goban",
+              "codigo_barrio": "7-701-70101-058"
+            },
+            {
+              "nombre": "Juan Pablo Segundo",
+              "codigo_barrio": "7-701-70101-059"
+            },
+            {
+              "nombre": "La Loma De Moin",
+              "codigo_barrio": "7-701-70101-060"
+            },
+            {
+              "nombre": "Las Palmeras",
+              "codigo_barrio": "7-701-70101-061"
+            },
+            {
+              "nombre": "Ojo De Agua",
+              "codigo_barrio": "7-701-70101-062"
+            },
+            {
+              "nombre": "Bambu",
+              "codigo_barrio": "7-701-70101-063"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-701-70101-064"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canton": "Siquirres",
+      "codigo_canton": "703",
+      "distritos": [
+        {
+          "distrito": "Florida",
+          "codigo_distrito": "70303",
+          "barrios": [
+            {
+              "nombre": "Florida",
+              "codigo_barrio": "7-703-70303-001"
+            },
+            {
+              "nombre": "Tunel Camp",
+              "codigo_barrio": "7-703-70303-002"
+            },
+            {
+              "nombre": "Fourth Cliff",
+              "codigo_barrio": "7-703-70303-003"
+            },
+            {
+              "nombre": "Rubi",
+              "codigo_barrio": "7-703-70303-004"
+            },
+            {
+              "nombre": "Alto Gracias a Dios",
+              "codigo_barrio": "7-703-70303-005"
+            },
+            {
+              "nombre": "Llano",
+              "codigo_barrio": "7-703-70303-006"
+            },
+            {
+              "nombre": "Huecos",
+              "codigo_barrio": "7-703-70303-007"
+            },
+            {
+              "nombre": "Casorla",
+              "codigo_barrio": "7-703-70303-008"
+            },
+            {
+              "nombre": "Pascua",
+              "codigo_barrio": "7-703-70303-009"
+            },
+            {
+              "nombre": "San Antonio",
+              "codigo_barrio": "7-703-70303-010"
+            },
+            {
+              "nombre": "Lomas",
+              "codigo_barrio": "7-703-70303-011"
+            },
+            {
+              "nombre": "Bonilla Abajo",
+              "codigo_barrio": "7-703-70303-012"
+            },
+            {
+              "nombre": "Roca",
+              "codigo_barrio": "7-703-70303-013"
+            },
+            {
+              "nombre": "Chonta",
+              "codigo_barrio": "7-703-70303-014"
+            },
+            {
+              "nombre": "Destierro",
+              "codigo_barrio": "7-703-70303-015"
+            },
+            {
+              "nombre": "Altos de Pascua",
+              "codigo_barrio": "7-703-70303-016"
+            },
+            {
+              "nombre": "El Alto",
+              "codigo_barrio": "7-703-70303-017"
+            },
+            {
+              "nombre": "Alto Laurelar",
+              "codigo_barrio": "7-703-70303-018"
+            },
+            {
+              "nombre": "Bajo Cuarenta y siete",
+              "codigo_barrio": "7-703-70303-019"
+            },
+            {
+              "nombre": "Calle Fuentes",
+              "codigo_barrio": "7-703-70303-020"
+            },
+            {
+              "nombre": "Nubes",
+              "codigo_barrio": "7-703-70303-021"
+            },
+            {
+              "nombre": "Nubes",
+              "codigo_barrio": "7-703-70303-022"
+            },
+            {
+              "nombre": "Villa Aurora",
+              "codigo_barrio": "7-703-70303-023"
+            }
+          ]
+        },
+        {
+          "distrito": "Alegria",
+          "codigo_distrito": "70306",
+          "barrios": [
+            {
+              "nombre": "Alegria",
+              "codigo_barrio": "7-703-70306-001"
+            },
+            {
+              "nombre": "Cruce",
+              "codigo_barrio": "7-703-70306-002"
+            },
+            {
+              "nombre": "Vueltas",
+              "codigo_barrio": "7-703-70306-003"
+            },
+            {
+              "nombre": "Porton Iberia",
+              "codigo_barrio": "7-703-70306-004"
+            },
+            {
+              "nombre": "Alto Herediana",
+              "codigo_barrio": "7-703-70306-005"
+            },
+            {
+              "nombre": "Rio Peje",
+              "codigo_barrio": "7-703-70306-006"
+            },
+            {
+              "nombre": "Villa Bonita",
+              "codigo_barrio": "7-703-70306-007"
+            },
+            {
+              "nombre": "La I Griega",
+              "codigo_barrio": "7-703-70306-008"
+            },
+            {
+              "nombre": "Altos de Germania",
+              "codigo_barrio": "7-703-70306-009"
+            },
+            {
+              "nombre": "Ceibos",
+              "codigo_barrio": "7-703-70306-010"
+            },
+            {
+              "nombre": "Grano de Oro",
+              "codigo_barrio": "7-703-70306-011"
+            },
+            {
+              "nombre": "Calle Los Araya",
+              "codigo_barrio": "7-703-70306-012"
+            },
+            {
+              "nombre": "La Esmeralda",
+              "codigo_barrio": "7-703-70306-013"
+            },
+            {
+              "nombre": "Calle Gamboa",
+              "codigo_barrio": "7-703-70306-014"
+            },
+            {
+              "nombre": "Nuevo de San Isidro",
+              "codigo_barrio": "7-703-70306-015"
+            }
+          ]
+        },
+        {
+          "distrito": "Germania",
+          "codigo_distrito": "70304",
+          "barrios": [
+            {
+              "nombre": "Germania",
+              "codigo_barrio": "7-703-70304-001"
+            },
+            {
+              "nombre": "Milano",
+              "codigo_barrio": "7-703-70304-002"
+            },
+            {
+              "nombre": "Cacao",
+              "codigo_barrio": "7-703-70304-003"
+            },
+            {
+              "nombre": "Trinidad",
+              "codigo_barrio": "7-703-70304-004"
+            },
+            {
+              "nombre": "Herediana",
+              "codigo_barrio": "7-703-70304-005"
+            },
+            {
+              "nombre": "Colombiana",
+              "codigo_barrio": "7-703-70304-006"
+            },
+            {
+              "nombre": "Williamsburg",
+              "codigo_barrio": "7-703-70304-007"
+            },
+            {
+              "nombre": "America",
+              "codigo_barrio": "7-703-70304-008"
+            },
+            {
+              "nombre": "Babilonia",
+              "codigo_barrio": "7-703-70304-009"
+            },
+            {
+              "nombre": "Sitio Las Pachucas",
+              "codigo_barrio": "7-703-70304-010"
+            },
+            {
+              "nombre": "Las Viviendas",
+              "codigo_barrio": "7-703-70304-011"
+            },
+            {
+              "nombre": "Trinidad Norte",
+              "codigo_barrio": "7-703-70304-012"
+            },
+            {
+              "nombre": "Codela",
+              "codigo_barrio": "7-703-70304-013"
+            },
+            {
+              "nombre": "Mindoro",
+              "codigo_barrio": "7-703-70304-014"
+            }
+          ]
+        },
+        {
+          "distrito": "Reventazon",
+          "codigo_distrito": "70307",
+          "barrios": [
+            {
+              "nombre": "Boca Pacuare",
+              "codigo_barrio": "7-703-70307-001"
+            },
+            {
+              "nombre": "Caño Blanco",
+              "codigo_barrio": "7-703-70307-002"
+            },
+            {
+              "nombre": "Boca Parismina (Barra Parismina)",
+              "codigo_barrio": "7-703-70307-003"
+            },
+            {
+              "nombre": "Celina",
+              "codigo_barrio": "7-703-70307-004"
+            },
+            {
+              "nombre": "Nueva Esperanza",
+              "codigo_barrio": "7-703-70307-005"
+            },
+            {
+              "nombre": "Vegas de Imperio",
+              "codigo_barrio": "7-703-70307-006"
+            },
+            {
+              "nombre": "Dos Bocas (Suerre)",
+              "codigo_barrio": "7-703-70307-007"
+            },
+            {
+              "nombre": "Islona",
+              "codigo_barrio": "7-703-70307-008"
+            },
+            {
+              "nombre": "Carmen",
+              "codigo_barrio": "7-703-70307-009"
+            },
+            {
+              "nombre": "angeles",
+              "codigo_barrio": "7-703-70307-010"
+            },
+            {
+              "nombre": "Imperio",
+              "codigo_barrio": "7-703-70307-011"
+            },
+            {
+              "nombre": "Maryland",
+              "codigo_barrio": "7-703-70307-012"
+            },
+            {
+              "nombre": "Pueblo Civil",
+              "codigo_barrio": "7-703-70307-013"
+            },
+            {
+              "nombre": "Santo Domingo",
+              "codigo_barrio": "7-703-70307-014"
+            },
+            {
+              "nombre": "Nueva Virginia",
+              "codigo_barrio": "7-703-70307-015"
+            },
+            {
+              "nombre": "Encanto Sur",
+              "codigo_barrio": "7-703-70307-016"
+            },
+            {
+              "nombre": "Ciudadela Flores",
+              "codigo_barrio": "7-703-70307-017"
+            },
+            {
+              "nombre": "Sitio Cundinamarca",
+              "codigo_barrio": "7-703-70307-018"
+            },
+            {
+              "nombre": "Encanto Norte",
+              "codigo_barrio": "7-703-70307-019"
+            }
+          ]
+        },
+        {
+          "distrito": "Pacuarito",
+          "codigo_distrito": "70302",
+          "barrios": [
+            {
+              "nombre": "Pacuarito",
+              "codigo_barrio": "7-703-70302-001"
+            },
+            {
+              "nombre": "Perlita",
+              "codigo_barrio": "7-703-70302-002"
+            },
+            {
+              "nombre": "Freeman (San Rafael)",
+              "codigo_barrio": "7-703-70302-003"
+            },
+            {
+              "nombre": "Leona",
+              "codigo_barrio": "7-703-70302-004"
+            },
+            {
+              "nombre": "Waldeck",
+              "codigo_barrio": "7-703-70302-005"
+            },
+            {
+              "nombre": "Galicia",
+              "codigo_barrio": "7-703-70302-006"
+            },
+            {
+              "nombre": "Freehold",
+              "codigo_barrio": "7-703-70302-007"
+            },
+            {
+              "nombre": "Cultivez",
+              "codigo_barrio": "7-703-70302-008"
+            },
+            {
+              "nombre": "Rio Hondo",
+              "codigo_barrio": "7-703-70302-009"
+            },
+            {
+              "nombre": "San Pablo",
+              "codigo_barrio": "7-703-70302-010"
+            },
+            {
+              "nombre": "Culpeper",
+              "codigo_barrio": "7-703-70302-011"
+            },
+            {
+              "nombre": "San Carlos",
+              "codigo_barrio": "7-703-70302-012"
+            },
+            {
+              "nombre": "San Isidro",
+              "codigo_barrio": "7-703-70302-013"
+            },
+            {
+              "nombre": "Santa Rosa",
+              "codigo_barrio": "7-703-70302-014"
+            },
+            {
+              "nombre": "Monteverde",
+              "codigo_barrio": "7-703-70302-015"
+            },
+            {
+              "nombre": "Cimarrones",
+              "codigo_barrio": "7-703-70302-016"
+            },
+            {
+              "nombre": "Madre de Dios",
+              "codigo_barrio": "7-703-70302-017"
+            },
+            {
+              "nombre": "Union Campesina",
+              "codigo_barrio": "7-703-70302-018"
+            },
+            {
+              "nombre": "Trinidad",
+              "codigo_barrio": "7-703-70302-019"
+            },
+            {
+              "nombre": "Alto Mirador",
+              "codigo_barrio": "7-703-70302-020"
+            },
+            {
+              "nombre": "Altos de Pacuarito",
+              "codigo_barrio": "7-703-70302-021"
+            },
+            {
+              "nombre": "Perla",
+              "codigo_barrio": "7-703-70302-022"
+            },
+            {
+              "nombre": "Manila",
+              "codigo_barrio": "7-703-70302-023"
+            },
+            {
+              "nombre": "Ten Switch",
+              "codigo_barrio": "7-703-70302-024"
+            },
+            {
+              "nombre": "Buenos Aires",
+              "codigo_barrio": "7-703-70302-025"
+            },
+            {
+              "nombre": "Sitio Cinco Esquinas",
+              "codigo_barrio": "7-703-70302-026"
+            },
+            {
+              "nombre": "Isla Nueva",
+              "codigo_barrio": "7-703-70302-027"
+            },
+            {
+              "nombre": "San Luis",
+              "codigo_barrio": "7-703-70302-028"
+            },
+            {
+              "nombre": "Pacuare",
+              "codigo_barrio": "7-703-70302-029"
+            },
+            {
+              "nombre": "Finca Fama o Finca Panama",
+              "codigo_barrio": "7-703-70302-030"
+            },
+            {
+              "nombre": "Hacienda Ojo de Agua",
+              "codigo_barrio": "7-703-70302-031"
+            },
+            {
+              "nombre": "Pacuare",
+              "codigo_barrio": "7-703-70302-032"
+            },
+            {
+              "nombre": "La Piedra",
+              "codigo_barrio": "7-703-70302-033"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-703-70302-034"
+            }
+          ]
+        },
+        {
+          "distrito": "El Cairo",
+          "codigo_distrito": "70305",
+          "barrios": [
+            {
+              "nombre": "El Cairo",
+              "codigo_barrio": "7-703-70305-001"
+            },
+            {
+              "nombre": "Sitio Nueva Gales",
+              "codigo_barrio": "7-703-70305-002"
+            },
+            {
+              "nombre": "Peje",
+              "codigo_barrio": "7-703-70305-003"
+            },
+            {
+              "nombre": "Cocal",
+              "codigo_barrio": "7-703-70305-004"
+            },
+            {
+              "nombre": "Bellavista",
+              "codigo_barrio": "7-703-70305-005"
+            },
+            {
+              "nombre": "Silencio",
+              "codigo_barrio": "7-703-70305-006"
+            },
+            {
+              "nombre": "Laureles",
+              "codigo_barrio": "7-703-70305-007"
+            },
+            {
+              "nombre": "Josefina",
+              "codigo_barrio": "7-703-70305-008"
+            },
+            {
+              "nombre": "Junta",
+              "codigo_barrio": "7-703-70305-009"
+            },
+            {
+              "nombre": "Milla 3",
+              "codigo_barrio": "7-703-70305-010"
+            },
+            {
+              "nombre": "Luisiana",
+              "codigo_barrio": "7-703-70305-011"
+            },
+            {
+              "nombre": "Ontario",
+              "codigo_barrio": "7-703-70305-012"
+            },
+            {
+              "nombre": "Golden Grove",
+              "codigo_barrio": "7-703-70305-013"
+            },
+            {
+              "nombre": "Boca Rio Jimenez",
+              "codigo_barrio": "7-703-70305-014"
+            },
+            {
+              "nombre": "Ana",
+              "codigo_barrio": "7-703-70305-015"
+            },
+            {
+              "nombre": "Milla 5",
+              "codigo_barrio": "7-703-70305-016"
+            },
+            {
+              "nombre": "Castilla",
+              "codigo_barrio": "7-703-70305-017"
+            },
+            {
+              "nombre": "Catalinas",
+              "codigo_barrio": "7-703-70305-018"
+            },
+            {
+              "nombre": "Seis Amigos",
+              "codigo_barrio": "7-703-70305-019"
+            },
+            {
+              "nombre": "Milla 6",
+              "codigo_barrio": "7-703-70305-020"
+            },
+            {
+              "nombre": "Francia",
+              "codigo_barrio": "7-703-70305-021"
+            },
+            {
+              "nombre": "Sitio Codo del Diablo",
+              "codigo_barrio": "7-703-70305-022"
+            },
+            {
+              "nombre": "Sitio Negritos",
+              "codigo_barrio": "7-703-70305-023"
+            },
+            {
+              "nombre": "Milla 4",
+              "codigo_barrio": "7-703-70305-024"
+            },
+            {
+              "nombre": "Galilea",
+              "codigo_barrio": "7-703-70305-025"
+            },
+            {
+              "nombre": "Keith",
+              "codigo_barrio": "7-703-70305-026"
+            },
+            {
+              "nombre": "Fuentes",
+              "codigo_barrio": "7-703-70305-027"
+            },
+            {
+              "nombre": "Calle La Paz",
+              "codigo_barrio": "7-703-70305-028"
+            },
+            {
+              "nombre": "San Miguel",
+              "codigo_barrio": "7-703-70305-029"
+            },
+            {
+              "nombre": "Nuevo Cairo",
+              "codigo_barrio": "7-703-70305-030"
+            },
+            {
+              "nombre": "Linda Vista",
+              "codigo_barrio": "7-703-70305-031"
+            }
+          ]
+        },
+        {
+          "distrito": "Siquirres",
+          "codigo_distrito": "70301",
+          "barrios": [
+            {
+              "nombre": "Siquirres",
+              "codigo_barrio": "7-703-70301-001"
+            },
+            {
+              "nombre": "Ganga",
+              "codigo_barrio": "7-703-70301-002"
+            },
+            {
+              "nombre": "Amistad",
+              "codigo_barrio": "7-703-70301-003"
+            },
+            {
+              "nombre": "Milla 52",
+              "codigo_barrio": "7-703-70301-004"
+            },
+            {
+              "nombre": "Calvario",
+              "codigo_barrio": "7-703-70301-005"
+            },
+            {
+              "nombre": "Coco",
+              "codigo_barrio": "7-703-70301-006"
+            },
+            {
+              "nombre": "Cocal",
+              "codigo_barrio": "7-703-70301-007"
+            },
+            {
+              "nombre": "Livingston",
+              "codigo_barrio": "7-703-70301-008"
+            },
+            {
+              "nombre": "Bajo Tigre",
+              "codigo_barrio": "7-703-70301-009"
+            },
+            {
+              "nombre": "Lindavista",
+              "codigo_barrio": "7-703-70301-010"
+            },
+            {
+              "nombre": "Moravia",
+              "codigo_barrio": "7-703-70301-011"
+            },
+            {
+              "nombre": "San Joaquin",
+              "codigo_barrio": "7-703-70301-012"
+            },
+            {
+              "nombre": "San Alejo",
+              "codigo_barrio": "7-703-70301-013"
+            },
+            {
+              "nombre": "Calle Tajo",
+              "codigo_barrio": "7-703-70301-014"
+            },
+            {
+              "nombre": "Guayacan",
+              "codigo_barrio": "7-703-70301-015"
+            },
+            {
+              "nombre": "Lucha",
+              "codigo_barrio": "7-703-70301-016"
+            },
+            {
+              "nombre": "Canada",
+              "codigo_barrio": "7-703-70301-017"
+            },
+            {
+              "nombre": "Amelia",
+              "codigo_barrio": "7-703-70301-018"
+            },
+            {
+              "nombre": "Betania",
+              "codigo_barrio": "7-703-70301-019"
+            },
+            {
+              "nombre": "Barnstorf",
+              "codigo_barrio": "7-703-70301-020"
+            },
+            {
+              "nombre": "Indiana Uno",
+              "codigo_barrio": "7-703-70301-021"
+            },
+            {
+              "nombre": "Indiana Dos",
+              "codigo_barrio": "7-703-70301-022"
+            },
+            {
+              "nombre": "Indiana Tres",
+              "codigo_barrio": "7-703-70301-023"
+            },
+            {
+              "nombre": "San Alberto Viejo",
+              "codigo_barrio": "7-703-70301-024"
+            },
+            {
+              "nombre": "San Alberto Nuevo",
+              "codigo_barrio": "7-703-70301-025"
+            },
+            {
+              "nombre": "Brooklin",
+              "codigo_barrio": "7-703-70301-026"
+            },
+            {
+              "nombre": "Quebrador",
+              "codigo_barrio": "7-703-70301-027"
+            },
+            {
+              "nombre": "Palmiras",
+              "codigo_barrio": "7-703-70301-028"
+            },
+            {
+              "nombre": "INVU",
+              "codigo_barrio": "7-703-70301-029"
+            },
+            {
+              "nombre": "Sitio Isla Chanchos",
+              "codigo_barrio": "7-703-70301-030"
+            },
+            {
+              "nombre": "Triunfo",
+              "codigo_barrio": "7-703-70301-031"
+            },
+            {
+              "nombre": "Morazan",
+              "codigo_barrio": "7-703-70301-032"
+            },
+            {
+              "nombre": "Maria Auxiliadora",
+              "codigo_barrio": "7-703-70301-033"
+            },
+            {
+              "nombre": "San Rafael",
+              "codigo_barrio": "7-703-70301-034"
+            },
+            {
+              "nombre": "San Martin",
+              "codigo_barrio": "7-703-70301-035"
+            },
+            {
+              "nombre": "La MUCAP",
+              "codigo_barrio": "7-703-70301-036"
+            },
+            {
+              "nombre": "INVU Viejo",
+              "codigo_barrio": "7-703-70301-037"
+            },
+            {
+              "nombre": "El Mangal",
+              "codigo_barrio": "7-703-70301-038"
+            },
+            {
+              "nombre": "Guayabal",
+              "codigo_barrio": "7-703-70301-039"
+            },
+            {
+              "nombre": "La Guaria",
+              "codigo_barrio": "7-703-70301-040"
+            },
+            {
+              "nombre": "La Victoria",
+              "codigo_barrio": "7-703-70301-041"
+            },
+            {
+              "nombre": "Laureles",
+              "codigo_barrio": "7-703-70301-042"
+            },
+            {
+              "nombre": "Miraflores",
+              "codigo_barrio": "7-703-70301-043"
+            },
+            {
+              "nombre": "Nazareth",
+              "codigo_barrio": "7-703-70301-044"
+            },
+            {
+              "nombre": "Merayo",
+              "codigo_barrio": "7-703-70301-045"
+            },
+            {
+              "nombre": "Siquirritos",
+              "codigo_barrio": "7-703-70301-046"
+            },
+            {
+              "nombre": "Barrio Nuevo",
+              "codigo_barrio": "7-703-70301-047"
+            },
+            {
+              "nombre": "Tobias Uno",
+              "codigo_barrio": "7-703-70301-048"
+            },
+            {
+              "nombre": "Santa Marta",
+              "codigo_barrio": "7-703-70301-049"
+            },
+            {
+              "nombre": "La Radial",
+              "codigo_barrio": "7-703-70301-050"
+            },
+            {
+              "nombre": "La Zonita",
+              "codigo_barrio": "7-703-70301-051"
+            },
+            {
+              "nombre": "6 de Mayo",
+              "codigo_barrio": "7-703-70301-052"
+            },
+            {
+              "nombre": "Escondido",
+              "codigo_barrio": "7-703-70301-053"
+            },
+            {
+              "nombre": "La Union",
+              "codigo_barrio": "7-703-70301-054"
+            },
+            {
+              "nombre": "Amelia",
+              "codigo_barrio": "7-703-70301-055"
+            },
+            {
+              "nombre": "Corazon de Jesus",
+              "codigo_barrio": "7-703-70301-056"
+            },
+            {
+              "nombre": "Yeka",
+              "codigo_barrio": "7-703-70301-057"
+            },
+            {
+              "nombre": "La Veranera",
+              "codigo_barrio": "7-703-70301-058"
+            },
+            {
+              "nombre": "La Piedra",
+              "codigo_barrio": "7-703-70301-059"
+            },
+            {
+              "nombre": "Alto del Nispero",
+              "codigo_barrio": "7-703-70301-060"
+            },
+            {
+              "nombre": "Bajo El Trapiche",
+              "codigo_barrio": "7-703-70301-061"
+            },
+            {
+              "nombre": "Petroleo (Petrolera)",
+              "codigo_barrio": "7-703-70301-062"
+            },
+            {
+              "nombre": "Zancudo",
+              "codigo_barrio": "7-703-70301-063"
+            },
+            {
+              "nombre": "Ciudadela Siquirres",
+              "codigo_barrio": "7-703-70301-064"
+            },
+            {
+              "nombre": "Los angeles",
+              "codigo_barrio": "7-703-70301-065"
+            },
+            {
+              "nombre": "Tobias Dos",
+              "codigo_barrio": "7-703-70301-066"
+            },
+            {
+              "nombre": "Tobias Vaglio",
+              "codigo_barrio": "7-703-70301-067"
+            },
+            {
+              "nombre": "INVU Nuevo",
+              "codigo_barrio": "7-703-70301-068"
+            },
+            {
+              "nombre": "Palmira",
+              "codigo_barrio": "7-703-70301-069"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canton": "Matina",
+      "codigo_canton": "705",
+      "distritos": [
+        {
+          "distrito": "Carrandi",
+          "codigo_distrito": "70503",
+          "barrios": [
+            {
+              "nombre": "Estrada",
+              "codigo_barrio": "7-705-70503-001"
+            },
+            {
+              "nombre": "Milla 14",
+              "codigo_barrio": "7-705-70503-002"
+            },
+            {
+              "nombre": "Palestina",
+              "codigo_barrio": "7-705-70503-003"
+            },
+            {
+              "nombre": "Punta de Riel",
+              "codigo_barrio": "7-705-70503-004"
+            },
+            {
+              "nombre": "Boca Rio Matina",
+              "codigo_barrio": "7-705-70503-005"
+            },
+            {
+              "nombre": "Barra de Matina Sur",
+              "codigo_barrio": "7-705-70503-006"
+            },
+            {
+              "nombre": "Sitio California",
+              "codigo_barrio": "7-705-70503-007"
+            },
+            {
+              "nombre": "Toro",
+              "codigo_barrio": "7-705-70503-008"
+            },
+            {
+              "nombre": "Venecia",
+              "codigo_barrio": "7-705-70503-009"
+            },
+            {
+              "nombre": "Saborio",
+              "codigo_barrio": "7-705-70503-010"
+            },
+            {
+              "nombre": "Palacios",
+              "codigo_barrio": "7-705-70503-011"
+            },
+            {
+              "nombre": "Rio Cuba",
+              "codigo_barrio": "7-705-70503-012"
+            },
+            {
+              "nombre": "Bananita",
+              "codigo_barrio": "7-705-70503-013"
+            },
+            {
+              "nombre": "Maravilla",
+              "codigo_barrio": "7-705-70503-014"
+            },
+            {
+              "nombre": "Nueva York",
+              "codigo_barrio": "7-705-70503-015"
+            },
+            {
+              "nombre": "Santa Maria",
+              "codigo_barrio": "7-705-70503-016"
+            },
+            {
+              "nombre": "San Edmundo",
+              "codigo_barrio": "7-705-70503-017"
+            },
+            {
+              "nombre": "Lomas del Toro",
+              "codigo_barrio": "7-705-70503-018"
+            },
+            {
+              "nombre": "Larga Distancia",
+              "codigo_barrio": "7-705-70503-019"
+            },
+            {
+              "nombre": "California",
+              "codigo_barrio": "7-705-70503-020"
+            },
+            {
+              "nombre": "Zent",
+              "codigo_barrio": "7-705-70503-021"
+            },
+            {
+              "nombre": "Indio",
+              "codigo_barrio": "7-705-70503-022"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-705-70503-023"
+            },
+            {
+              "nombre": "Boston",
+              "codigo_barrio": "7-705-70503-024"
+            },
+            {
+              "nombre": "Trinidad",
+              "codigo_barrio": "7-705-70503-025"
+            },
+            {
+              "nombre": "Sterling",
+              "codigo_barrio": "7-705-70503-026"
+            },
+            {
+              "nombre": "San Jose",
+              "codigo_barrio": "7-705-70503-027"
+            },
+            {
+              "nombre": "Strafford",
+              "codigo_barrio": "7-705-70503-028"
+            },
+            {
+              "nombre": "Luisa Este",
+              "codigo_barrio": "7-705-70503-029"
+            },
+            {
+              "nombre": "Victoria",
+              "codigo_barrio": "7-705-70503-030"
+            },
+            {
+              "nombre": "Sitio Chicago",
+              "codigo_barrio": "7-705-70503-031"
+            },
+            {
+              "nombre": "Sitio Alemania",
+              "codigo_barrio": "7-705-70503-032"
+            },
+            {
+              "nombre": "Boca del Pantano",
+              "codigo_barrio": "7-705-70503-033"
+            },
+            {
+              "nombre": "Rio Peje",
+              "codigo_barrio": "7-705-70503-034"
+            },
+            {
+              "nombre": "Carrandi",
+              "codigo_barrio": "7-705-70503-035"
+            },
+            {
+              "nombre": "Bramadero",
+              "codigo_barrio": "7-705-70503-036"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-705-70503-037"
+            },
+            {
+              "nombre": "Precario",
+              "codigo_barrio": "7-705-70503-038"
+            },
+            {
+              "nombre": "Banasol",
+              "codigo_barrio": "7-705-70503-039"
+            },
+            {
+              "nombre": "Punta Caliente",
+              "codigo_barrio": "7-705-70503-040"
+            },
+            {
+              "nombre": "Bellavista",
+              "codigo_barrio": "7-705-70503-041"
+            },
+            {
+              "nombre": "Peje",
+              "codigo_barrio": "7-705-70503-042"
+            },
+            {
+              "nombre": "Peña",
+              "codigo_barrio": "7-705-70503-043"
+            },
+            {
+              "nombre": "Zent Nuevo",
+              "codigo_barrio": "7-705-70503-044"
+            },
+            {
+              "nombre": "Los Almendros",
+              "codigo_barrio": "7-705-70503-045"
+            }
+          ]
+        },
+        {
+          "distrito": "Matina",
+          "codigo_distrito": "70501",
+          "barrios": [
+            {
+              "nombre": "Matina",
+              "codigo_barrio": "7-705-70501-001"
+            },
+            {
+              "nombre": "Corina",
+              "codigo_barrio": "7-705-70501-002"
+            },
+            {
+              "nombre": "Chumico",
+              "codigo_barrio": "7-705-70501-003"
+            },
+            {
+              "nombre": "Palmeras",
+              "codigo_barrio": "7-705-70501-004"
+            },
+            {
+              "nombre": "Chirripo",
+              "codigo_barrio": "7-705-70501-005"
+            },
+            {
+              "nombre": "Pozo Azul",
+              "codigo_barrio": "7-705-70501-006"
+            },
+            {
+              "nombre": "Xirinachs",
+              "codigo_barrio": "7-705-70501-007"
+            },
+            {
+              "nombre": "Barra de Matina Norte",
+              "codigo_barrio": "7-705-70501-008"
+            },
+            {
+              "nombre": "Hilda",
+              "codigo_barrio": "7-705-70501-009"
+            },
+            {
+              "nombre": "Milla 4",
+              "codigo_barrio": "7-705-70501-010"
+            },
+            {
+              "nombre": "Helvetia",
+              "codigo_barrio": "7-705-70501-011"
+            },
+            {
+              "nombre": "Luisa Oeste",
+              "codigo_barrio": "7-705-70501-012"
+            },
+            {
+              "nombre": "Goli",
+              "codigo_barrio": "7-705-70501-013"
+            },
+            {
+              "nombre": "Punta de Lanza",
+              "codigo_barrio": "7-705-70501-014"
+            },
+            {
+              "nombre": "San Miguel",
+              "codigo_barrio": "7-705-70501-015"
+            },
+            {
+              "nombre": "Linea B",
+              "codigo_barrio": "7-705-70501-016"
+            },
+            {
+              "nombre": "Bristol",
+              "codigo_barrio": "7-705-70501-017"
+            },
+            {
+              "nombre": "Milla 23",
+              "codigo_barrio": "7-705-70501-018"
+            },
+            {
+              "nombre": "Esperanza",
+              "codigo_barrio": "7-705-70501-019"
+            },
+            {
+              "nombre": "Baltimore",
+              "codigo_barrio": "7-705-70501-020"
+            },
+            {
+              "nombre": "Colonia Puriscaleña",
+              "codigo_barrio": "7-705-70501-021"
+            },
+            {
+              "nombre": "Milla 24",
+              "codigo_barrio": "7-705-70501-022"
+            },
+            {
+              "nombre": "Matinita",
+              "codigo_barrio": "7-705-70501-023"
+            },
+            {
+              "nombre": "Las Sosas o Los Sosa",
+              "codigo_barrio": "7-705-70501-024"
+            },
+            {
+              "nombre": "Managuita",
+              "codigo_barrio": "7-705-70501-025"
+            },
+            {
+              "nombre": "Caño Salado",
+              "codigo_barrio": "7-705-70501-026"
+            },
+            {
+              "nombre": "Mondonguillo",
+              "codigo_barrio": "7-705-70501-027"
+            },
+            {
+              "nombre": "Seis Millas",
+              "codigo_barrio": "7-705-70501-028"
+            },
+            {
+              "nombre": "Siete MIllas",
+              "codigo_barrio": "7-705-70501-029"
+            },
+            {
+              "nombre": "La Bomba",
+              "codigo_barrio": "7-705-70501-030"
+            },
+            {
+              "nombre": "Managüita",
+              "codigo_barrio": "7-705-70501-031"
+            },
+            {
+              "nombre": "Los Quinchos",
+              "codigo_barrio": "7-705-70501-032"
+            },
+            {
+              "nombre": "Los Perros",
+              "codigo_barrio": "7-705-70501-033"
+            },
+            {
+              "nombre": "Banabat",
+              "codigo_barrio": "7-705-70501-034"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-705-70501-035"
+            }
+          ]
+        },
+        {
+          "distrito": "Batan",
+          "codigo_distrito": "70502",
+          "barrios": [
+            {
+              "nombre": "Batan",
+              "codigo_barrio": "7-705-70502-001"
+            },
+            {
+              "nombre": "Leyte",
+              "codigo_barrio": "7-705-70502-002"
+            },
+            {
+              "nombre": "Luzon",
+              "codigo_barrio": "7-705-70502-003"
+            },
+            {
+              "nombre": "Berta",
+              "codigo_barrio": "7-705-70502-004"
+            },
+            {
+              "nombre": "Sahara",
+              "codigo_barrio": "7-705-70502-005"
+            },
+            {
+              "nombre": "Goshen",
+              "codigo_barrio": "7-705-70502-006"
+            },
+            {
+              "nombre": "Damasco",
+              "codigo_barrio": "7-705-70502-007"
+            },
+            {
+              "nombre": "Parcelas",
+              "codigo_barrio": "7-705-70502-008"
+            },
+            {
+              "nombre": "Milla 28",
+              "codigo_barrio": "7-705-70502-009"
+            },
+            {
+              "nombre": "Milla 27",
+              "codigo_barrio": "7-705-70502-010"
+            },
+            {
+              "nombre": "Oracabesa",
+              "codigo_barrio": "7-705-70502-011"
+            },
+            {
+              "nombre": "Santa Marta",
+              "codigo_barrio": "7-705-70502-012"
+            },
+            {
+              "nombre": "Lola",
+              "codigo_barrio": "7-705-70502-013"
+            },
+            {
+              "nombre": "Davao",
+              "codigo_barrio": "7-705-70502-014"
+            },
+            {
+              "nombre": "Barbilla",
+              "codigo_barrio": "7-705-70502-015"
+            },
+            {
+              "nombre": "Margarita",
+              "codigo_barrio": "7-705-70502-016"
+            },
+            {
+              "nombre": "Vegas",
+              "codigo_barrio": "7-705-70502-017"
+            },
+            {
+              "nombre": "Titan",
+              "codigo_barrio": "7-705-70502-018"
+            },
+            {
+              "nombre": "Espavel",
+              "codigo_barrio": "7-705-70502-019"
+            },
+            {
+              "nombre": "Milla 25",
+              "codigo_barrio": "7-705-70502-020"
+            },
+            {
+              "nombre": "Dos Ramas",
+              "codigo_barrio": "7-705-70502-021"
+            },
+            {
+              "nombre": "Almendros",
+              "codigo_barrio": "7-705-70502-022"
+            },
+            {
+              "nombre": "Ramal Siete",
+              "codigo_barrio": "7-705-70502-023"
+            },
+            {
+              "nombre": "Ciudadela Miraflores",
+              "codigo_barrio": "7-705-70502-024"
+            },
+            {
+              "nombre": "Cacao",
+              "codigo_barrio": "7-705-70502-025"
+            },
+            {
+              "nombre": "Cenizaro",
+              "codigo_barrio": "7-705-70502-026"
+            },
+            {
+              "nombre": "Costa Rica",
+              "codigo_barrio": "7-705-70502-027"
+            },
+            {
+              "nombre": "Jackson",
+              "codigo_barrio": "7-705-70502-028"
+            },
+            {
+              "nombre": "Milla 26",
+              "codigo_barrio": "7-705-70502-029"
+            },
+            {
+              "nombre": "La Alegria",
+              "codigo_barrio": "7-705-70502-030"
+            },
+            {
+              "nombre": "Jardin",
+              "codigo_barrio": "7-705-70502-031"
+            },
+            {
+              "nombre": "La Zonita",
+              "codigo_barrio": "7-705-70502-032"
+            },
+            {
+              "nombre": "Las Brisas",
+              "codigo_barrio": "7-705-70502-033"
+            },
+            {
+              "nombre": "Las Palmas",
+              "codigo_barrio": "7-705-70502-034"
+            },
+            {
+              "nombre": "Maria Agüero",
+              "codigo_barrio": "7-705-70502-035"
+            },
+            {
+              "nombre": "Ramal Dos",
+              "codigo_barrio": "7-705-70502-036"
+            },
+            {
+              "nombre": "Bello Horizonte",
+              "codigo_barrio": "7-705-70502-037"
+            },
+            {
+              "nombre": "Colonia Espavel",
+              "codigo_barrio": "7-705-70502-038"
+            },
+            {
+              "nombre": "Mirador",
+              "codigo_barrio": "7-705-70502-039"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-705-70502-040"
+            },
+            {
+              "nombre": "Asodavao",
+              "codigo_barrio": "7-705-70502-041"
+            },
+            {
+              "nombre": "El Esfuerzo",
+              "codigo_barrio": "7-705-70502-042"
+            },
+            {
+              "nombre": "Santa Maria",
+              "codigo_barrio": "7-705-70502-043"
+            },
+            {
+              "nombre": "Success",
+              "codigo_barrio": "7-705-70502-044"
+            },
+            {
+              "nombre": "Perux",
+              "codigo_barrio": "7-705-70502-045"
+            },
+            {
+              "nombre": "Naranjal",
+              "codigo_barrio": "7-705-70502-046"
+            },
+            {
+              "nombre": "Guadalupe",
+              "codigo_barrio": "7-705-70502-047"
+            },
+            {
+              "nombre": "Trinidad",
+              "codigo_barrio": "7-705-70502-048"
+            },
+            {
+              "nombre": "La Paz",
+              "codigo_barrio": "7-705-70502-049"
+            },
+            {
+              "nombre": "Las Filas",
+              "codigo_barrio": "7-705-70502-050"
+            },
+            {
+              "nombre": "IMAS",
+              "codigo_barrio": "7-705-70502-051"
+            },
+            {
+              "nombre": "Nueva Esperanza",
+              "codigo_barrio": "7-705-70502-052"
+            },
+            {
+              "nombre": "Monte Libano",
+              "codigo_barrio": "7-705-70502-053"
+            },
+            {
+              "nombre": "San Antonio",
+              "codigo_barrio": "7-705-70502-054"
+            },
+            {
+              "nombre": "Americana",
+              "codigo_barrio": "7-705-70502-055"
+            },
+            {
+              "nombre": "El Castillo",
+              "codigo_barrio": "7-705-70502-056"
+            },
+            {
+              "nombre": "Acelica",
+              "codigo_barrio": "7-705-70502-057"
+            },
+            {
+              "nombre": "El Porvenir",
+              "codigo_barrio": "7-705-70502-058"
+            },
+            {
+              "nombre": "Cañabral (Patirotari)",
+              "codigo_barrio": "7-705-70502-059"
+            },
+            {
+              "nombre": "Camagria",
+              "codigo_barrio": "7-705-70502-060"
+            },
+            {
+              "nombre": "Toloc Tsacu",
+              "codigo_barrio": "7-705-70502-061"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canton": "Guacimo",
+      "codigo_canton": "706",
+      "distritos": [
+        {
+          "distrito": "Mercedes",
+          "codigo_distrito": "70602",
+          "barrios": [
+            {
+              "nombre": "Mercedes",
+              "codigo_barrio": "7-706-70602-001"
+            },
+            {
+              "nombre": "Iroquois",
+              "codigo_barrio": "7-706-70602-002"
+            },
+            {
+              "nombre": "Confianza",
+              "codigo_barrio": "7-706-70602-003"
+            },
+            {
+              "nombre": "Bremen",
+              "codigo_barrio": "7-706-70602-004"
+            },
+            {
+              "nombre": "Tierra Grande",
+              "codigo_barrio": "7-706-70602-005"
+            },
+            {
+              "nombre": "Turrialba",
+              "codigo_barrio": "7-706-70602-006"
+            },
+            {
+              "nombre": "Delicias",
+              "codigo_barrio": "7-706-70602-007"
+            }
+          ]
+        },
+        {
+          "distrito": "Pocora",
+          "codigo_distrito": "70603",
+          "barrios": [
+            {
+              "nombre": "Pocora",
+              "codigo_barrio": "7-706-70603-001"
+            },
+            {
+              "nombre": "Argentina",
+              "codigo_barrio": "7-706-70603-002"
+            },
+            {
+              "nombre": "Ojo de Agua",
+              "codigo_barrio": "7-706-70603-003"
+            },
+            {
+              "nombre": "Pocora Sur",
+              "codigo_barrio": "7-706-70603-004"
+            },
+            {
+              "nombre": "Mascotas",
+              "codigo_barrio": "7-706-70603-005"
+            },
+            {
+              "nombre": "Carmen Norte",
+              "codigo_barrio": "7-706-70603-006"
+            },
+            {
+              "nombre": "Carmen Sur",
+              "codigo_barrio": "7-706-70603-007"
+            },
+            {
+              "nombre": "Duruy",
+              "codigo_barrio": "7-706-70603-008"
+            },
+            {
+              "nombre": "Camacho",
+              "codigo_barrio": "7-706-70603-009"
+            },
+            {
+              "nombre": "Dos Mil",
+              "codigo_barrio": "7-706-70603-010"
+            },
+            {
+              "nombre": "Paraiso",
+              "codigo_barrio": "7-706-70603-011"
+            },
+            {
+              "nombre": "San Martin",
+              "codigo_barrio": "7-706-70603-012"
+            },
+            {
+              "nombre": "Santa Emilia",
+              "codigo_barrio": "7-706-70603-013"
+            },
+            {
+              "nombre": "San Bosco",
+              "codigo_barrio": "7-706-70603-014"
+            },
+            {
+              "nombre": "Quebrada Honda",
+              "codigo_barrio": "7-706-70603-015"
+            },
+            {
+              "nombre": "Union del Rio Perla",
+              "codigo_barrio": "7-706-70603-016"
+            },
+            {
+              "nombre": "San Francisco",
+              "codigo_barrio": "7-706-70603-017"
+            },
+            {
+              "nombre": "Los Laureles",
+              "codigo_barrio": "7-706-70603-018"
+            },
+            {
+              "nombre": "La Y Griega",
+              "codigo_barrio": "7-706-70603-019"
+            },
+            {
+              "nombre": "Las Brisas",
+              "codigo_barrio": "7-706-70603-020"
+            },
+            {
+              "nombre": "San Gerardo",
+              "codigo_barrio": "7-706-70603-021"
+            }
+          ]
+        },
+        {
+          "distrito": "Guacimo",
+          "codigo_distrito": "70601",
+          "barrios": [
+            {
+              "nombre": "Guacimo",
+              "codigo_barrio": "7-706-70601-001"
+            },
+            {
+              "nombre": "Bosque",
+              "codigo_barrio": "7-706-70601-002"
+            },
+            {
+              "nombre": "Aguacate",
+              "codigo_barrio": "7-706-70601-003"
+            },
+            {
+              "nombre": "Parismina",
+              "codigo_barrio": "7-706-70601-004"
+            },
+            {
+              "nombre": "San Luis",
+              "codigo_barrio": "7-706-70601-005"
+            },
+            {
+              "nombre": "Eden",
+              "codigo_barrio": "7-706-70601-006"
+            },
+            {
+              "nombre": "Hogar",
+              "codigo_barrio": "7-706-70601-007"
+            },
+            {
+              "nombre": "El Tres",
+              "codigo_barrio": "7-706-70601-008"
+            },
+            {
+              "nombre": "Guaira",
+              "codigo_barrio": "7-706-70601-009"
+            },
+            {
+              "nombre": "Selva",
+              "codigo_barrio": "7-706-70601-010"
+            },
+            {
+              "nombre": "Cabaña",
+              "codigo_barrio": "7-706-70601-011"
+            },
+            {
+              "nombre": "Fox Hall",
+              "codigo_barrio": "7-706-70601-012"
+            },
+            {
+              "nombre": "Angelina",
+              "codigo_barrio": "7-706-70601-013"
+            },
+            {
+              "nombre": "africa",
+              "codigo_barrio": "7-706-70601-014"
+            },
+            {
+              "nombre": "Guayacan",
+              "codigo_barrio": "7-706-70601-015"
+            },
+            {
+              "nombre": "Estacion Rudin",
+              "codigo_barrio": "7-706-70601-016"
+            },
+            {
+              "nombre": "Sitio Hogar",
+              "codigo_barrio": "7-706-70601-017"
+            },
+            {
+              "nombre": "Cantarrana",
+              "codigo_barrio": "7-706-70601-018"
+            },
+            {
+              "nombre": "Aralias",
+              "codigo_barrio": "7-706-70601-019"
+            },
+            {
+              "nombre": "Gerifales",
+              "codigo_barrio": "7-706-70601-020"
+            },
+            {
+              "nombre": "Imas",
+              "codigo_barrio": "7-706-70601-021"
+            },
+            {
+              "nombre": "Los Naranjos",
+              "codigo_barrio": "7-706-70601-022"
+            },
+            {
+              "nombre": "Palmitas",
+              "codigo_barrio": "7-706-70601-023"
+            },
+            {
+              "nombre": "Santa Paula",
+              "codigo_barrio": "7-706-70601-024"
+            },
+            {
+              "nombre": "Caribean",
+              "codigo_barrio": "7-706-70601-025"
+            },
+            {
+              "nombre": "Corazon de Jesus",
+              "codigo_barrio": "7-706-70601-026"
+            },
+            {
+              "nombre": "El Colegio",
+              "codigo_barrio": "7-706-70601-027"
+            },
+            {
+              "nombre": "Colono",
+              "codigo_barrio": "7-706-70601-028"
+            },
+            {
+              "nombre": "Geranios",
+              "codigo_barrio": "7-706-70601-029"
+            },
+            {
+              "nombre": "El Invu",
+              "codigo_barrio": "7-706-70601-030"
+            },
+            {
+              "nombre": "El Mango",
+              "codigo_barrio": "7-706-70601-031"
+            },
+            {
+              "nombre": "Manguito",
+              "codigo_barrio": "7-706-70601-032"
+            },
+            {
+              "nombre": "Calle La Culebra",
+              "codigo_barrio": "7-706-70601-033"
+            },
+            {
+              "nombre": "Los Leones",
+              "codigo_barrio": "7-706-70601-034"
+            },
+            {
+              "nombre": "Canada",
+              "codigo_barrio": "7-706-70601-035"
+            },
+            {
+              "nombre": "Durman",
+              "codigo_barrio": "7-706-70601-036"
+            },
+            {
+              "nombre": "El Cementerio",
+              "codigo_barrio": "7-706-70601-037"
+            },
+            {
+              "nombre": "El Chiribico",
+              "codigo_barrio": "7-706-70601-038"
+            },
+            {
+              "nombre": "Manudita",
+              "codigo_barrio": "7-706-70601-039"
+            },
+            {
+              "nombre": "Lirios",
+              "codigo_barrio": "7-706-70601-040"
+            },
+            {
+              "nombre": "La Roca",
+              "codigo_barrio": "7-706-70601-041"
+            },
+            {
+              "nombre": "Cocales",
+              "codigo_barrio": "7-706-70601-042"
+            },
+            {
+              "nombre": "Los Dumbi",
+              "codigo_barrio": "7-706-70601-043"
+            },
+            {
+              "nombre": "Los Olivos",
+              "codigo_barrio": "7-706-70601-044"
+            },
+            {
+              "nombre": "Calle El Cricon",
+              "codigo_barrio": "7-706-70601-045"
+            },
+            {
+              "nombre": "Perla",
+              "codigo_barrio": "7-706-70601-046"
+            },
+            {
+              "nombre": "Colinas",
+              "codigo_barrio": "7-706-70601-047"
+            },
+            {
+              "nombre": "Monte De Dios",
+              "codigo_barrio": "7-706-70601-048"
+            },
+            {
+              "nombre": "Rudin",
+              "codigo_barrio": "7-706-70601-049"
+            },
+            {
+              "nombre": "Isleta",
+              "codigo_barrio": "7-706-70601-050"
+            },
+            {
+              "nombre": "Calle Angostura",
+              "codigo_barrio": "7-706-70601-051"
+            },
+            {
+              "nombre": "Los Lirios",
+              "codigo_barrio": "7-706-70601-052"
+            }
+          ]
+        },
+        {
+          "distrito": "Rio Jimenez",
+          "codigo_distrito": "70604",
+          "barrios": [
+            {
+              "nombre": "Rio Jimenez",
+              "codigo_barrio": "7-706-70604-001"
+            },
+            {
+              "nombre": "angeles",
+              "codigo_barrio": "7-706-70604-002"
+            },
+            {
+              "nombre": "Camaron",
+              "codigo_barrio": "7-706-70604-003"
+            },
+            {
+              "nombre": "Santa Rosa",
+              "codigo_barrio": "7-706-70604-004"
+            },
+            {
+              "nombre": "Irlanda",
+              "codigo_barrio": "7-706-70604-005"
+            },
+            {
+              "nombre": "Santa Maria",
+              "codigo_barrio": "7-706-70604-006"
+            },
+            {
+              "nombre": "Ligia",
+              "codigo_barrio": "7-706-70604-007"
+            },
+            {
+              "nombre": "Lucha",
+              "codigo_barrio": "7-706-70604-008"
+            },
+            {
+              "nombre": "Escocia",
+              "codigo_barrio": "7-706-70604-009"
+            },
+            {
+              "nombre": "Dulce Nombre",
+              "codigo_barrio": "7-706-70604-010"
+            },
+            {
+              "nombre": "Bocas del Rio Silencio",
+              "codigo_barrio": "7-706-70604-011"
+            },
+            {
+              "nombre": "Cartagena",
+              "codigo_barrio": "7-706-70604-012"
+            },
+            {
+              "nombre": "San Gerardo",
+              "codigo_barrio": "7-706-70604-013"
+            },
+            {
+              "nombre": "Malanga",
+              "codigo_barrio": "7-706-70604-014"
+            },
+            {
+              "nombre": "Socorro",
+              "codigo_barrio": "7-706-70604-015"
+            },
+            {
+              "nombre": "Jardin",
+              "codigo_barrio": "7-706-70604-016"
+            },
+            {
+              "nombre": "Las Bromelias",
+              "codigo_barrio": "7-706-70604-017"
+            },
+            {
+              "nombre": "Genesis",
+              "codigo_barrio": "7-706-70604-018"
+            },
+            {
+              "nombre": "Castillo",
+              "codigo_barrio": "7-706-70604-019"
+            },
+            {
+              "nombre": "Los Polines",
+              "codigo_barrio": "7-706-70604-020"
+            },
+            {
+              "nombre": "Agrimaga",
+              "codigo_barrio": "7-706-70604-021"
+            },
+            {
+              "nombre": "Cruce",
+              "codigo_barrio": "7-706-70604-022"
+            },
+            {
+              "nombre": "La Roca",
+              "codigo_barrio": "7-706-70604-023"
+            },
+            {
+              "nombre": "Las Orquideas",
+              "codigo_barrio": "7-706-70604-024"
+            },
+            {
+              "nombre": "Lotes",
+              "codigo_barrio": "7-706-70604-025"
+            },
+            {
+              "nombre": "Los Naranjos",
+              "codigo_barrio": "7-706-70604-026"
+            },
+            {
+              "nombre": "Los Pinos",
+              "codigo_barrio": "7-706-70604-027"
+            },
+            {
+              "nombre": "Vegas del Camaron",
+              "codigo_barrio": "7-706-70604-028"
+            },
+            {
+              "nombre": "Clemencia",
+              "codigo_barrio": "7-706-70604-029"
+            },
+            {
+              "nombre": "Finca Thames",
+              "codigo_barrio": "7-706-70604-030"
+            },
+            {
+              "nombre": "Jalova",
+              "codigo_barrio": "7-706-70604-031"
+            },
+            {
+              "nombre": "La Aurora",
+              "codigo_barrio": "7-706-70604-032"
+            },
+            {
+              "nombre": "Linea Vieja",
+              "codigo_barrio": "7-706-70604-033"
+            },
+            {
+              "nombre": "Lomas Azules",
+              "codigo_barrio": "7-706-70604-034"
+            },
+            {
+              "nombre": "Caño Sirena",
+              "codigo_barrio": "7-706-70604-035"
+            },
+            {
+              "nombre": "Milla 4",
+              "codigo_barrio": "7-706-70604-036"
+            },
+            {
+              "nombre": "Finca Lomas",
+              "codigo_barrio": "7-706-70604-037"
+            },
+            {
+              "nombre": "La Morenita",
+              "codigo_barrio": "7-706-70604-038"
+            },
+            {
+              "nombre": "Tajo",
+              "codigo_barrio": "7-706-70604-039"
+            },
+            {
+              "nombre": "La Lucha",
+              "codigo_barrio": "7-706-70604-040"
+            }
+          ]
+        },
+        {
+          "distrito": "Duacari",
+          "codigo_distrito": "70605",
+          "barrios": [
+            {
+              "nombre": "Villafranca",
+              "codigo_barrio": "7-706-70605-001"
+            },
+            {
+              "nombre": "Zancudo",
+              "codigo_barrio": "7-706-70605-002"
+            },
+            {
+              "nombre": "Esperanza",
+              "codigo_barrio": "7-706-70605-003"
+            },
+            {
+              "nombre": "Aguas Gatas",
+              "codigo_barrio": "7-706-70605-004"
+            },
+            {
+              "nombre": "Carambola",
+              "codigo_barrio": "7-706-70605-005"
+            },
+            {
+              "nombre": "Castaño",
+              "codigo_barrio": "7-706-70605-006"
+            },
+            {
+              "nombre": "Limbo",
+              "codigo_barrio": "7-706-70605-007"
+            },
+            {
+              "nombre": "Fruta de Pan",
+              "codigo_barrio": "7-706-70605-008"
+            },
+            {
+              "nombre": "San Cristobal",
+              "codigo_barrio": "7-706-70605-009"
+            },
+            {
+              "nombre": "Carpio",
+              "codigo_barrio": "7-706-70605-010"
+            },
+            {
+              "nombre": "La Union",
+              "codigo_barrio": "7-706-70605-011"
+            },
+            {
+              "nombre": "Duacari Dos",
+              "codigo_barrio": "7-706-70605-012"
+            },
+            {
+              "nombre": "Duacari Tres",
+              "codigo_barrio": "7-706-70605-013"
+            },
+            {
+              "nombre": "Duacari Cuatro",
+              "codigo_barrio": "7-706-70605-014"
+            },
+            {
+              "nombre": "Calinda",
+              "codigo_barrio": "7-706-70605-015"
+            },
+            {
+              "nombre": "San Edmundo",
+              "codigo_barrio": "7-706-70605-016"
+            },
+            {
+              "nombre": "Duacari Cinco",
+              "codigo_barrio": "7-706-70605-017"
+            },
+            {
+              "nombre": "Kilometro Uno",
+              "codigo_barrio": "7-706-70605-018"
+            },
+            {
+              "nombre": "Barzone",
+              "codigo_barrio": "7-706-70605-019"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canton": "Pococi",
+      "codigo_canton": "702",
+      "distritos": [
+        {
+          "distrito": "Jimenez",
+          "codigo_distrito": "70202",
+          "barrios": [
+            {
+              "nombre": "Jimenez",
+              "codigo_barrio": "7-702-70202-001"
+            },
+            {
+              "nombre": "San Luis",
+              "codigo_barrio": "7-702-70202-002"
+            },
+            {
+              "nombre": "Parasal",
+              "codigo_barrio": "7-702-70202-003"
+            },
+            {
+              "nombre": "Floritas",
+              "codigo_barrio": "7-702-70202-004"
+            },
+            {
+              "nombre": "Anita Grande",
+              "codigo_barrio": "7-702-70202-005"
+            },
+            {
+              "nombre": "Calle Diez",
+              "codigo_barrio": "7-702-70202-006"
+            },
+            {
+              "nombre": "San Martin",
+              "codigo_barrio": "7-702-70202-007"
+            },
+            {
+              "nombre": "San Valentin",
+              "codigo_barrio": "7-702-70202-008"
+            },
+            {
+              "nombre": "Suerre",
+              "codigo_barrio": "7-702-70202-009"
+            },
+            {
+              "nombre": "Calle Uno",
+              "codigo_barrio": "7-702-70202-010"
+            },
+            {
+              "nombre": "Calle Seis",
+              "codigo_barrio": "7-702-70202-011"
+            },
+            {
+              "nombre": "Condado del Rio",
+              "codigo_barrio": "7-702-70202-012"
+            },
+            {
+              "nombre": "Molino",
+              "codigo_barrio": "7-702-70202-013"
+            },
+            {
+              "nombre": "Granja",
+              "codigo_barrio": "7-702-70202-014"
+            },
+            {
+              "nombre": "Numancia",
+              "codigo_barrio": "7-702-70202-015"
+            },
+            {
+              "nombre": "Los Molinos",
+              "codigo_barrio": "7-702-70202-016"
+            },
+            {
+              "nombre": "Vargas",
+              "codigo_barrio": "7-702-70202-017"
+            },
+            {
+              "nombre": "Buenos Aires",
+              "codigo_barrio": "7-702-70202-018"
+            },
+            {
+              "nombre": "Jimenez",
+              "codigo_barrio": "7-702-70202-019"
+            },
+            {
+              "nombre": "Don Edwin",
+              "codigo_barrio": "7-702-70202-020"
+            },
+            {
+              "nombre": "Doña Luz",
+              "codigo_barrio": "7-702-70202-021"
+            },
+            {
+              "nombre": "Tablon",
+              "codigo_barrio": "7-702-70202-022"
+            },
+            {
+              "nombre": "Guapiles 2000",
+              "codigo_barrio": "7-702-70202-023"
+            },
+            {
+              "nombre": "Don Alonso",
+              "codigo_barrio": "7-702-70202-024"
+            },
+            {
+              "nombre": "Cristina (Numancia)",
+              "codigo_barrio": "7-702-70202-025"
+            }
+          ]
+        },
+        {
+          "distrito": "La Colonia",
+          "codigo_distrito": "70207",
+          "barrios": [
+            {
+              "nombre": "San Rafael",
+              "codigo_barrio": "7-702-70207-001"
+            },
+            {
+              "nombre": "Losilla",
+              "codigo_barrio": "7-702-70207-002"
+            },
+            {
+              "nombre": "San Bosco",
+              "codigo_barrio": "7-702-70207-003"
+            },
+            {
+              "nombre": "Santa Elena",
+              "codigo_barrio": "7-702-70207-004"
+            },
+            {
+              "nombre": "Brisas del Toro Amarillo",
+              "codigo_barrio": "7-702-70207-005"
+            },
+            {
+              "nombre": "Prado",
+              "codigo_barrio": "7-702-70207-006"
+            },
+            {
+              "nombre": "Sitio Playones",
+              "codigo_barrio": "7-702-70207-007"
+            },
+            {
+              "nombre": "Cascadas",
+              "codigo_barrio": "7-702-70207-008"
+            },
+            {
+              "nombre": "San Gabriel",
+              "codigo_barrio": "7-702-70207-009"
+            },
+            {
+              "nombre": "Montelimar",
+              "codigo_barrio": "7-702-70207-010"
+            },
+            {
+              "nombre": "Cascadas Cuatro",
+              "codigo_barrio": "7-702-70207-011"
+            },
+            {
+              "nombre": "ASEMEBA",
+              "codigo_barrio": "7-702-70207-012"
+            },
+            {
+              "nombre": "Javillana",
+              "codigo_barrio": "7-702-70207-013"
+            },
+            {
+              "nombre": "Cascadas Cinco",
+              "codigo_barrio": "7-702-70207-014"
+            },
+            {
+              "nombre": "Cascadas Dos",
+              "codigo_barrio": "7-702-70207-015"
+            },
+            {
+              "nombre": "Cascadas Tres",
+              "codigo_barrio": "7-702-70207-016"
+            },
+            {
+              "nombre": "Oro Verde",
+              "codigo_barrio": "7-702-70207-017"
+            },
+            {
+              "nombre": "Esperanza",
+              "codigo_barrio": "7-702-70207-018"
+            },
+            {
+              "nombre": "Salas",
+              "codigo_barrio": "7-702-70207-019"
+            },
+            {
+              "nombre": "Toledo",
+              "codigo_barrio": "7-702-70207-020"
+            },
+            {
+              "nombre": "Lucha",
+              "codigo_barrio": "7-702-70207-021"
+            },
+            {
+              "nombre": "Villas del Rio",
+              "codigo_barrio": "7-702-70207-022"
+            },
+            {
+              "nombre": "San Juan",
+              "codigo_barrio": "7-702-70207-023"
+            },
+            {
+              "nombre": "Cordero",
+              "codigo_barrio": "7-702-70207-024"
+            },
+            {
+              "nombre": "Jade",
+              "codigo_barrio": "7-702-70207-025"
+            },
+            {
+              "nombre": "Gonzalez",
+              "codigo_barrio": "7-702-70207-026"
+            },
+            {
+              "nombre": "Bajillo",
+              "codigo_barrio": "7-702-70207-027"
+            }
+          ]
+        },
+        {
+          "distrito": "Rita",
+          "codigo_distrito": "70203",
+          "barrios": [
+            {
+              "nombre": "La Victoria",
+              "codigo_barrio": "7-702-70203-001"
+            },
+            {
+              "nombre": "Sirena",
+              "codigo_barrio": "7-702-70203-002"
+            },
+            {
+              "nombre": "Rita",
+              "codigo_barrio": "7-702-70203-003"
+            },
+            {
+              "nombre": "Teresa",
+              "codigo_barrio": "7-702-70203-004"
+            },
+            {
+              "nombre": "Tarire",
+              "codigo_barrio": "7-702-70203-005"
+            },
+            {
+              "nombre": "Cayuga",
+              "codigo_barrio": "7-702-70203-006"
+            },
+            {
+              "nombre": "Mercedes",
+              "codigo_barrio": "7-702-70203-007"
+            },
+            {
+              "nombre": "Balastre",
+              "codigo_barrio": "7-702-70203-008"
+            },
+            {
+              "nombre": "Palmitas",
+              "codigo_barrio": "7-702-70203-009"
+            },
+            {
+              "nombre": "Hamburgo",
+              "codigo_barrio": "7-702-70203-010"
+            },
+            {
+              "nombre": "Triangulo",
+              "codigo_barrio": "7-702-70203-011"
+            },
+            {
+              "nombre": "San Isidro (Gallopinto)",
+              "codigo_barrio": "7-702-70203-012"
+            },
+            {
+              "nombre": "Cantagallo",
+              "codigo_barrio": "7-702-70203-013"
+            },
+            {
+              "nombre": "Indio",
+              "codigo_barrio": "7-702-70203-014"
+            },
+            {
+              "nombre": "Suarez",
+              "codigo_barrio": "7-702-70203-015"
+            },
+            {
+              "nombre": "Encina",
+              "codigo_barrio": "7-702-70203-016"
+            },
+            {
+              "nombre": "Victoria",
+              "codigo_barrio": "7-702-70203-017"
+            },
+            {
+              "nombre": "Porvenir",
+              "codigo_barrio": "7-702-70203-018"
+            },
+            {
+              "nombre": "San Carlos",
+              "codigo_barrio": "7-702-70203-019"
+            },
+            {
+              "nombre": "Ticaban",
+              "codigo_barrio": "7-702-70203-020"
+            },
+            {
+              "nombre": "San Gerardo",
+              "codigo_barrio": "7-702-70203-021"
+            },
+            {
+              "nombre": "I Griega",
+              "codigo_barrio": "7-702-70203-022"
+            },
+            {
+              "nombre": "San Cristobal",
+              "codigo_barrio": "7-702-70203-023"
+            },
+            {
+              "nombre": "Santa Rosa",
+              "codigo_barrio": "7-702-70203-024"
+            },
+            {
+              "nombre": "Cartagena",
+              "codigo_barrio": "7-702-70203-025"
+            },
+            {
+              "nombre": "Suerte",
+              "codigo_barrio": "7-702-70203-026"
+            },
+            {
+              "nombre": "Jardin",
+              "codigo_barrio": "7-702-70203-027"
+            },
+            {
+              "nombre": "Santa Elena",
+              "codigo_barrio": "7-702-70203-028"
+            },
+            {
+              "nombre": "Chirbalo",
+              "codigo_barrio": "7-702-70203-029"
+            },
+            {
+              "nombre": "San Pedro",
+              "codigo_barrio": "7-702-70203-030"
+            },
+            {
+              "nombre": "Rotulo",
+              "codigo_barrio": "7-702-70203-031"
+            },
+            {
+              "nombre": "Cocori",
+              "codigo_barrio": "7-702-70203-032"
+            },
+            {
+              "nombre": "Primavera",
+              "codigo_barrio": "7-702-70203-033"
+            },
+            {
+              "nombre": "Verdades",
+              "codigo_barrio": "7-702-70203-034"
+            },
+            {
+              "nombre": "Peligro",
+              "codigo_barrio": "7-702-70203-035"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-702-70203-036"
+            },
+            {
+              "nombre": "Cruce de Jordan",
+              "codigo_barrio": "7-702-70203-037"
+            },
+            {
+              "nombre": "Sitio Vuelta Guayabo",
+              "codigo_barrio": "7-702-70203-038"
+            },
+            {
+              "nombre": "Guajira",
+              "codigo_barrio": "7-702-70203-039"
+            },
+            {
+              "nombre": "Hilda",
+              "codigo_barrio": "7-702-70203-040"
+            },
+            {
+              "nombre": "Los Cholos",
+              "codigo_barrio": "7-702-70203-041"
+            },
+            {
+              "nombre": "Nido Dos",
+              "codigo_barrio": "7-702-70203-042"
+            },
+            {
+              "nombre": "San Roque",
+              "codigo_barrio": "7-702-70203-043"
+            },
+            {
+              "nombre": "Las Flores",
+              "codigo_barrio": "7-702-70203-044"
+            },
+            {
+              "nombre": "Carmona",
+              "codigo_barrio": "7-702-70203-045"
+            },
+            {
+              "nombre": "Cristo Rey",
+              "codigo_barrio": "7-702-70203-046"
+            },
+            {
+              "nombre": "Sonia",
+              "codigo_barrio": "7-702-70203-047"
+            },
+            {
+              "nombre": "Almendros",
+              "codigo_barrio": "7-702-70203-048"
+            },
+            {
+              "nombre": "Pinos",
+              "codigo_barrio": "7-702-70203-049"
+            },
+            {
+              "nombre": "San Juan",
+              "codigo_barrio": "7-702-70203-050"
+            },
+            {
+              "nombre": "Carlota",
+              "codigo_barrio": "7-702-70203-051"
+            },
+            {
+              "nombre": "Penitencia",
+              "codigo_barrio": "7-702-70203-052"
+            },
+            {
+              "nombre": "Paraiso",
+              "codigo_barrio": "7-702-70203-053"
+            },
+            {
+              "nombre": "Camuro",
+              "codigo_barrio": "7-702-70203-054"
+            },
+            {
+              "nombre": "Colinas",
+              "codigo_barrio": "7-702-70203-055"
+            },
+            {
+              "nombre": "Cocotales",
+              "codigo_barrio": "7-702-70203-056"
+            },
+            {
+              "nombre": "Iztaru",
+              "codigo_barrio": "7-702-70203-057"
+            },
+            {
+              "nombre": "Sector Nueve",
+              "codigo_barrio": "7-702-70203-058"
+            },
+            {
+              "nombre": "Finca Dos",
+              "codigo_barrio": "7-702-70203-059"
+            },
+            {
+              "nombre": "Palmitas Dos",
+              "codigo_barrio": "7-702-70203-060"
+            },
+            {
+              "nombre": "Agroportica",
+              "codigo_barrio": "7-702-70203-061"
+            },
+            {
+              "nombre": "Zota Dos",
+              "codigo_barrio": "7-702-70203-062"
+            },
+            {
+              "nombre": "Finca Uno",
+              "codigo_barrio": "7-702-70203-063"
+            },
+            {
+              "nombre": "Guarani",
+              "codigo_barrio": "7-702-70203-064"
+            },
+            {
+              "nombre": "Caño Seco",
+              "codigo_barrio": "7-702-70203-065"
+            },
+            {
+              "nombre": "Fortuna",
+              "codigo_barrio": "7-702-70203-066"
+            },
+            {
+              "nombre": "Cedral",
+              "codigo_barrio": "7-702-70203-067"
+            },
+            {
+              "nombre": "Zota",
+              "codigo_barrio": "7-702-70203-068"
+            },
+            {
+              "nombre": "Nueva Rita",
+              "codigo_barrio": "7-702-70203-069"
+            },
+            {
+              "nombre": "Santa Luisa de Marillac",
+              "codigo_barrio": "7-702-70203-070"
+            },
+            {
+              "nombre": "Nido Uno",
+              "codigo_barrio": "7-702-70203-071"
+            }
+          ]
+        },
+        {
+          "distrito": "Guapiles",
+          "codigo_distrito": "70201",
+          "barrios": [
+            {
+              "nombre": "Gobierno",
+              "codigo_barrio": "7-702-70201-001"
+            },
+            {
+              "nombre": "Guapiles",
+              "codigo_barrio": "7-702-70201-002"
+            },
+            {
+              "nombre": "Porvenir de la Marina",
+              "codigo_barrio": "7-702-70201-003"
+            },
+            {
+              "nombre": "Vargas",
+              "codigo_barrio": "7-702-70201-004"
+            },
+            {
+              "nombre": "Santa Clara",
+              "codigo_barrio": "7-702-70201-005"
+            },
+            {
+              "nombre": "La Guaria",
+              "codigo_barrio": "7-702-70201-006"
+            },
+            {
+              "nombre": "Jesus",
+              "codigo_barrio": "7-702-70201-007"
+            },
+            {
+              "nombre": "Marina",
+              "codigo_barrio": "7-702-70201-008"
+            },
+            {
+              "nombre": "La Union (Flores)",
+              "codigo_barrio": "7-702-70201-009"
+            },
+            {
+              "nombre": "Rio Blanco",
+              "codigo_barrio": "7-702-70201-010"
+            },
+            {
+              "nombre": "Sauces",
+              "codigo_barrio": "7-702-70201-011"
+            },
+            {
+              "nombre": "Cacique",
+              "codigo_barrio": "7-702-70201-012"
+            },
+            {
+              "nombre": "San Miguel",
+              "codigo_barrio": "7-702-70201-013"
+            },
+            {
+              "nombre": "Palma Dorada",
+              "codigo_barrio": "7-702-70201-014"
+            },
+            {
+              "nombre": "Calle Los angeles",
+              "codigo_barrio": "7-702-70201-015"
+            },
+            {
+              "nombre": "Rancho Redondo",
+              "codigo_barrio": "7-702-70201-016"
+            },
+            {
+              "nombre": "Corinto",
+              "codigo_barrio": "7-702-70201-017"
+            },
+            {
+              "nombre": "Emilia",
+              "codigo_barrio": "7-702-70201-018"
+            },
+            {
+              "nombre": "angeles",
+              "codigo_barrio": "7-702-70201-019"
+            },
+            {
+              "nombre": "Cecilia",
+              "codigo_barrio": "7-702-70201-020"
+            },
+            {
+              "nombre": "Diamantes",
+              "codigo_barrio": "7-702-70201-021"
+            },
+            {
+              "nombre": "Coopevigua",
+              "codigo_barrio": "7-702-70201-022"
+            },
+            {
+              "nombre": "Toro Amarillo",
+              "codigo_barrio": "7-702-70201-023"
+            },
+            {
+              "nombre": "Calle Emilia",
+              "codigo_barrio": "7-702-70201-024"
+            },
+            {
+              "nombre": "Garabito",
+              "codigo_barrio": "7-702-70201-025"
+            },
+            {
+              "nombre": "Palmera",
+              "codigo_barrio": "7-702-70201-026"
+            },
+            {
+              "nombre": "Coopevigua Tres",
+              "codigo_barrio": "7-702-70201-027"
+            },
+            {
+              "nombre": "Coopevigua Dos",
+              "codigo_barrio": "7-702-70201-028"
+            },
+            {
+              "nombre": "Zurqui",
+              "codigo_barrio": "7-702-70201-029"
+            },
+            {
+              "nombre": "El Roble",
+              "codigo_barrio": "7-702-70201-030"
+            },
+            {
+              "nombre": "Laureles",
+              "codigo_barrio": "7-702-70201-031"
+            },
+            {
+              "nombre": "Campos Verdes",
+              "codigo_barrio": "7-702-70201-032"
+            },
+            {
+              "nombre": "Nuevo Guapiles",
+              "codigo_barrio": "7-702-70201-033"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-702-70201-034"
+            },
+            {
+              "nombre": "Esmeralda",
+              "codigo_barrio": "7-702-70201-035"
+            },
+            {
+              "nombre": "La Trocha",
+              "codigo_barrio": "7-702-70201-036"
+            },
+            {
+              "nombre": "Belen",
+              "codigo_barrio": "7-702-70201-037"
+            },
+            {
+              "nombre": "Bovinos",
+              "codigo_barrio": "7-702-70201-038"
+            },
+            {
+              "nombre": "Tractor",
+              "codigo_barrio": "7-702-70201-039"
+            },
+            {
+              "nombre": "Caracol",
+              "codigo_barrio": "7-702-70201-040"
+            },
+            {
+              "nombre": "Las Palmas",
+              "codigo_barrio": "7-702-70201-041"
+            },
+            {
+              "nombre": "Maderos",
+              "codigo_barrio": "7-702-70201-042"
+            },
+            {
+              "nombre": "Pinares",
+              "codigo_barrio": "7-702-70201-043"
+            },
+            {
+              "nombre": "Aguas Mansas",
+              "codigo_barrio": "7-702-70201-044"
+            },
+            {
+              "nombre": "Minas",
+              "codigo_barrio": "7-702-70201-045"
+            },
+            {
+              "nombre": "Valle Verde",
+              "codigo_barrio": "7-702-70201-046"
+            },
+            {
+              "nombre": "Bella Vista (La Leona)",
+              "codigo_barrio": "7-702-70201-047"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-702-70201-048"
+            },
+            {
+              "nombre": "Casona (Floresta)",
+              "codigo_barrio": "7-702-70201-049"
+            },
+            {
+              "nombre": "Caribbean",
+              "codigo_barrio": "7-702-70201-050"
+            },
+            {
+              "nombre": "Jardin",
+              "codigo_barrio": "7-702-70201-051"
+            },
+            {
+              "nombre": "Camino al Cielo",
+              "codigo_barrio": "7-702-70201-052"
+            },
+            {
+              "nombre": "Sarquis",
+              "codigo_barrio": "7-702-70201-053"
+            },
+            {
+              "nombre": "La Urba",
+              "codigo_barrio": "7-702-70201-054"
+            },
+            {
+              "nombre": "Sinai",
+              "codigo_barrio": "7-702-70201-055"
+            },
+            {
+              "nombre": "Vistas del Volcan",
+              "codigo_barrio": "7-702-70201-056"
+            },
+            {
+              "nombre": "Bosque Verde",
+              "codigo_barrio": "7-702-70201-057"
+            },
+            {
+              "nombre": "Flores",
+              "codigo_barrio": "7-702-70201-058"
+            },
+            {
+              "nombre": "Helechos",
+              "codigo_barrio": "7-702-70201-059"
+            },
+            {
+              "nombre": "Anturias",
+              "codigo_barrio": "7-702-70201-060"
+            },
+            {
+              "nombre": "Sitio Cruce Rio Frio",
+              "codigo_barrio": "7-702-70201-061"
+            },
+            {
+              "nombre": "Don Ebelino",
+              "codigo_barrio": "7-702-70201-062"
+            },
+            {
+              "nombre": "Monte Carlo",
+              "codigo_barrio": "7-702-70201-063"
+            },
+            {
+              "nombre": "Almendros",
+              "codigo_barrio": "7-702-70201-064"
+            }
+          ]
+        },
+        {
+          "distrito": "Roxana",
+          "codigo_distrito": "70204",
+          "barrios": [
+            {
+              "nombre": "Roxana",
+              "codigo_barrio": "7-702-70204-001"
+            },
+            {
+              "nombre": "San Jorge",
+              "codigo_barrio": "7-702-70204-002"
+            },
+            {
+              "nombre": "Milloncito",
+              "codigo_barrio": "7-702-70204-003"
+            },
+            {
+              "nombre": "Duacari Uno",
+              "codigo_barrio": "7-702-70204-004"
+            },
+            {
+              "nombre": "Humo",
+              "codigo_barrio": "7-702-70204-005"
+            },
+            {
+              "nombre": "Oeste",
+              "codigo_barrio": "7-702-70204-006"
+            },
+            {
+              "nombre": "Cruce",
+              "codigo_barrio": "7-702-70204-007"
+            },
+            {
+              "nombre": "angeles (Anaban)",
+              "codigo_barrio": "7-702-70204-008"
+            },
+            {
+              "nombre": "Roxana Tres",
+              "codigo_barrio": "7-702-70204-009"
+            },
+            {
+              "nombre": "Curva del Humo",
+              "codigo_barrio": "7-702-70204-010"
+            },
+            {
+              "nombre": "Curva",
+              "codigo_barrio": "7-702-70204-011"
+            },
+            {
+              "nombre": "Maravilla",
+              "codigo_barrio": "7-702-70204-012"
+            },
+            {
+              "nombre": "San Francisco",
+              "codigo_barrio": "7-702-70204-013"
+            },
+            {
+              "nombre": "Castañal",
+              "codigo_barrio": "7-702-70204-014"
+            },
+            {
+              "nombre": "Curia",
+              "codigo_barrio": "7-702-70204-015"
+            },
+            {
+              "nombre": "La Lidia",
+              "codigo_barrio": "7-702-70204-016"
+            },
+            {
+              "nombre": "Aguas Frias",
+              "codigo_barrio": "7-702-70204-017"
+            },
+            {
+              "nombre": "Llano Bonito",
+              "codigo_barrio": "7-702-70204-018"
+            },
+            {
+              "nombre": "Mata de Limon",
+              "codigo_barrio": "7-702-70204-019"
+            },
+            {
+              "nombre": "Vegas de Tortuguero",
+              "codigo_barrio": "7-702-70204-020"
+            },
+            {
+              "nombre": "La Cruz",
+              "codigo_barrio": "7-702-70204-021"
+            },
+            {
+              "nombre": "Punta de Riel",
+              "codigo_barrio": "7-702-70204-022"
+            },
+            {
+              "nombre": "Leesville",
+              "codigo_barrio": "7-702-70204-023"
+            },
+            {
+              "nombre": "Millon",
+              "codigo_barrio": "7-702-70204-024"
+            },
+            {
+              "nombre": "Londres",
+              "codigo_barrio": "7-702-70204-025"
+            },
+            {
+              "nombre": "Fortuna",
+              "codigo_barrio": "7-702-70204-026"
+            },
+            {
+              "nombre": "Palmas",
+              "codigo_barrio": "7-702-70204-027"
+            },
+            {
+              "nombre": "Gloria",
+              "codigo_barrio": "7-702-70204-028"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-702-70204-029"
+            },
+            {
+              "nombre": "Luis XV",
+              "codigo_barrio": "7-702-70204-030"
+            },
+            {
+              "nombre": "Nazareth",
+              "codigo_barrio": "7-702-70204-031"
+            },
+            {
+              "nombre": "Lomas de Sierpe",
+              "codigo_barrio": "7-702-70204-032"
+            },
+            {
+              "nombre": "Nueva Esperanza",
+              "codigo_barrio": "7-702-70204-033"
+            },
+            {
+              "nombre": "Gardenias",
+              "codigo_barrio": "7-702-70204-034"
+            },
+            {
+              "nombre": "Trinidad",
+              "codigo_barrio": "7-702-70204-035"
+            },
+            {
+              "nombre": "Guadalupe",
+              "codigo_barrio": "7-702-70204-036"
+            },
+            {
+              "nombre": "Las Gemelas",
+              "codigo_barrio": "7-702-70204-037"
+            },
+            {
+              "nombre": "Bella Vista",
+              "codigo_barrio": "7-702-70204-038"
+            },
+            {
+              "nombre": "Broncon",
+              "codigo_barrio": "7-702-70204-039"
+            },
+            {
+              "nombre": "Santa Clara",
+              "codigo_barrio": "7-702-70204-040"
+            },
+            {
+              "nombre": "Los Lagos",
+              "codigo_barrio": "7-702-70204-041"
+            }
+          ]
+        },
+        {
+          "distrito": "Cariari",
+          "codigo_distrito": "70205",
+          "barrios": [
+            {
+              "nombre": "Campo Cinco",
+              "codigo_barrio": "7-702-70205-001"
+            },
+            {
+              "nombre": "Cariari",
+              "codigo_barrio": "7-702-70205-002"
+            },
+            {
+              "nombre": "Caño Chiquero",
+              "codigo_barrio": "7-702-70205-003"
+            },
+            {
+              "nombre": "Ceibo",
+              "codigo_barrio": "7-702-70205-004"
+            },
+            {
+              "nombre": "Gaviotas",
+              "codigo_barrio": "7-702-70205-005"
+            },
+            {
+              "nombre": "Pavona",
+              "codigo_barrio": "7-702-70205-006"
+            },
+            {
+              "nombre": "Mana",
+              "codigo_barrio": "7-702-70205-007"
+            },
+            {
+              "nombre": "Carolina",
+              "codigo_barrio": "7-702-70205-008"
+            },
+            {
+              "nombre": "Monterrey",
+              "codigo_barrio": "7-702-70205-009"
+            },
+            {
+              "nombre": "Cuatro Esquinas",
+              "codigo_barrio": "7-702-70205-010"
+            },
+            {
+              "nombre": "Esperanza (Cantarrana)",
+              "codigo_barrio": "7-702-70205-011"
+            },
+            {
+              "nombre": "Encanto",
+              "codigo_barrio": "7-702-70205-012"
+            },
+            {
+              "nombre": "Hojancha",
+              "codigo_barrio": "7-702-70205-013"
+            },
+            {
+              "nombre": "Semillero",
+              "codigo_barrio": "7-702-70205-014"
+            },
+            {
+              "nombre": "Campo Dos",
+              "codigo_barrio": "7-702-70205-015"
+            },
+            {
+              "nombre": "San Miguel",
+              "codigo_barrio": "7-702-70205-016"
+            },
+            {
+              "nombre": "Astua Pirie",
+              "codigo_barrio": "7-702-70205-017"
+            },
+            {
+              "nombre": "angeles",
+              "codigo_barrio": "7-702-70205-018"
+            },
+            {
+              "nombre": "Pueblo Nuevo",
+              "codigo_barrio": "7-702-70205-019"
+            },
+            {
+              "nombre": "Coopecariari",
+              "codigo_barrio": "7-702-70205-020"
+            },
+            {
+              "nombre": "Sagrada Familia",
+              "codigo_barrio": "7-702-70205-021"
+            },
+            {
+              "nombre": "Campo Cuatro",
+              "codigo_barrio": "7-702-70205-022"
+            },
+            {
+              "nombre": "Campo Tres Este",
+              "codigo_barrio": "7-702-70205-023"
+            },
+            {
+              "nombre": "Campo Tres Oeste",
+              "codigo_barrio": "7-702-70205-024"
+            },
+            {
+              "nombre": "Palermo",
+              "codigo_barrio": "7-702-70205-025"
+            },
+            {
+              "nombre": "Progreso",
+              "codigo_barrio": "7-702-70205-026"
+            },
+            {
+              "nombre": "Nazaret",
+              "codigo_barrio": "7-702-70205-027"
+            },
+            {
+              "nombre": "Frutera",
+              "codigo_barrio": "7-702-70205-028"
+            },
+            {
+              "nombre": "Formosa",
+              "codigo_barrio": "7-702-70205-029"
+            },
+            {
+              "nombre": "Banamola",
+              "codigo_barrio": "7-702-70205-030"
+            },
+            {
+              "nombre": "Campo de Aterrizaje (Pueblo Triste)",
+              "codigo_barrio": "7-702-70205-031"
+            },
+            {
+              "nombre": "Vega de Rio Palacios",
+              "codigo_barrio": "7-702-70205-032"
+            },
+            {
+              "nombre": "Guaria",
+              "codigo_barrio": "7-702-70205-033"
+            },
+            {
+              "nombre": "Astutica",
+              "codigo_barrio": "7-702-70205-034"
+            },
+            {
+              "nombre": "Nuevo Caribe",
+              "codigo_barrio": "7-702-70205-035"
+            },
+            {
+              "nombre": "Sole",
+              "codigo_barrio": "7-702-70205-036"
+            },
+            {
+              "nombre": "Las Flores",
+              "codigo_barrio": "7-702-70205-037"
+            },
+            {
+              "nombre": "San Juan",
+              "codigo_barrio": "7-702-70205-038"
+            },
+            {
+              "nombre": "Boreal",
+              "codigo_barrio": "7-702-70205-039"
+            },
+            {
+              "nombre": "Cristo Rey",
+              "codigo_barrio": "7-702-70205-040"
+            },
+            {
+              "nombre": "Carmen",
+              "codigo_barrio": "7-702-70205-041"
+            },
+            {
+              "nombre": "Llano",
+              "codigo_barrio": "7-702-70205-042"
+            },
+            {
+              "nombre": "La Cruz",
+              "codigo_barrio": "7-702-70205-043"
+            },
+            {
+              "nombre": "Foresta",
+              "codigo_barrio": "7-702-70205-044"
+            },
+            {
+              "nombre": "Riviera",
+              "codigo_barrio": "7-702-70205-045"
+            },
+            {
+              "nombre": "España",
+              "codigo_barrio": "7-702-70205-046"
+            },
+            {
+              "nombre": "Hermanos",
+              "codigo_barrio": "7-702-70205-047"
+            },
+            {
+              "nombre": "Lucha",
+              "codigo_barrio": "7-702-70205-048"
+            },
+            {
+              "nombre": "Lagos",
+              "codigo_barrio": "7-702-70205-049"
+            },
+            {
+              "nombre": "Brisas",
+              "codigo_barrio": "7-702-70205-050"
+            },
+            {
+              "nombre": "Casas Verdes",
+              "codigo_barrio": "7-702-70205-051"
+            },
+            {
+              "nombre": "Campo Tres",
+              "codigo_barrio": "7-702-70205-052"
+            },
+            {
+              "nombre": "Colonia Zeledon",
+              "codigo_barrio": "7-702-70205-053"
+            },
+            {
+              "nombre": "Mora",
+              "codigo_barrio": "7-702-70205-054"
+            },
+            {
+              "nombre": "Las Torres",
+              "codigo_barrio": "7-702-70205-055"
+            },
+            {
+              "nombre": "Ilusion Cantagallo",
+              "codigo_barrio": "7-702-70205-056"
+            },
+            {
+              "nombre": "Campo Uno",
+              "codigo_barrio": "7-702-70205-057"
+            },
+            {
+              "nombre": "Roxanita",
+              "codigo_barrio": "7-702-70205-058"
+            }
+          ]
+        },
+        {
+          "distrito": "Colorado",
+          "codigo_distrito": "70206",
+          "barrios": [
+            {
+              "nombre": "San Pablo (Zacatales)",
+              "codigo_barrio": "7-702-70206-001"
+            },
+            {
+              "nombre": "Lagunilla",
+              "codigo_barrio": "7-702-70206-002"
+            },
+            {
+              "nombre": "Barra del Colorado",
+              "codigo_barrio": "7-702-70206-003"
+            },
+            {
+              "nombre": "Aragon",
+              "codigo_barrio": "7-702-70206-004"
+            },
+            {
+              "nombre": "Puerto Lindo",
+              "codigo_barrio": "7-702-70206-005"
+            },
+            {
+              "nombre": "Barra del Colorado Este",
+              "codigo_barrio": "7-702-70206-006"
+            },
+            {
+              "nombre": "Sitio Santa Teresita (Peoresnada)",
+              "codigo_barrio": "7-702-70206-007"
+            },
+            {
+              "nombre": "Sitio Banco El Pocoyo",
+              "codigo_barrio": "7-702-70206-008"
+            },
+            {
+              "nombre": "Sitio El Jobo",
+              "codigo_barrio": "7-702-70206-009"
+            },
+            {
+              "nombre": "Isla Brava",
+              "codigo_barrio": "7-702-70206-010"
+            },
+            {
+              "nombre": "Sitio Punta Castilla",
+              "codigo_barrio": "7-702-70206-011"
+            },
+            {
+              "nombre": "Agua Dulce",
+              "codigo_barrio": "7-702-70206-012"
+            },
+            {
+              "nombre": "Tortuguero",
+              "codigo_barrio": "7-702-70206-013"
+            },
+            {
+              "nombre": "Mata de Banano",
+              "codigo_barrio": "7-702-70206-014"
+            },
+            {
+              "nombre": "Montelimar",
+              "codigo_barrio": "7-702-70206-015"
+            },
+            {
+              "nombre": "Samay",
+              "codigo_barrio": "7-702-70206-016"
+            },
+            {
+              "nombre": "San Rafael",
+              "codigo_barrio": "7-702-70206-017"
+            },
+            {
+              "nombre": "Linda Vista",
+              "codigo_barrio": "7-702-70206-018"
+            },
+            {
+              "nombre": "Cocori",
+              "codigo_barrio": "7-702-70206-019"
+            },
+            {
+              "nombre": "Sardina",
+              "codigo_barrio": "7-702-70206-020"
+            },
+            {
+              "nombre": "San Francisco",
+              "codigo_barrio": "7-702-70206-021"
+            }
+          ]
+        },
+        {
+          "distrito": "Llanuras del Gaspar",
+          "codigo_distrito": "41004",
+          "barrios": [
+            {
+              "nombre": "Pueblo Nuevo (La Lucha)",
+              "codigo_barrio": "7-702-41004-001"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mercasa-blue: #204692;
+  --color-mercasa-red: #BE1622;
+  --color-mercasa-blue-dark: #1a3a7a;
+  --color-mercasa-red-dark: #a0131d;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
