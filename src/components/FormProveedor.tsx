@@ -138,38 +138,37 @@ export default function FormProveedor() {
 
   return (
     <>
-      {/* Modal de Confirmación */}
+      {/* Modal de Confirmación Duplicado */}
       {mostrarConfirmacion && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300 border border-slate-100">
-            <div className="p-8 text-center">
-              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                ⚠️
+          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-orange-100 animate-in zoom-in-95 duration-200">
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-2">Registro Duplicado</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                Ya tenemos un registro con esta cédula. <br />
-                <span className="font-bold text-slate-700">¿Deseas actualizar la información existente con estos nuevos datos?</span>
+              <h3 className="text-xl font-bold text-slate-800 mb-2">Cédula ya ingresada</h3>
+              <p className="text-slate-600 mb-6">
+                Ya tenemos un registro con esta identificación. ¿Deseas actualizar la información existente o mantener los datos actuales?
               </p>
-            </div>
-            <div className="flex border-t border-slate-100">
-              <button
-                type="button"
-                onClick={() => {
-                  setMostrarConfirmacion(false);
-                  setDatosPendientes(null);
-                }}
-                className="flex-1 px-6 py-4 text-sm font-semibold text-slate-500 hover:bg-slate-50 transition-colors border-r border-slate-100"
-              >
-                Mantener actuales
-              </button>
-              <button
-                type="button"
-                onClick={() => datosPendientes && enviarDatos(datosPendientes)}
-                className="flex-1 px-6 py-4 text-sm font-bold text-mercasa-blue hover:bg-blue-50 transition-colors"
-              >
-                Sí, actualizar
-              </button>
+              <div className="flex flex-col w-full gap-3">
+                <button
+                  type="button"
+                  onClick={() => datosPendientes && enviarDatos(datosPendientes)}
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-orange-200 active:scale-[0.98]"
+                >
+                  Actualizar los datos de nuevo
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMostrarConfirmacion(false);
+                    setDatosPendientes(null);
+                  }}
+                  className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl transition-all active:scale-[0.98]"
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
           </div>
         </div>
