@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation";
 type Fila = string[];
 
 const HEADERS = [
-  "Fecha", "Cédula", "Nombre Proveedor", "Act. Económica",
-  "Provincia", "Cód. Provincia", "Cantón", "Cód. Cantón",
-  "Distrito", "Cód. Distrito", "Barrio", "Cód. Barrio", "Dirección Exacta",
+  "Fecha Registro", "Última Act.", "Cédula", "Nombre Proveedor", "Act. Económica",
+  "Email Factura", "Email Contacto", "Nombre Contacto", "Teléfono", "WhatsApp",
+  "Provincia", "Cantón", "Distrito", "Barrio", "Dirección Exacta",
 ];
 
 export default function AdminPage() {
@@ -36,17 +36,19 @@ export default function AdminPage() {
         // Mapear objetos de Supabase a arreglos para mantener compatibilidad con la tabla
         const mappedRows = data.rows.map((p: any) => [
           new Date(p.created_at).toLocaleString("es-CR"),
+          p.updated_at ? new Date(p.updated_at).toLocaleString("es-CR") : "—",
           p.cedula,
           p.nombre_proveedor,
           p.act_economica_principal,
+          p.email_factura,
+          p.email_contacto,
+          p.nombre_contacto,
+          p.telefono,
+          p.whatsapp,
           p.provincia,
-          p.codigo_provincia,
           p.canton,
-          p.codigo_canton,
           p.distrito,
-          p.codigo_distrito,
           p.barrio,
-          p.codigo_barrio,
           p.direccion_exacta,
         ]);
         setFilas(mappedRows);

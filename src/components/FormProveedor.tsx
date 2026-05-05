@@ -80,7 +80,7 @@ export default function FormProveedor() {
       setValue("cedula", cedula);
       setValue("nombreProveedor", data.nombre);
       
-      // Verificar si ya existe en Google Sheets
+      // Verificar si ya existe en la base de datos
       try {
         const putRes = await fetch("/api/verificar-cedula", {
           method: "POST",
@@ -89,7 +89,10 @@ export default function FormProveedor() {
         });
         if (putRes.ok) {
           const putData = await putRes.json();
-          setExisteRegistro(putData.existe);
+          if (putData.existe) {
+            setExisteRegistro(true);
+            setMostrarConfirmacion(true);
+          }
         }
       } catch (e) {
         console.error("Error verificando existencia:", e);
@@ -102,11 +105,6 @@ export default function FormProveedor() {
   }
 
   async function onSubmit(data: ProveedorFormData) {
-    if (existeRegistro) {
-      setDatosPendientes(data);
-      setMostrarConfirmacion(true);
-      return;
-    }
     await enviarDatos(data);
   }
 
@@ -169,7 +167,7 @@ export default function FormProveedor() {
               <div className="flex flex-col w-full gap-3">
                 <button
                   type="button"
-                  onClick={() => datosPendientes && enviarDatos(datosPendientes)}
+                  onClick={() => setMostrarConfirmacion(false)}
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-orange-200 active:scale-[0.98]"
                 >
                   Actualizar los datos de nuevo
@@ -178,7 +176,9 @@ export default function FormProveedor() {
                   type="button"
                   onClick={() => {
                     setMostrarConfirmacion(false);
-                    setDatosPendientes(null);
+                    setDatosHacienda(null);
+                    setCedula("");
+                    setValue("cedula", "");
                   }}
                   className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl transition-all active:scale-[0.98]"
                 >
