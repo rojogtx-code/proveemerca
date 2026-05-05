@@ -20,20 +20,22 @@ export async function GET(req: NextRequest) {
       }
     );
 
-    if (!resHacienda.ok) {
-      return NextResponse.json({ error: "No encontrado" }, { status: resHacienda.status });
-    }
-
     const data = await resHacienda.json();
+    
+    // Si no hay actividades, lo indicamos explícitamente
+    const actividades = data.actividades || [];
+    
     return NextResponse.json({
       nombre: data.nombre,
-      actividades: data.actividades || []
+      actividades: actividades,
+      tieneActividad: actividades.length > 0
     });
   } catch (error) {
     console.error("Error en GET /api/hacienda:", error);
+    // Si falla, asumimos que no se encontró o no tiene actividad
     return NextResponse.json(
-      { error: "Error al consultar Hacienda" },
-      { status: 500 }
+      { error: "No encontrado o sin actividad", actividades: [], tieneActividad: false },
+      { status: 200 } // Retornamos 200 para que el frontend maneje la lógica
     );
   }
 }

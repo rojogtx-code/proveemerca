@@ -49,17 +49,17 @@ export default function FormProveedor() {
 
     try {
       const res = await fetch(`/api/hacienda?identificacion=${cedula}`);
-      if (!res.ok) throw new Error("No encontrado");
       const data = await res.json();
-      if (!data.nombre) throw new Error("Sin nombre");
 
       // Validar si tiene actividades económicas
-      if (!data.actividades || data.actividades.length === 0) {
+      if (!data.tieneActividad) {
         setSinActividad(true);
         setBuscando(false);
         return;
       }
 
+      if (!data.nombre) throw new Error("Sin nombre");
+      
       setDatosHacienda(data);
       setValue("cedula", cedula);
       setValue("nombreProveedor", data.nombre);
