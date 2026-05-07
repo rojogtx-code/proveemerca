@@ -93,7 +93,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-mercasa-red text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-red-dark shadow-lg shadow-red-900/20 transition-all active:scale-[0.98] disabled:opacity-50"
+            className="w-full bg-mercasa-green text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-green-dark shadow-lg shadow-green-900/20 transition-all active:scale-[0.98] disabled:opacity-50"
           >
             {loading ? "Iniciando sesión..." : "Ingresar al Panel"}
           </button>

@@ -435,7 +435,7 @@ export default function FormProveedor() {
           <button
             type="submit"
             disabled={enviando}
-            className="bg-mercasa-red text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-red-dark shadow-lg shadow-red-900/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+            className="bg-mercasa-green text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-green-dark shadow-lg shadow-green-900/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mt-4"
           >
             {enviando ? "Procesando..." : "Enviar Información Actualizada"}
           </button>
