@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mercasa - Registro de Proveedores",
   description: "Sistema de actualización de datos de proveedores para Mercasa",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
