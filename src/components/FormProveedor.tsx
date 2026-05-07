@@ -16,6 +16,9 @@ type ActividadEconomica = {
 type DatosHacienda = {
   nombre: string;
   actividades: ActividadEconomica[];
+  tipoCedulaId?: string;
+  tipoCedulaNombre?: string;
+  tieneActividad?: boolean;
 };
 
 export default function FormProveedor() {
