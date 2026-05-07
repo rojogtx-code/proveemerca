@@ -12,6 +12,9 @@ export async function POST(req: NextRequest) {
       nombre_proveedor: data.nombreProveedor,
       act_economica_principal: data.actEconomicaPrincipal,
       cod_actividad_economica: data.codActividadEconomica || null,
+      tiene_actividad: data.tieneActividad ? 1 : 0,
+      tipo_cedula_id: data.tipoCedulaId,
+      tipo_cedula_nombre: data.tipoCedulaNombre,
       provincia: data.provincia,
       codigo_provincia: data.codigoProvincia,
       canton: data.canton,
@@ -24,7 +27,9 @@ export async function POST(req: NextRequest) {
       email_factura: data.emailFactura,
       email_contacto: data.emailContacto,
       nombre_contacto: data.nombreContacto,
+      ext_telefono: data.extTelefono || "506",
       telefono: data.telefono,
+      ext_whatsapp: data.extWhatsapp || "506",
       whatsapp: data.whatsapp,
     };
 

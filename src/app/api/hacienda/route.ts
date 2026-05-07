@@ -22,13 +22,25 @@ export async function GET(req: NextRequest) {
 
     const data = await resHacienda.json();
     
+    // Mapear tipoIdentificacion a nombre legible
+    const tipoMap: Record<string, string> = {
+      "01": "Cédula Física",
+      "02": "Cédula Jurídica",
+      "03": "DIMEX",
+      "04": "NITE",
+    };
+    const tipoCedulaId = data.tipoIdentificacion || "";
+    const tipoCedulaNombre = tipoMap[tipoCedulaId] || "";
+
     // Si no hay actividades, lo indicamos explícitamente
     const actividades = data.actividades || [];
     
     return NextResponse.json({
       nombre: data.nombre,
       actividades: actividades,
-      tieneActividad: actividades.length > 0
+      tieneActividad: actividades.length > 0,
+      tipoCedulaId,
+      tipoCedulaNombre,
     });
   } catch (error) {
     console.error("Error en GET /api/hacienda:", error);

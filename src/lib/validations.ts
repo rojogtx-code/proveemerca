@@ -7,8 +7,11 @@ export const proveedorSchema = z.object({
     .max(12, "Máximo 12 dígitos")
     .regex(/^\d+$/, "Solo números"),
   nombreProveedor: z.string().min(1, "Requerido"),
-  actEconomicaPrincipal: z.string().min(1, "Requerido"),
+  tipoCedulaNombre: z.string().optional(),
+  tipoCedulaId: z.string().optional(),
+  actEconomicaPrincipal: z.string().optional(),
   codActividadEconomica: z.string().optional(),
+  tieneActividad: z.boolean().optional(),
   provincia: z.string().min(1, "Seleccione una provincia"),
   codigoProvincia: z.string().min(1, "Requerido"),
   canton: z.string().min(1, "Seleccione un cantón"),
@@ -29,12 +32,14 @@ export const proveedorSchema = z.object({
       /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+\s+[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+\s+[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+$/,
       "Use solo letras y complete Nombre, Primer Apellido y Segundo Apellido"
     ),
+  extTelefono: z.string().optional(),
   telefono: z
     .string()
-    .regex(/^\+506 \d{4}-\d{4}$/, "Formato inválido. Use +506 0000-0000"),
+    .regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
+  extWhatsapp: z.string().optional(),
   whatsapp: z
     .string()
-    .regex(/^\+506 \d{4}-\d{4}$/, "Formato inválido. Use +506 0000-0000"),
+    .regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
   actualizar: z.boolean().optional(),
 });
 

@@ -39,22 +39,16 @@ export default function FormProveedor() {
   } = useForm<ProveedorFormData>({
     resolver: zodResolver(proveedorSchema),
     defaultValues: {
-      telefono: "+506 ",
-      whatsapp: "+506 ",
+      telefono: "",
+      whatsapp: "",
+      extTelefono: "506",
+      extWhatsapp: "506",
     },
   });
 
-  const formatPhoneNumber = (value: string) => {
-    // Quitar todo lo que no sea número después del +506
-    const numbers = value.replace("+506 ", "").replace(/\D/g, "");
-    const charCount = numbers.length;
+  const soloNumeros = (value: string, maxLen: number) =>
+    value.replace(/\D/g, "").slice(0, maxLen);
 
-    if (charCount <= 4) {
-      return `+506 ${numbers}`;
-    } else {
-      return `+506 ${numbers.slice(0, 4)}-${numbers.slice(4, 8)}`;
-    }
-  };
 
   async function buscarCedula() {
     if (cedula.length < 9) return;
@@ -67,12 +61,10 @@ export default function FormProveedor() {
       const res = await fetch(`/api/hacienda?identificacion=${cedula}`);
       const data = await res.json();
 
-      // Validar si tiene actividades económicas
-      if (!data.tieneActividad) {
-        setSinActividad(true);
-        setBuscando(false);
-        return;
-      }
+      // Establecer datos desde la API
+      setValue("tieneActividad", !!data.tieneActividad);
+      setValue("tipoCedulaId", data.tipoCedulaId || "");
+      setValue("tipoCedulaNombre", data.tipoCedulaNombre || "");
 
       if (!data.nombre) throw new Error("Sin nombre");
       
@@ -261,66 +253,72 @@ export default function FormProveedor() {
           )}
         </div>
 
-        {/* Datos Hacienda */}
+        {/* Datos Hacienda: Panel de resumen visible tras validar cédula */}
         {datosHacienda && (
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 flex flex-col gap-4 transition-all">
+          <>
+            {/* Campos ocultos para tipo de cédula y actividad */}
+            <input type="hidden" {...register("tipoCedulaId")} />
+            <input type="hidden" {...register("tipoCedulaNombre")} />
+            <input type="hidden" {...register("codActividadEconomica")} />
+            <input type="hidden" {...register("tieneActividad")} />
+
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 flex flex-col gap-4">
             {existeRegistro && (
-              <div className="bg-amber-100 border border-amber-300 text-amber-800 text-xs px-4 py-3 rounded-xl mb-2 flex items-start gap-2">
+              <div className="bg-amber-100 border border-amber-300 text-amber-800 text-xs px-4 py-3 rounded-xl flex items-start gap-2">
                 <span className="text-lg">⚠️</span>
                 <span>Ya tenemos un registro con esta cédula. Tus datos serán <strong>actualizados</strong> al enviar.</span>
               </div>
             )}
-            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
-              Datos Fiscales
-            </h3>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-gray-700">
-                Nombre del Proveedor
-              </label>
-              <input
-                type="text"
-                readOnly
-                value={datosHacienda.nombre}
-                className="border border-gray-200 bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-600 cursor-not-allowed"
-              />
-              <input type="hidden" {...register("nombreProveedor")} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-gray-700">
-                Actividad Económica Principal
-              </label>
-              <select
-                onChange={(e) => {
-                  const selectedAct = datosHacienda.actividades.find(
-                    (act) => act.codigo === e.target.value
-                  );
-                  if (selectedAct) {
-                    setValue("codActividadEconomica", selectedAct.codigo);
-                    setValue("actEconomicaPrincipal", selectedAct.descripcion);
-                  } else {
-                    setValue("codActividadEconomica", "");
-                    setValue("actEconomicaPrincipal", "");
-                  }
-                }}
-                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
-              >
-                <option value="">Seleccione una actividad</option>
-                {datosHacienda.actividades
-                  ?.filter((act) => act.estado === "A")
-                  .map((act) => (
-                    <option key={act.codigo} value={act.codigo}>
-                      {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
-                    </option>
-                  ))}
-              </select>
-              {errors.actEconomicaPrincipal && (
-                <span className="text-xs text-red-500">
-                  {errors.actEconomicaPrincipal.message}
+
+            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">Datos Fiscales Confirmados</h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tipo de Identificación</span>
+                <span className="text-sm font-medium text-slate-800">
+                  {datosHacienda.tipoCedulaNombre ? `${datosHacienda.tipoCedulaNombre} (${datosHacienda.tipoCedulaId})` : "—"}
                 </span>
-              )}
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Nombre del Contribuyente</span>
+                <span className="text-sm font-medium text-slate-800">{datosHacienda.nombre}</span>
+              </div>
             </div>
+
+            {/* Actividad económica - solo si tiene actividades */}
+            {datosHacienda.actividades && datosHacienda.actividades.length > 0 && (
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Actividad Económica Principal</label>
+                <select
+                  onChange={(e) => {
+                    const selected = datosHacienda.actividades.find(a => a.codigo === e.target.value);
+                    if (selected) {
+                      setValue("codActividadEconomica", selected.codigo);
+                      setValue("actEconomicaPrincipal", selected.descripcion);
+                    } else {
+                      setValue("codActividadEconomica", "");
+                      setValue("actEconomicaPrincipal", "");
+                    }
+                  }}
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+                >
+                  <option value="">Seleccione una actividad</option>
+                  {datosHacienda.actividades
+                    ?.filter((act) => act.estado === "A")
+                    .map((act) => (
+                      <option key={act.codigo} value={act.codigo}>
+                        {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
+                      </option>
+                    ))}
+                </select>
+                {errors.actEconomicaPrincipal && <span className="text-xs text-red-500">{errors.actEconomicaPrincipal.message}</span>}
+              </div>
+            )}
+            
+            <input type="hidden" {...register("nombreProveedor")} />
           </div>
-        )}
+        </>
+      )}
 
         {/* Ubicación */}
         {datosHacienda && (
@@ -402,28 +400,36 @@ export default function FormProveedor() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-medium text-gray-700">Número de Teléfono</label>
-                <input
-                  type="text"
-                  {...register("telefono")}
-                  onChange={(e) => {
-                    setValue("telefono", formatPhoneNumber(e.target.value));
-                  }}
-                  placeholder="+506 0000-0000"
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
-                />
+                <div className="flex gap-2">
+                  <div className="flex items-center px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
+                    506
+                  </div>
+                  <input
+                    type="text"
+                    {...register("telefono")}
+                    onChange={(e) => setValue("telefono", soloNumeros(e.target.value, 8))}
+                    placeholder="88888888"
+                    maxLength={8}
+                    className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                  />
+                </div>
                 {errors.telefono && <span className="text-xs text-red-500">{errors.telefono.message}</span>}
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-medium text-gray-700">Número de WhatsApp</label>
-                <input
-                  type="text"
-                  {...register("whatsapp")}
-                  onChange={(e) => {
-                    setValue("whatsapp", formatPhoneNumber(e.target.value));
-                  }}
-                  placeholder="+506 0000-0000"
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
-                />
+                <div className="flex gap-2">
+                  <div className="flex items-center px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
+                    506
+                  </div>
+                  <input
+                    type="text"
+                    {...register("whatsapp")}
+                    onChange={(e) => setValue("whatsapp", soloNumeros(e.target.value, 8))}
+                    placeholder="88888888"
+                    maxLength={8}
+                    className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                  />
+                </div>
                 {errors.whatsapp && <span className="text-xs text-red-500">{errors.whatsapp.message}</span>}
               </div>
             </div>
