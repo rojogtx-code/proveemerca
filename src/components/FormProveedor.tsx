@@ -36,17 +36,27 @@ export default function FormProveedor() {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
     reset,
   } = useForm<ProveedorFormData>({
     resolver: zodResolver(proveedorSchema),
     defaultValues: {
-      telefono: "",
-      whatsapp: "",
-      extTelefono: "506",
-      extWhatsapp: "506",
+      ventasTelefono: "",
+      ventasCelular: "",
+      cobrosTelefono: "",
+      cobrosCelular: "",
+      tieneActividad: false,
     },
   });
+
+  const copiarDatosVentasACobros = () => {
+    const values = getValues();
+    setValue("cobrosNombre", values.ventasNombre || "", { shouldValidate: true });
+    setValue("cobrosEmail", values.ventasEmail || "", { shouldValidate: true });
+    setValue("cobrosTelefono", values.ventasTelefono || "", { shouldValidate: true });
+    setValue("cobrosCelular", values.ventasCelular || "", { shouldValidate: true });
+  };
 
   const soloNumeros = (value: string, maxLen: number) =>
     value.replace(/\D/g, "").slice(0, maxLen);
@@ -369,6 +379,17 @@ export default function FormProveedor() {
                 {errors.esCliente && <span className="text-xs text-red-500">{errors.esCliente.message}</span>}
               </div>
             </div>
+
+            <div className="flex flex-col gap-1 mt-4">
+              <label className="text-sm font-medium text-gray-700">Email Factura Electrónica</label>
+              <input
+                type="email"
+                {...register("emailFactura")}
+                placeholder="facturacion@ejemplo.com"
+                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+              />
+              {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
+            </div>
           </div>
         )}
 
@@ -378,81 +399,155 @@ export default function FormProveedor() {
             <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
               Información de Contacto
             </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Email Factura Electrónica</label>
-                <input
-                  type="email"
-                  {...register("emailFactura")}
-                  placeholder="facturacion@ejemplo.com"
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-                />
-                {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
+
+            {/* Agente de Ventas */}
+            <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <div className="flex flex-col">
+                <h4 className="text-sm font-bold text-slate-700 uppercase">Agente de Ventas</h4>
+                <p className="text-xs text-slate-500">Persona encargada de la cuenta de Mercasa.</p>
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Email de Contacto</label>
-                <input
-                  type="email"
-                  {...register("emailContacto")}
-                  placeholder="contacto@ejemplo.com"
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-                />
-                {errors.emailContacto && <span className="text-xs text-red-500">{errors.emailContacto.message}</span>}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Nombre Completo <span className="text-red-500">*</span></label>
+                  <input
+                    type="text"
+                    {...register("ventasNombre")}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, "");
+                      setValue("ventasNombre", val, { shouldValidate: true });
+                    }}
+                    placeholder="Nombre y Apellidos"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                  />
+                  {errors.ventasNombre && <span className="text-xs text-red-500">{errors.ventasNombre.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Correo Electrónico <span className="text-red-500">*</span></label>
+                  <input
+                    type="email"
+                    {...register("ventasEmail")}
+                    placeholder="ventas@ejemplo.com"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                  />
+                  {errors.ventasEmail && <span className="text-xs text-red-500">{errors.ventasEmail.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Teléfono <span className="text-red-500">*</span></label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
+                      506
+                    </div>
+                    <input
+                      type="text"
+                      {...register("ventasTelefono")}
+                      onChange={(e) => setValue("ventasTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888"
+                      maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                    />
+                  </div>
+                  {errors.ventasTelefono && <span className="text-xs text-red-500">{errors.ventasTelefono.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Celular <span className="text-red-500">*</span></label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
+                      506
+                    </div>
+                    <input
+                      type="text"
+                      {...register("ventasCelular")}
+                      onChange={(e) => setValue("ventasCelular", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888"
+                      maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                    />
+                  </div>
+                  {errors.ventasCelular && <span className="text-xs text-red-500">{errors.ventasCelular.message}</span>}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-gray-700">Nombre de la Persona de Contacto</label>
-              <input
-                type="text"
-                {...register("nombreContacto")}
-                onChange={(e) => {
-                  // Solo letras y espacios
-                  const val = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, "");
-                  setValue("nombreContacto", val);
-                }}
-                placeholder="Nombre Apellido1 Apellido2"
-                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-              />
-              <p className="text-[10px] text-slate-400 mt-1 uppercase font-semibold">Solo letras. Debe incluir Nombre y ambos Apellidos</p>
-              {errors.nombreContacto && <span className="text-xs text-red-500">{errors.nombreContacto.message}</span>}
+            {/* Separador visual */}
+            <div className="flex items-center gap-4 my-2">
+              <div className="h-px bg-slate-200 flex-1"></div>
+              <button
+                type="button"
+                onClick={copiarDatosVentasACobros}
+                className="text-xs font-semibold text-mercasa-blue bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors border border-blue-200 active:scale-95 shadow-sm"
+              >
+                Copiar datos de Ventas a Cobros ↓
+              </button>
+              <div className="h-px bg-slate-200 flex-1"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Número de Teléfono</label>
-                <div className="flex gap-2">
-                  <div className="flex items-center px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
-                    506
-                  </div>
-                  <input
-                    type="text"
-                    {...register("telefono")}
-                    onChange={(e) => setValue("telefono", soloNumeros(e.target.value, 8))}
-                    placeholder="88888888"
-                    maxLength={8}
-                    className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
-                  />
-                </div>
-                {errors.telefono && <span className="text-xs text-red-500">{errors.telefono.message}</span>}
+            {/* Cuentas por Cobrar */}
+            <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <div className="flex flex-col">
+                <h4 className="text-sm font-bold text-slate-700 uppercase">Cuentas por Cobrar</h4>
+                <p className="text-xs text-slate-500">Persona o departamento que gestiona los pagos.</p>
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Número de WhatsApp</label>
-                <div className="flex gap-2">
-                  <div className="flex items-center px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
-                    506
-                  </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Nombre Completo <span className="text-red-500">*</span></label>
                   <input
                     type="text"
-                    {...register("whatsapp")}
-                    onChange={(e) => setValue("whatsapp", soloNumeros(e.target.value, 8))}
-                    placeholder="88888888"
-                    maxLength={8}
-                    className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                    {...register("cobrosNombre")}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, "");
+                      setValue("cobrosNombre", val, { shouldValidate: true });
+                    }}
+                    placeholder="Nombre y Apellidos"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
                   />
+                  {errors.cobrosNombre && <span className="text-xs text-red-500">{errors.cobrosNombre.message}</span>}
                 </div>
-                {errors.whatsapp && <span className="text-xs text-red-500">{errors.whatsapp.message}</span>}
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Correo Electrónico <span className="text-red-500">*</span></label>
+                  <input
+                    type="email"
+                    {...register("cobrosEmail")}
+                    placeholder="cobros@ejemplo.com"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                  />
+                  {errors.cobrosEmail && <span className="text-xs text-red-500">{errors.cobrosEmail.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Teléfono (Opcional)</label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
+                      506
+                    </div>
+                    <input
+                      type="text"
+                      {...register("cobrosTelefono")}
+                      onChange={(e) => setValue("cobrosTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888"
+                      maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                    />
+                  </div>
+                  {errors.cobrosTelefono && <span className="text-xs text-red-500">{errors.cobrosTelefono.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Celular <span className="text-red-500">*</span></label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
+                      506
+                    </div>
+                    <input
+                      type="text"
+                      {...register("cobrosCelular")}
+                      onChange={(e) => setValue("cobrosCelular", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888"
+                      maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                    />
+                  </div>
+                  {errors.cobrosCelular && <span className="text-xs text-red-500">{errors.cobrosCelular.message}</span>}
+                </div>
               </div>
             </div>
           </div>

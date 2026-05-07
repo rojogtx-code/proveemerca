@@ -26,22 +26,29 @@ export const proveedorSchema = z.object({
     .string()
     .min(10, "Por favor ingrese una dirección detallada"),
   emailFactura: z.string().email("Correo electrónico de facturación inválido"),
-  emailContacto: z.string().email("Correo electrónico de contacto inválido"),
-  nombreContacto: z
-    .string()
-    .min(1, "Requerido")
-    .regex(
-      /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+\s+[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+\s+[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+$/,
-      "Use solo letras y complete Nombre, Primer Apellido y Segundo Apellido"
-    ),
-  extTelefono: z.string().optional(),
-  telefono: z
-    .string()
-    .regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
-  extWhatsapp: z.string().optional(),
-  whatsapp: z
-    .string()
-    .regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
+  
+  // Agente de Ventas
+  ventasNombre: z.string().min(1, "Requerido").regex(
+    /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/,
+    "Use solo letras"
+  ),
+  ventasEmail: z.string().email("Correo electrónico inválido"),
+  ventasExtTelefono: z.string().optional(),
+  ventasTelefono: z.string().regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
+  ventasExtCelular: z.string().optional(),
+  ventasCelular: z.string().regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
+
+  // Cuentas por Cobrar
+  cobrosNombre: z.string().min(1, "Requerido").regex(
+    /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/,
+    "Use solo letras"
+  ),
+  cobrosEmail: z.string().email("Correo electrónico inválido"),
+  cobrosExtTelefono: z.string().optional(),
+  cobrosTelefono: z.union([z.string().regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"), z.literal(""), z.undefined()]),
+  cobrosExtCelular: z.string().optional(),
+  cobrosCelular: z.string().regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
+
   actualizar: z.boolean().optional(),
 });
 
