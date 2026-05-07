@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
       telefono: data.telefono,
       ext_whatsapp: data.extWhatsapp || "506",
       whatsapp: data.whatsapp,
+      "Condicion_Proveedor": "Si",
     };
 
     if (body.actualizar) {
