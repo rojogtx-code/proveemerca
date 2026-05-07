@@ -8,6 +8,7 @@ export const proveedorSchema = z.object({
     .regex(/^\d+$/, "Solo números"),
   nombreProveedor: z.string().min(1, "Requerido"),
   actEconomicaPrincipal: z.string().min(1, "Requerido"),
+  codActividadEconomica: z.string().optional(),
   provincia: z.string().min(1, "Seleccione una provincia"),
   codigoProvincia: z.string().min(1, "Requerido"),
   canton: z.string().min(1, "Seleccione un cantón"),

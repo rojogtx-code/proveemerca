@@ -290,14 +290,25 @@ export default function FormProveedor() {
                 Actividad Económica Principal
               </label>
               <select
-                {...register("actEconomicaPrincipal")}
+                onChange={(e) => {
+                  const selectedAct = datosHacienda.actividades.find(
+                    (act) => act.codigo === e.target.value
+                  );
+                  if (selectedAct) {
+                    setValue("codActividadEconomica", selectedAct.codigo);
+                    setValue("actEconomicaPrincipal", selectedAct.descripcion);
+                  } else {
+                    setValue("codActividadEconomica", "");
+                    setValue("actEconomicaPrincipal", "");
+                  }
+                }}
                 className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
               >
                 <option value="">Seleccione una actividad</option>
                 {datosHacienda.actividades
                   ?.filter((act) => act.estado === "A")
                   .map((act) => (
-                    <option key={act.codigo} value={`${act.codigo} - ${act.descripcion}`}>
+                    <option key={act.codigo} value={act.codigo}>
                       {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
                     </option>
                   ))}

@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
       cedula: data.cedula,
       nombre_proveedor: data.nombreProveedor,
       act_economica_principal: data.actEconomicaPrincipal,
+      cod_actividad_economica: data.codActividadEconomica || null,
       provincia: data.provincia,
       codigo_provincia: data.codigoProvincia,
       canton: data.canton,
