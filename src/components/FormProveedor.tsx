@@ -330,6 +330,33 @@ export default function FormProveedor() {
           </div>
         )}
 
+        {/* Condiciones Comerciales */}
+        {datosHacienda && (
+          <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">
+            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
+              Condiciones Comerciales
+            </h3>
+            
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">Plazo de Pago</label>
+              <select
+                {...register("plazoPagoDias")}
+                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+              >
+                <option value="">Seleccione el plazo acordado</option>
+                <option value="0">Contado (0 días)</option>
+                <option value="15">Crédito a 15 días</option>
+                <option value="30">Crédito a 30 días</option>
+                <option value="45">Crédito a 45 días</option>
+                <option value="60">Crédito a 60 días</option>
+                <option value="90">Crédito a 90 días</option>
+                <option value="120">Crédito a 120 días</option>
+              </select>
+              {errors.plazoPagoDias && <span className="text-xs text-red-500">{errors.plazoPagoDias.message}</span>}
+            </div>
+          </div>
+        )}
+
         {/* Información de Contacto */}
         {datosHacienda && (
           <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">

@@ -13,6 +13,8 @@ export async function POST(req: NextRequest) {
       act_economica_principal: data.actEconomicaPrincipal || null,
       cod_actividad_economica: data.codActividadEconomica || null,
       tiene_actividad: data.tieneActividad ? 1 : 0,
+      forma_pago: data.plazoPagoDias === "0" ? "Contado" : "Crédito",
+      plazo_pago_dias: parseInt(data.plazoPagoDias, 10),
       tipo_cedula_id: data.tipoCedulaId,
       tipo_cedula_nombre: data.tipoCedulaNombre,
       provincia: data.provincia,
