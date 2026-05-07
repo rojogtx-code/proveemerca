@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
       tiene_actividad: data.tieneActividad ? 1 : 0,
       forma_pago: data.plazoPagoDias === "0" ? "Contado" : "Crédito",
       plazo_pago_dias: `${data.plazoPagoDias} días`,
+      es_cliente: data.esCliente,
       tipo_cedula_id: data.tipoCedulaId,
       tipo_cedula_nombre: data.tipoCedulaNombre,
       provincia: data.provincia,

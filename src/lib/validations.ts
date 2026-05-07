@@ -13,6 +13,7 @@ export const proveedorSchema = z.object({
   codActividadEconomica: z.string().optional(),
   tieneActividad: z.boolean().optional(),
   plazoPagoDias: z.string().min(1, "Seleccione un plazo de pago"),
+  esCliente: z.string().min(1, "Seleccione una opción"),
   provincia: z.string().min(1, "Seleccione una provincia"),
   codigoProvincia: z.string().min(1, "Requerido"),
   canton: z.string().min(1, "Seleccione un cantón"),
