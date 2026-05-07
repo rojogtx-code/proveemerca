@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const payload = {
       cedula: data.cedula,
       nombre_proveedor: data.nombreProveedor,
-      act_economica_principal: data.actEconomicaPrincipal,
+      act_economica_principal: data.actEconomicaPrincipal || null,
       cod_actividad_economica: data.codActividadEconomica || null,
       tiene_actividad: data.tieneActividad ? 1 : 0,
       tipo_cedula_id: data.tipoCedulaId,

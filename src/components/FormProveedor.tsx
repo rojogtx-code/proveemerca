@@ -29,7 +29,6 @@ export default function FormProveedor() {
   const [enviando, setEnviando] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [existeRegistro, setExisteRegistro] = useState(false);
-  const [sinActividad, setSinActividad] = useState(false);
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
   const [datosPendientes, setDatosPendientes] = useState<ProveedorFormData | null>(null);
 
@@ -58,16 +57,19 @@ export default function FormProveedor() {
     setBuscando(true);
     setErrorHacienda("");
     setDatosHacienda(null);
-    setSinActividad(false);
 
     try {
       const res = await fetch(`/api/hacienda?identificacion=${cedula}`);
       const data = await res.json();
 
-      // Establecer datos desde la API
       setValue("tieneActividad", !!data.tieneActividad);
       setValue("tipoCedulaId", data.tipoCedulaId || "");
       setValue("tipoCedulaNombre", data.tipoCedulaNombre || "");
+
+      if (!data.tieneActividad) {
+        setValue("codActividadEconomica", "");
+        setValue("actEconomicaPrincipal", "");
+      }
 
       if (!data.nombre) throw new Error("Sin nombre");
       
@@ -185,33 +187,7 @@ export default function FormProveedor() {
         </div>
       )}
 
-      {/* Alerta Sin Actividad */}
-      {sinActividad && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-red-100 animate-in zoom-in-95 duration-200">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-              </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-2">Sin Actividad Económica</h3>
-              <p className="text-slate-600 mb-6">
-                Esta cédula no registra actividades económicas activas en Hacienda. No podrá realizar el registro.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSinActividad(false);
-                  setCedula("");
-                  setValue("cedula", "");
-                }}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-red-200"
-              >
-                Aceptar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Alerta Sin Actividad eliminada para permitir registro sin actividades */}
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
@@ -263,6 +239,7 @@ export default function FormProveedor() {
             <input type="hidden" {...register("tipoCedulaId")} />
             <input type="hidden" {...register("tipoCedulaNombre")} />
             <input type="hidden" {...register("codActividadEconomica")} />
+            <input type="hidden" {...register("actEconomicaPrincipal")} />
             <input type="hidden" {...register("tieneActividad")} />
 
             <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 flex flex-col gap-4">
