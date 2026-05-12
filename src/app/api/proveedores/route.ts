@@ -42,7 +42,8 @@ export async function POST(req: NextRequest) {
       cobros_ext_celular: data.cobrosExtCelular || "506",
       moneda_credito: data.monedaCredito || null,
       monto_credito: data.montoCredito || null,
-      "Condicion_Proveedor": "Si",
+      es_proveedor: "Si",
+      es_compania: data.tipoCedulaId === "00" ? "Si" : (data.tipoCedulaId === "01" ? "No" : null),
     };
 
     if (body.actualizar) {
