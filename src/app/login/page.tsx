@@ -43,12 +43,12 @@ export default function LoginPage() {
       <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
         
         <div className="bg-mercasa-blue p-8 flex flex-col items-center">
-          <div className="relative w-32 h-12 mb-2 invert brightness-0">
+          <div className="relative w-48 h-16 mb-2">
              <Image
                 src="/logo.png"
                 alt="Logo Mercasa"
                 fill
-                className="object-contain"
+                className="object-contain invert brightness-0"
                 priority
               />
           </div>
