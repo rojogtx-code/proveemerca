@@ -440,8 +440,8 @@ export default function FormProveedor() {
             {/* Agente de Ventas */}
             <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
               <div className="flex flex-col">
-                <h4 className="text-sm font-bold text-slate-700 uppercase">Agente de Ventas</h4>
-                <p className="text-xs text-slate-500">Persona encargada de la cuenta de Mercasa.</p>
+                <h4 className="text-sm font-bold text-slate-700 uppercase">Persona encargada de la cuenta de Mercasa.</h4>
+                <p className="text-sm text-slate-500">Agente de Ventas / Facturador </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -522,8 +522,8 @@ export default function FormProveedor() {
             {/* Cuentas por Cobrar */}
             <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
               <div className="flex flex-col">
-                <h4 className="text-sm font-bold text-slate-700 uppercase">Cuentas por Cobrar</h4>
-                <p className="text-xs text-slate-500">Persona o departamento que gestiona los pagos.</p>
+                <h4 className="text-sm font-bold text-slate-700 uppercase">Persona o departamento que gestiona los pagos.</h4>
+                <p className="text-sm text-slate-500">Cuentas por Cobrar / Contabilidad</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

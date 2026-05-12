@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       moneda_credito: data.monedaCredito || null,
       monto_credito: data.montoCredito || null,
       es_proveedor: "Si",
-      es_compania: data.tipoCedulaId === "00" ? "Si" : (data.tipoCedulaId === "01" ? "No" : null),
+      es_compania: data.tipoCedulaId === "02" ? "Si" : (data.tipoCedulaId === "01" ? "No" : null),
     };
 
     if (body.actualizar) {
