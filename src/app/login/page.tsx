@@ -12,28 +12,29 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   
-  // Usuarios permitidos (Hardcoded)
-  const USUARIOS_PERMITIDOS = [
-    { email: "amendez@grupomercasa.com", pass: "amr1230" },
-    { email: "informatica@grupomercasa.com", pass: "ec185" },
-    { email: "gedi@grupomercasa.com", pass: "as328" },
-    { email: "informatica2@grupomercasa.com", pass: "nd521" }
-  ];
-
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    const usuario = USUARIOS_PERMITIDOS.find(u => u.email === email && u.pass === password);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (usuario) {
-      // Simular sesión con una cookie (el middleware la validará)
-      document.cookie = "admin_session=true; path=/; max-age=86400; SameSite=Lax";
-      router.push("/admin");
-      router.refresh();
-    } else {
-      setError("Credenciales inválidas. Solo personal autorizado.");
+      const data = await res.json();
+
+      if (res.ok) {
+        router.push("/admin");
+        router.refresh();
+      } else {
+        setError(data.error || "Credenciales inválidas");
+        setLoading(false);
+      }
+    } catch (err) {
+      setError("Error al conectar con el servidor");
       setLoading(false);
     }
   };

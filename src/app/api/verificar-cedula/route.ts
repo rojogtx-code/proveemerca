@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
     const { cedula } = await req.json();
     
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from("proveedores")
       .select("cedula")
       .eq("cedula", cedula)

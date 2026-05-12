@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabase, supabaseAdmin } from "@/lib/supabase";
 import { proveedorSchema } from "@/lib/validations";
+import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
@@ -76,7 +77,16 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    const { data, error } = await supabase
+    // Validar sesión en el servidor
+    const cookieStore = await cookies();
+    const session = cookieStore.get("admin_session");
+
+    if (!session) {
+      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
+
+    // Usar supabaseAdmin para bypass de RLS (ya que cerramos lectura pública)
+    const { data, error } = await supabaseAdmin
       .from("proveedores")
       .select("*")
       .order("created_at", { ascending: false });

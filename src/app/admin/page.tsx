@@ -23,11 +23,17 @@ export default function AdminPage() {
   const [busqueda, setBusqueda] = useState("");
   const router = useRouter();
 
-  const handleLogout = () => {
-    // Limpiar cookie de sesión manual
-    document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    router.push("/login");
-    router.refresh();
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/login");
+      router.refresh();
+    } catch (err) {
+      console.error("Error al cerrar sesión", err);
+      // Fallback: intentar limpiar cookie y redirigir
+      document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      router.push("/login");
+    }
   };
 
 
