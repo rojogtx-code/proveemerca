@@ -9,11 +9,14 @@ import { useRouter } from "next/navigation";
 type Fila = string[];
 
 const HEADERS = [
-  "Fecha Registro", "Cédula", "Nombre Proveedor", "CodActEconomica",
-  "Provincia", "Cantón", "Distrito", "Barrio", "Dirección exacta",
-  "Plazo de Pago", "¿Es cliente de Mercasa?", "Moneda del Crédito", "Monto de Crédito Autorizado",
-  "Email Factura", "ventas_nombre", "ventas_email", "ventas_telefono", "ventas_celular",
-  "cobros_nombre", "cobros_email", "cobros_telefono", "cobros_celular"
+  "id", "fecha_registro", "tipo_cedula_id", "tipo_cedula_nombre", "es_compania", "cedula", 
+  "nombre_proveedor", "tiene_actividad", "codigo_act_economica", "act_economica_principal", 
+  "codigo_provincia", "provincia", "codigo_canton", "canton", "codigo_distrito", "distrito", 
+  "codigo_barrio", "barrio", "direccion_exacta", "forma_pago", "plazo_pago_dias", 
+  "moneda_credito", "monto_credito", "email_factura", "ventas_nombre", "ventas_email", 
+  "ventas_ext_telefono", "ventas_telefono", "ventas_ext_celular", "ventas_celular", 
+  "cobros_nombre", "cobros_email", "cobros_ext_telefono", "cobros_telefono", 
+  "cobros_ext_celular", "cobros_celular", "es_cliente", "es_proveedor"
 ];
 
 export default function AdminPage() {
@@ -43,28 +46,44 @@ export default function AdminPage() {
       .then((data) => {
         // Mapear objetos de Supabase a arreglos para mantener compatibilidad con la tabla
         const mappedRows = data.rows.map((p: any) => [
+          p.id,
           new Date(p.created_at).toLocaleString("es-CR"),
+          p.tipo_cedula_id,
+          p.tipo_cedula_nombre,
+          p.es_compania,
           p.cedula,
           p.nombre_proveedor,
+          p.tiene_actividad,
           p.cod_actividad_economica || "—",
+          p.act_economica_principal,
+          p.codigo_provincia,
           p.provincia,
+          p.codigo_canton,
           p.canton,
+          p.codigo_distrito,
           p.distrito,
+          p.codigo_barrio,
           p.barrio,
           p.direccion_exacta,
+          p.forma_pago,
           p.plazo_pago_dias,
-          p.es_cliente,
           p.moneda_credito || "—",
           p.monto_credito || "—",
           p.email_factura,
           p.ventas_nombre,
           p.ventas_email,
+          p.ventas_ext_telefono,
           p.ventas_telefono,
+          p.ventas_ext_celular,
           p.ventas_celular,
           p.cobros_nombre,
           p.cobros_email,
+          p.cobros_ext_telefono,
           p.cobros_telefono,
+          p.cobros_ext_celular,
           p.cobros_celular,
+          p.es_cliente,
+          p.es_proveedor,
         ]);
         setFilas(mappedRows);
       })
