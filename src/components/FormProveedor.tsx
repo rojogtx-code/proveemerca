@@ -506,7 +506,7 @@ export default function FormProveedor() {
               </div>
             </div>
 
-            {/* Separador visual */}
+            {/* Separador visual oculto a petición del usuario
             <div className="flex items-center gap-4 my-2">
               <div className="h-px bg-slate-200 flex-1"></div>
               <button
@@ -518,6 +518,7 @@ export default function FormProveedor() {
               </button>
               <div className="h-px bg-slate-200 flex-1"></div>
             </div>
+            */}
 
             {/* Cuentas por Cobrar */}
             <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
