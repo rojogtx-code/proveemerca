@@ -37,6 +37,7 @@ export default function FormProveedor() {
     handleSubmit,
     setValue,
     getValues,
+    watch,
     formState: { errors },
     reset,
   } = useForm<ProveedorFormData>({
@@ -49,6 +50,9 @@ export default function FormProveedor() {
       tieneActividad: false,
     },
   });
+
+  const plazoPagoDiasValor = watch("plazoPagoDias");
+  const esCredito = plazoPagoDiasValor && plazoPagoDiasValor !== "0";
 
   const copiarDatosVentasACobros = () => {
     const values = getValues();
@@ -82,11 +86,11 @@ export default function FormProveedor() {
       }
 
       if (!data.nombre) throw new Error("Sin nombre");
-      
+
       setDatosHacienda(data);
       setValue("cedula", cedula);
       setValue("nombreProveedor", data.nombre);
-      
+
       // Verificar si ya existe en la base de datos
       try {
         const putRes = await fetch("/api/verificar-cedula", {
@@ -105,7 +109,7 @@ export default function FormProveedor() {
         console.error("Error verificando existencia:", e);
       }
     } catch {
-      setErrorHacienda("No se encontró el contribuyente en Hacienda. Verifique el número.");
+      setErrorHacienda("En este momento no se puede validar el número de cédula, esperar unos segundos y volver a intentar. Gracias");
     } finally {
       setBuscando(false);
     }
@@ -165,7 +169,7 @@ export default function FormProveedor() {
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-orange-100 animate-in zoom-in-95 duration-200">
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-2">Cédula ya ingresada</h3>
               <p className="text-slate-600 mb-6">
@@ -253,62 +257,62 @@ export default function FormProveedor() {
             <input type="hidden" {...register("tieneActividad")} />
 
             <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 flex flex-col gap-4">
-            {existeRegistro && (
-              <div className="bg-amber-100 border border-amber-300 text-amber-800 text-xs px-4 py-3 rounded-xl flex items-start gap-2">
-                <span className="text-lg">⚠️</span>
-                <span>Ya tenemos un registro con esta cédula. Tus datos serán <strong>actualizados</strong> al enviar.</span>
-              </div>
-            )}
+              {existeRegistro && (
+                <div className="bg-amber-100 border border-amber-300 text-amber-800 text-xs px-4 py-3 rounded-xl flex items-start gap-2">
+                  <span className="text-lg">⚠️</span>
+                  <span>Ya tenemos un registro con esta cédula. Tus datos serán <strong>actualizados</strong> al enviar.</span>
+                </div>
+              )}
 
-            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">Datos Fiscales Confirmados</h3>
+              <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">Datos Fiscales Confirmados</h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tipo de Identificación</span>
-                <span className="text-sm font-medium text-slate-800">
-                  {datosHacienda.tipoCedulaNombre ? `${datosHacienda.tipoCedulaNombre} (${datosHacienda.tipoCedulaId})` : "—"}
-                </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tipo de Identificación</span>
+                  <span className="text-sm font-medium text-slate-800">
+                    {datosHacienda.tipoCedulaNombre ? `${datosHacienda.tipoCedulaNombre} (${datosHacienda.tipoCedulaId})` : "—"}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Nombre del Contribuyente</span>
+                  <span className="text-sm font-medium text-slate-800">{datosHacienda.nombre}</span>
+                </div>
               </div>
-              <div className="flex flex-col gap-0.5">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Nombre del Contribuyente</span>
-                <span className="text-sm font-medium text-slate-800">{datosHacienda.nombre}</span>
-              </div>
+
+              {/* Actividad económica - solo si tiene actividades */}
+              {datosHacienda.actividades && datosHacienda.actividades.length > 0 && (
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Actividad Económica Principal</label>
+                  <select
+                    onChange={(e) => {
+                      const selected = datosHacienda.actividades.find(a => a.codigo === e.target.value);
+                      if (selected) {
+                        setValue("codActividadEconomica", selected.codigo);
+                        setValue("actEconomicaPrincipal", selected.descripcion);
+                      } else {
+                        setValue("codActividadEconomica", "");
+                        setValue("actEconomicaPrincipal", "");
+                      }
+                    }}
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+                  >
+                    <option value="">Seleccione una actividad</option>
+                    {datosHacienda.actividades
+                      ?.filter((act) => act.estado === "A")
+                      .map((act) => (
+                        <option key={act.codigo} value={act.codigo}>
+                          {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
+                        </option>
+                      ))}
+                  </select>
+                  {errors.actEconomicaPrincipal && <span className="text-xs text-red-500">{errors.actEconomicaPrincipal.message}</span>}
+                </div>
+              )}
+
+              <input type="hidden" {...register("nombreProveedor")} />
             </div>
-
-            {/* Actividad económica - solo si tiene actividades */}
-            {datosHacienda.actividades && datosHacienda.actividades.length > 0 && (
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Actividad Económica Principal</label>
-                <select
-                  onChange={(e) => {
-                    const selected = datosHacienda.actividades.find(a => a.codigo === e.target.value);
-                    if (selected) {
-                      setValue("codActividadEconomica", selected.codigo);
-                      setValue("actEconomicaPrincipal", selected.descripcion);
-                    } else {
-                      setValue("codActividadEconomica", "");
-                      setValue("actEconomicaPrincipal", "");
-                    }
-                  }}
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
-                >
-                  <option value="">Seleccione una actividad</option>
-                  {datosHacienda.actividades
-                    ?.filter((act) => act.estado === "A")
-                    .map((act) => (
-                      <option key={act.codigo} value={act.codigo}>
-                        {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
-                      </option>
-                    ))}
-                </select>
-                {errors.actEconomicaPrincipal && <span className="text-xs text-red-500">{errors.actEconomicaPrincipal.message}</span>}
-              </div>
-            )}
-            
-            <input type="hidden" {...register("nombreProveedor")} />
-          </div>
-        </>
-      )}
+          </>
+        )}
 
         {/* Ubicación */}
         {datosHacienda && (
@@ -346,7 +350,7 @@ export default function FormProveedor() {
             <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
               Condiciones Comerciales
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-medium text-gray-700">Plazo de Pago</label>
@@ -380,36 +384,39 @@ export default function FormProveedor() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Moneda del Crédito</label>
-                <select
-                  {...register("monedaCredito")}
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
-                >
-                  <option value="">Seleccione moneda</option>
-                  <option value="CRC">Colones (CRC)</option>
-                  <option value="USD">Dólares (USD)</option>
-                </select>
-              </div>
+            {esCredito && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Moneda del Crédito</label>
+                  <select
+                    {...register("monedaCredito")}
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+                  >
+                    <option value="">Seleccione moneda</option>
+                    <option value="CRC">Colones (CRC)</option>
+                    <option value="USD">Dólares (USD)</option>
+                  </select>
+                </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Monto de Crédito Autorizado</label>
-                <input
-                  type="text"
-                  {...register("montoCredito")}
-                  onChange={(e) => {
-                    let val = e.target.value.replace(/\D/g, "");
-                    if (val) {
-                      val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                    }
-                    setValue("montoCredito", val, { shouldValidate: true });
-                  }}
-                  placeholder="Ej: 1.000.000"
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-                />
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Monto de Crédito Autorizado</label>
+                  <input
+                    type="text"
+                    {...register("montoCredito")}
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/,00$/, "").replace(/\./g, "").replace(/\D/g, "");
+                      if (val) {
+                        val = parseInt(val, 10).toString();
+                        val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ",00";
+                      }
+                      setValue("montoCredito", val, { shouldValidate: true });
+                    }}
+                    placeholder="Ej: 1.000.000,00"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="flex flex-col gap-1 mt-4">
               <label className="text-sm font-medium text-gray-700">Email Factura Electrónica</label>
@@ -437,7 +444,7 @@ export default function FormProveedor() {
                 <h4 className="text-sm font-bold text-slate-700 uppercase">Agente de Ventas</h4>
                 <p className="text-xs text-slate-500">Persona encargada de la cuenta de Mercasa.</p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Nombre Completo <span className="text-red-500">*</span></label>
@@ -519,7 +526,7 @@ export default function FormProveedor() {
                 <h4 className="text-sm font-bold text-slate-700 uppercase">Cuentas por Cobrar</h4>
                 <p className="text-xs text-slate-500">Persona o departamento que gestiona los pagos.</p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Nombre Completo <span className="text-red-500">*</span></label>
