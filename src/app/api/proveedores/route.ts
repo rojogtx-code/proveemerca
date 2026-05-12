@@ -40,6 +40,8 @@ export async function POST(req: NextRequest) {
       cobros_ext_telefono: data.cobrosExtTelefono || "506",
       cobros_celular: data.cobrosCelular,
       cobros_ext_celular: data.cobrosExtCelular || "506",
+      moneda_credito: data.monedaCredito || null,
+      monto_credito: data.montoCredito || null,
       "Condicion_Proveedor": "Si",
     };
 

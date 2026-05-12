@@ -14,6 +14,8 @@ export const proveedorSchema = z.object({
   tieneActividad: z.boolean().optional(),
   plazoPagoDias: z.string().min(1, "Seleccione un plazo de pago"),
   esCliente: z.string().min(1, "Seleccione una opción"),
+  monedaCredito: z.string().optional(),
+  montoCredito: z.string().optional(),
   provincia: z.string().min(1, "Seleccione una provincia"),
   codigoProvincia: z.string().min(1, "Requerido"),
   canton: z.string().min(1, "Seleccione un cantón"),
@@ -28,7 +30,7 @@ export const proveedorSchema = z.object({
   emailFactura: z.string().email("Correo electrónico de facturación inválido"),
   
   // Agente de Ventas
-  ventasNombre: z.string().min(1, "Requerido").regex(
+  ventasNombre: z.string().min(8, "Debe tener al menos 8 caracteres").regex(
     /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/,
     "Use solo letras"
   ),
@@ -39,7 +41,7 @@ export const proveedorSchema = z.object({
   ventasCelular: z.string().regex(/^\d{8}$/, "Debe tener exactamente 8 dígitos"),
 
   // Cuentas por Cobrar
-  cobrosNombre: z.string().min(1, "Requerido").regex(
+  cobrosNombre: z.string().min(8, "Debe tener al menos 8 caracteres").regex(
     /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/,
     "Use solo letras"
   ),

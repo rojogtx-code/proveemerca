@@ -380,6 +380,37 @@ export default function FormProveedor() {
               </div>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Moneda del Crédito</label>
+                <select
+                  {...register("monedaCredito")}
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+                >
+                  <option value="">Seleccione moneda</option>
+                  <option value="CRC">Colones (CRC)</option>
+                  <option value="USD">Dólares (USD)</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">Monto de Crédito Autorizado</label>
+                <input
+                  type="text"
+                  {...register("montoCredito")}
+                  onChange={(e) => {
+                    let val = e.target.value.replace(/\D/g, "");
+                    if (val) {
+                      val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+                    setValue("montoCredito", val, { shouldValidate: true });
+                  }}
+                  placeholder="Ej: 1.000.000"
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                />
+              </div>
+            </div>
+
             <div className="flex flex-col gap-1 mt-4">
               <label className="text-sm font-medium text-gray-700">Email Factura Electrónica</label>
               <input
