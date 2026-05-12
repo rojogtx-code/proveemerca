@@ -404,14 +404,13 @@ export default function FormProveedor() {
                     type="text"
                     {...register("montoCredito")}
                     onChange={(e) => {
-                      let val = e.target.value.replace(/,00$/, "").replace(/\./g, "").replace(/\D/g, "");
+                      let val = e.target.value.replace(/\D/g, "");
                       if (val) {
-                        val = parseInt(val, 10).toString();
-                        val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ",00";
+                        val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                       }
                       setValue("montoCredito", val, { shouldValidate: true });
                     }}
-                    placeholder="Ej: 1.000.000,00"
+                    placeholder="Ej: 1.000.000"
                     className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
                   />
                 </div>
