@@ -9,9 +9,11 @@ import { useRouter } from "next/navigation";
 type Fila = string[];
 
 const HEADERS = [
-  "Fecha Registro", "Última Act.", "Cédula", "Nombre Proveedor", "Act. Económica",
-  "Email Factura", "Email Contacto", "Nombre Contacto", "Teléfono", "WhatsApp",
-  "Provincia", "Cantón", "Distrito", "Barrio", "Dirección Exacta",
+  "Fecha Registro", "Cédula", "Nombre Proveedor", "CodActEconomica",
+  "Provincia", "Cantón", "Distrito", "Barrio", "Dirección exacta",
+  "Plazo de Pago", "¿Es cliente de Mercasa?", "Moneda del Crédito", "Monto de Crédito Autorizado",
+  "Email Factura", "ventas_nombre", "ventas_email", "ventas_telefono", "ventas_celular",
+  "cobros_nombre", "cobros_email", "cobros_telefono", "cobros_celular"
 ];
 
 export default function AdminPage() {
@@ -36,20 +38,27 @@ export default function AdminPage() {
         // Mapear objetos de Supabase a arreglos para mantener compatibilidad con la tabla
         const mappedRows = data.rows.map((p: any) => [
           new Date(p.created_at).toLocaleString("es-CR"),
-          p.updated_at ? new Date(p.updated_at).toLocaleString("es-CR") : "—",
           p.cedula,
           p.nombre_proveedor,
-          p.act_economica_principal,
-          p.email_factura,
-          p.email_contacto,
-          p.nombre_contacto,
-          p.telefono,
-          p.whatsapp,
+          p.cod_actividad_economica || "—",
           p.provincia,
           p.canton,
           p.distrito,
           p.barrio,
           p.direccion_exacta,
+          p.plazo_pago_dias,
+          p.es_cliente,
+          p.moneda_credito || "—",
+          p.monto_credito || "—",
+          p.email_factura,
+          p.ventas_nombre,
+          p.ventas_email,
+          p.ventas_telefono,
+          p.ventas_celular,
+          p.cobros_nombre,
+          p.cobros_email,
+          p.cobros_telefono,
+          p.cobros_celular,
         ]);
         setFilas(mappedRows);
       })
@@ -80,20 +89,20 @@ export default function AdminPage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-4">
-            <div className="relative w-32 h-12">
+            <div className="relative w-40 h-16">
               <Image
                 src="/logo.png"
                 alt="Logo Mercasa"
                 fill
-                className="object-contain"
+                className="object-contain object-left"
                 priority
               />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-800">
-                Panel Administrador
+            <div className="border-l border-slate-200 pl-4 h-10 flex flex-col justify-center">
+              <h1 className="text-2xl font-bold text-slate-800 leading-none">
+                Panel Administrativo
               </h1>
-              <p className="text-sm text-slate-500">
+              <p className="text-xs text-slate-500 mt-1">
                 {filas.length} proveedor{filas.length !== 1 ? "es" : ""} registrado{filas.length !== 1 ? "s" : ""}
               </p>
             </div>
