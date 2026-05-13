@@ -3,6 +3,8 @@ import { supabase, supabaseAdmin } from "@/lib/supabase";
 import { proveedorSchema } from "@/lib/validations";
 import { cookies } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
