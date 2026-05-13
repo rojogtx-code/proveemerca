@@ -20,5 +20,5 @@ export function middleware(request: NextRequest) {
 
 // Configurar en qué rutas se debe ejecutar el middleware
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin', '/admin/:path*'],
 };

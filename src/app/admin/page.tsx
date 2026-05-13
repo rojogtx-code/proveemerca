@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Papa from "papaparse";
 import Image from "next/image";
-import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 
 type Fila = string[];
@@ -42,8 +41,17 @@ export default function AdminPage() {
 
   useEffect(() => {
     fetch("/api/proveedores")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 401) throw new Error("No autorizado. Redirigiendo...");
+          throw new Error(`Error del servidor: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
+        if (!data || !data.rows) {
+          throw new Error(data?.error || "No se pudieron cargar los datos.");
+        }
         // Mapear objetos de Supabase a arreglos para mantener compatibilidad con la tabla
         const mappedRows = data.rows.map((p: any) => [
           p.id,
@@ -87,8 +95,14 @@ export default function AdminPage() {
         ]);
         setFilas(mappedRows);
       })
+      .catch((err) => {
+        console.error("Error en el panel administrador:", err);
+        if (err.message.includes("No autorizado")) {
+          router.push("/login");
+        }
+      })
       .finally(() => setCargando(false));
-  }, []);
+  }, [router]);
 
   function descargarCSV() {
     const csv = Papa.unparse({ fields: HEADERS, data: filas });
