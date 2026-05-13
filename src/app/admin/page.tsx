@@ -117,7 +117,7 @@ export default function AdminPage() {
 
   const filasFiltradas = filas.filter((fila) =>
     fila.some((celda) =>
-      celda?.toLowerCase().includes(busqueda.toLowerCase())
+      String(celda || "").toLowerCase().includes(busqueda.toLowerCase())
     )
   );
 
