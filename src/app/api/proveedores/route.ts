@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     };
 
     if (body.actualizar) {
-      const { error } = await supabase
+      const { error } = await supabaseAdmin
         .from("proveedores")
         .upsert(payload, { onConflict: "cedula" });
 
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, accion: "actualizado" });
     }
 
-    const { error } = await supabase.from("proveedores").insert(payload);
+    const { error } = await supabaseAdmin.from("proveedores").insert(payload);
 
     if (error) {
       if (error.code === "23505") { // Unique violation
