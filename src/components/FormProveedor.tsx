@@ -237,7 +237,7 @@ export default function FormProveedor() {
 
         {/* Cédula */}
         <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-gray-700">
+          <label className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
             Número de Identificación
           </label>
           <div className="flex gap-2">
@@ -294,7 +294,7 @@ export default function FormProveedor() {
                 </div>
               )}
 
-              <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">Datos Fiscales Confirmados</h3>
+              <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">Datos Fiscales Confirmados</h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="flex flex-col gap-0.5">
@@ -349,7 +349,7 @@ export default function FormProveedor() {
         {/* Ubicación */}
         {datosHacienda && (
           <div className="flex flex-col gap-3">
-            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+            <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
               Ubicación
             </h3>
             <UbicacionCR register={register} setValue={setValue} errors={errors} />
@@ -381,7 +381,7 @@ export default function FormProveedor() {
         {/* Condiciones Comerciales */}
         {datosHacienda && (
           <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">
-            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
+            <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
               Condiciones Comerciales
             </h3>
 
@@ -619,7 +619,7 @@ export default function FormProveedor() {
         {/* Información de Contacto */}
         {datosHacienda && (
           <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">
-            <h3 className="text-xs font-bold text-mercasa-blue uppercase tracking-widest">
+            <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
               Información de Contacto
             </h3>
 
