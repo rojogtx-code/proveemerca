@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UseFormSetValue, UseFormRegister, FieldErrors } from "react-hook-form";
 import { provincias, Canton, Distrito, Barrio } from "@/data/ubicacion";
 import { ProveedorFormData } from "@/lib/validations";

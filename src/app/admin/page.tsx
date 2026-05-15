@@ -8,14 +8,15 @@ import { useRouter } from "next/navigation";
 type Fila = string[];
 
 const HEADERS = [
-  "id", "fecha_registro", "tipo_cedula_id", "tipo_cedula_nombre", "es_compania", "cedula", 
-  "nombre_proveedor", "tiene_actividad", "codigo_act_economica", "act_economica_principal", 
-  "codigo_provincia", "provincia", "codigo_canton", "canton", "codigo_distrito", "distrito", 
-  "codigo_barrio", "barrio", "direccion_exacta", "forma_pago", "plazo_pago_dias", 
-  "moneda_credito", "monto_credito", "email_factura", "ventas_nombre", "ventas_email", 
-  "ventas_ext_telefono", "ventas_telefono", "ventas_ext_celular", "ventas_celular", 
-  "cobros_nombre", "cobros_email", "cobros_ext_telefono", "cobros_telefono", 
-  "cobros_ext_celular", "cobros_celular", "es_cliente", "es_proveedor"
+  "id", "fecha_registro", "tipo_cedula_id", "tipo_cedula_nombre", "es_compania", "cedula",
+  "nombre_proveedor", "tiene_actividad", "codigo_act_economica", "act_economica_principal",
+  "codigo_provincia", "provincia", "codigo_canton", "canton", "codigo_distrito", "distrito",
+  "codigo_barrio", "barrio", "direccion_exacta", "forma_pago", "plazo_pago_dias",
+  "moneda_credito", "monto_credito", "email_factura",
+  "ventas_nombre", "ventas_email", "ventas_telefono", "ventas_whatsapp",
+  "tiene_facturador", "facturador_nombre", "facturador_email", "facturador_telefono", "facturador_whatsapp",
+  "tiene_cobros", "cobros_nombre", "cobros_email", "cobros_telefono", "cobros_whatsapp",
+  "es_cliente", "es_proveedor"
 ];
 
 export default function AdminPage() {
@@ -80,16 +81,18 @@ export default function AdminPage() {
           p.email_factura,
           p.ventas_nombre,
           p.ventas_email,
-          p.ventas_ext_telefono,
           p.ventas_telefono,
-          p.ventas_ext_celular,
-          p.ventas_celular,
-          p.cobros_nombre,
-          p.cobros_email,
-          p.cobros_ext_telefono,
-          p.cobros_telefono,
-          p.cobros_ext_celular,
-          p.cobros_celular,
+          p.ventas_whatsapp || "—",
+          p.tiene_facturador ? "Sí" : "No",
+          p.facturador_nombre || "—",
+          p.facturador_email || "—",
+          p.facturador_telefono || "—",
+          p.facturador_whatsapp || "—",
+          p.tiene_cobros ? "Sí" : "No",
+          p.cobros_nombre || "—",
+          p.cobros_email || "—",
+          p.cobros_telefono || "—",
+          p.cobros_whatsapp || "—",
           p.es_cliente,
           p.es_proveedor,
         ]);
@@ -170,8 +173,6 @@ export default function AdminPage() {
             </button>
           </div>
         </div>
-
-        {/* Formulario de Registro eliminado por simplificación */}
 
         {/* Tabla */}
         <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-200">

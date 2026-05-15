@@ -40,12 +40,23 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Manejar errores de parámetros u otros sin romper el server
+    // Errores diferenciados según el código de respuesta de Hacienda
     if (!resHacienda.ok) {
-      if (resHacienda.status === 400 || resHacienda.status === 404) {
-         // Falla limpia, retornamos para que el frontend no bloquee al usuario
-         return NextResponse.json(
-          { error: "No encontrado o sin actividad", actividades: [], tieneActividad: false },
+      if (resHacienda.status === 400) {
+        return NextResponse.json(
+          { error: "Formato de cédula inválido, por favor revisar y volver a intentar" },
+          { status: 200 }
+        );
+      }
+      if (resHacienda.status === 404) {
+        return NextResponse.json(
+          { error: "Cédula no existe en Hacienda, por favor revisar y volver a intentar" },
+          { status: 200 }
+        );
+      }
+      if (resHacienda.status === 429) {
+        return NextResponse.json(
+          { error: "En este momento no es posible conectar con la base de datos de Hacienda, por favor esperar unos minutos y volver a intentar" },
           { status: 200 }
         );
       }
@@ -76,10 +87,9 @@ export async function GET(req: NextRequest) {
     });
   } catch (error) {
     console.error("Error en GET /api/hacienda:", error);
-    // Si falla, asumimos que no se encontró o no tiene actividad
     return NextResponse.json(
-      { error: "No encontrado o sin actividad", actividades: [], tieneActividad: false },
-      { status: 200 } // Retornamos 200 para que el frontend maneje la lógica
+      { error: "En este momento no es posible conectar con la base de datos de Hacienda, por favor esperar unos minutos y volver a intentar" },
+      { status: 200 }
     );
   }
 }

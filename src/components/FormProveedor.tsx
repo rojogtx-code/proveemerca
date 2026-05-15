@@ -30,7 +30,9 @@ export default function FormProveedor() {
   const [enviado, setEnviado] = useState(false);
   const [existeRegistro, setExisteRegistro] = useState(false);
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
-  const [datosPendientes, setDatosPendientes] = useState<ProveedorFormData | null>(null);
+  const [tieneFacturador, setTieneFacturador] = useState(false);
+  const [tieneCobros, setTieneCobros] = useState(false);
+
 
   const {
     register,
@@ -44,9 +46,13 @@ export default function FormProveedor() {
     resolver: zodResolver(proveedorSchema),
     defaultValues: {
       ventasTelefono: "",
-      ventasCelular: "",
+      ventasWhatsApp: "",
+      tieneFacturador: false,
+      facturadorTelefono: "",
+      facturadorWhatsApp: "",
+      tieneCobros: false,
       cobrosTelefono: "",
-      cobrosCelular: "",
+      cobrosWhatsApp: "",
       tieneActividad: false,
     },
   });
@@ -54,13 +60,6 @@ export default function FormProveedor() {
   const plazoPagoDiasValor = watch("plazoPagoDias");
   const esCredito = plazoPagoDiasValor && plazoPagoDiasValor !== "0";
 
-  const copiarDatosVentasACobros = () => {
-    const values = getValues();
-    setValue("cobrosNombre", values.ventasNombre || "", { shouldValidate: true });
-    setValue("cobrosEmail", values.ventasEmail || "", { shouldValidate: true });
-    setValue("cobrosTelefono", values.ventasTelefono || "", { shouldValidate: true });
-    setValue("cobrosCelular", values.ventasCelular || "", { shouldValidate: true });
-  };
 
   const soloNumeros = (value: string, maxLen: number) =>
     value.replace(/\D/g, "").slice(0, maxLen);
@@ -76,6 +75,12 @@ export default function FormProveedor() {
       const res = await fetch(`/api/hacienda?identificacion=${cedula}`);
       const data = await res.json();
 
+      // Si la API devuelve un error específico, mostrarlo directamente
+      if (data.error) {
+        setErrorHacienda(data.error);
+        return;
+      }
+
       setValue("tieneActividad", !!data.tieneActividad);
       setValue("tipoCedulaId", data.tipoCedulaId || "");
       setValue("tipoCedulaNombre", data.tipoCedulaNombre || "");
@@ -85,7 +90,10 @@ export default function FormProveedor() {
         setValue("actEconomicaPrincipal", "");
       }
 
-      if (!data.nombre) throw new Error("Sin nombre");
+      if (!data.nombre) {
+        setErrorHacienda("No se pudo obtener la información. Intente de nuevo.");
+        return;
+      }
 
       setDatosHacienda(data);
       setValue("cedula", cedula);
@@ -109,7 +117,7 @@ export default function FormProveedor() {
         console.error("Error verificando existencia:", e);
       }
     } catch {
-      setErrorHacienda("En este momento no se puede validar el número de cédula, esperar unos segundos y volver a intentar. Gracias");
+      setErrorHacienda("En este momento no es posible conectar con la base de datos de Hacienda, por favor esperar unos minutos y volver a intentar.");
     } finally {
       setBuscando(false);
     }
@@ -135,7 +143,8 @@ export default function FormProveedor() {
       setDatosHacienda(null);
       setExisteRegistro(false);
       setMostrarConfirmacion(false);
-      setDatosPendientes(null);
+      setTieneFacturador(false);
+      setTieneCobros(false);
     } catch {
       alert("Ocurrió un error al enviar el formulario. Intente de nuevo.");
     } finally {
@@ -152,7 +161,11 @@ export default function FormProveedor() {
         </h2>
         <p className="text-gray-500 mb-6">Gracias por actualizar sus datos.</p>
         <button
-          onClick={() => setEnviado(false)}
+          onClick={() => {
+            setEnviado(false);
+            setTieneFacturador(false);
+            setTieneCobros(false);
+          }}
           className="bg-mercasa-blue text-white px-8 py-3 rounded-xl hover:bg-mercasa-blue-dark shadow-lg shadow-blue-900/20 transition-all active:scale-95 font-medium"
         >
           Enviar otro registro
@@ -440,8 +453,8 @@ export default function FormProveedor() {
             {/* Agente de Ventas */}
             <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
               <div className="flex flex-col">
-                <h4 className="text-sm font-bold text-slate-700 uppercase">Persona encargada de la cuenta de Mercasa.</h4>
-                <p className="text-sm text-slate-500">Agente de Ventas / Facturador </p>
+                <h4 className="text-sm font-bold text-slate-700 uppercase">Agente de Ventas</h4>
+                <p className="text-sm text-slate-500">Persona encargada de la cuenta de Mercasa</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -487,104 +500,174 @@ export default function FormProveedor() {
                   {errors.ventasTelefono && <span className="text-xs text-red-500">{errors.ventasTelefono.message}</span>}
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Celular <span className="text-red-500">*</span></label>
+                  <label className="text-sm font-medium text-gray-700">WhatsApp <span className="text-xs text-slate-400">(Opcional)</span></label>
                   <div className="flex gap-2">
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
                       506
                     </div>
                     <input
                       type="text"
-                      {...register("ventasCelular")}
-                      onChange={(e) => setValue("ventasCelular", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      {...register("ventasWhatsApp")}
+                      onChange={(e) => setValue("ventasWhatsApp", soloNumeros(e.target.value, 8), { shouldValidate: true })}
                       placeholder="88888888"
                       maxLength={8}
                       className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
                     />
                   </div>
-                  {errors.ventasCelular && <span className="text-xs text-red-500">{errors.ventasCelular.message}</span>}
+                  {errors.ventasWhatsApp && <span className="text-xs text-red-500">{errors.ventasWhatsApp.message}</span>}
                 </div>
               </div>
             </div>
 
-            {/* Separador visual oculto a petición del usuario
-            <div className="flex items-center gap-4 my-2">
-              <div className="h-px bg-slate-200 flex-1"></div>
-              <button
-                type="button"
-                onClick={copiarDatosVentasACobros}
-                className="text-xs font-semibold text-mercasa-blue bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors border border-blue-200 active:scale-95 shadow-sm"
-              >
-                Copiar datos de Ventas a Cobros ↓
-              </button>
-              <div className="h-px bg-slate-200 flex-1"></div>
-            </div>
-            */}
 
-            {/* Cuentas por Cobrar */}
+
+            {/* ── Inputs ocultos para toggles ── */}
+            <input type="hidden" {...register("tieneFacturador")} />
+            <input type="hidden" {...register("tieneCobros")} />
+
+            {/* ── Facturador ── */}
             <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
-              <div className="flex flex-col">
-                <h4 className="text-sm font-bold text-slate-700 uppercase">Persona o departamento que gestiona los pagos.</h4>
-                <p className="text-sm text-slate-500">Cuentas por Cobrar / Contabilidad</p>
+              <div className="flex flex-col gap-3">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-700 uppercase">Facturador</h4>
+                  <p className="text-sm text-slate-500">Persona encargada de la facturación</p>
+                </div>
+                <div className="flex items-center justify-between bg-white border border-slate-200 rounded-xl px-4 py-3">
+                  <span className="text-sm text-slate-600">¿Su empresa cuenta con este rol?</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = !tieneFacturador;
+                      setTieneFacturador(next);
+                      setValue("tieneFacturador", next, { shouldValidate: true });
+                      if (!next) {
+                        setValue("facturadorNombre", "");
+                        setValue("facturadorEmail", "");
+                        setValue("facturadorTelefono", "");
+                        setValue("facturadorWhatsApp", "");
+                      }
+                    }}
+                    className={`relative inline-flex h-7 w-14 shrink-0 items-center rounded-full transition-colors duration-200 focus:outline-none ${tieneFacturador ? "bg-mercasa-blue" : "bg-slate-300"}`}
+                  >
+                    <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition-transform duration-200 ${tieneFacturador ? "translate-x-8" : "translate-x-1"}`} />
+                    <span className={`absolute text-[10px] font-bold ${tieneFacturador ? "left-2 text-white" : "right-1.5 text-slate-500"}`}>
+                      {tieneFacturador ? "Sí" : "No"}
+                    </span>
+                  </button>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-200 ${tieneFacturador ? "opacity-100" : "opacity-40 pointer-events-none select-none"}`}>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Nombre Completo <span className="text-red-500">*</span></label>
-                  <input
-                    type="text"
-                    {...register("cobrosNombre")}
-                    onChange={(e) => {
-                      const val = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, "");
-                      setValue("cobrosNombre", val, { shouldValidate: true });
-                    }}
+                  <label className="text-sm font-medium text-gray-700">Nombre Completo {tieneFacturador && <span className="text-red-500">*</span>}</label>
+                  <input type="text" {...register("facturadorNombre")} disabled={!tieneFacturador}
+                    onChange={(e) => { const v = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, ""); setValue("facturadorNombre", v, { shouldValidate: true }); }}
                     placeholder="Nombre y Apellidos"
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-                  />
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
+                  {errors.facturadorNombre && <span className="text-xs text-red-500">{errors.facturadorNombre.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Correo Electrónico {tieneFacturador && <span className="text-red-500">*</span>}</label>
+                  <input type="email" {...register("facturadorEmail")} disabled={!tieneFacturador}
+                    placeholder="facturador@ejemplo.com"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
+                  {errors.facturadorEmail && <span className="text-xs text-red-500">{errors.facturadorEmail.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Teléfono {tieneFacturador && <span className="text-red-500">*</span>}</label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
+                    <input type="text" {...register("facturadorTelefono")} disabled={!tieneFacturador}
+                      onChange={(e) => setValue("facturadorTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888" maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
+                  </div>
+                  {errors.facturadorTelefono && <span className="text-xs text-red-500">{errors.facturadorTelefono.message}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">WhatsApp <span className="text-xs text-slate-400">(Opcional)</span></label>
+                  <div className="flex gap-2">
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
+                    <input type="text" {...register("facturadorWhatsApp")} disabled={!tieneFacturador}
+                      onChange={(e) => setValue("facturadorWhatsApp", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888" maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
+                  </div>
+                  {errors.facturadorWhatsApp && <span className="text-xs text-red-500">{errors.facturadorWhatsApp.message}</span>}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Cuentas por Cobrar ── */}
+            <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <div className="flex flex-col gap-3">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-700 uppercase">Cuentas por Cobrar</h4>
+                  <p className="text-sm text-slate-500">Persona o departamento que gestiona los pagos</p>
+                </div>
+                <div className="flex items-center justify-between bg-white border border-slate-200 rounded-xl px-4 py-3">
+                  <span className="text-sm text-slate-600">¿Su empresa cuenta con este rol?</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = !tieneCobros;
+                      setTieneCobros(next);
+                      setValue("tieneCobros", next, { shouldValidate: true });
+                      if (!next) {
+                        setValue("cobrosNombre", "");
+                        setValue("cobrosEmail", "");
+                        setValue("cobrosTelefono", "");
+                        setValue("cobrosWhatsApp", "");
+                      }
+                    }}
+                    className={`relative inline-flex h-7 w-14 shrink-0 items-center rounded-full transition-colors duration-200 focus:outline-none ${tieneCobros ? "bg-mercasa-blue" : "bg-slate-300"}`}
+                  >
+                    <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition-transform duration-200 ${tieneCobros ? "translate-x-8" : "translate-x-1"}`} />
+                    <span className={`absolute text-[10px] font-bold ${tieneCobros ? "left-2 text-white" : "right-1.5 text-slate-500"}`}>
+                      {tieneCobros ? "Sí" : "No"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-200 ${tieneCobros ? "opacity-100" : "opacity-40 pointer-events-none select-none"}`}>
+
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">Nombre Completo {tieneCobros && <span className="text-red-500">*</span>}</label>
+                  <input type="text" {...register("cobrosNombre")} disabled={!tieneCobros}
+                    onChange={(e) => { const v = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, ""); setValue("cobrosNombre", v, { shouldValidate: true }); }}
+                    placeholder="Nombre y Apellidos"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
                   {errors.cobrosNombre && <span className="text-xs text-red-500">{errors.cobrosNombre.message}</span>}
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Correo Electrónico <span className="text-red-500">*</span></label>
-                  <input
-                    type="email"
-                    {...register("cobrosEmail")}
+                  <label className="text-sm font-medium text-gray-700">Correo Electrónico {tieneCobros && <span className="text-red-500">*</span>}</label>
+                  <input type="email" {...register("cobrosEmail")} disabled={!tieneCobros}
                     placeholder="cobros@ejemplo.com"
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-                  />
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
                   {errors.cobrosEmail && <span className="text-xs text-red-500">{errors.cobrosEmail.message}</span>}
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Teléfono (Opcional)</label>
+                  <label className="text-sm font-medium text-gray-700">Teléfono {tieneCobros && <span className="text-red-500">*</span>}</label>
                   <div className="flex gap-2">
-                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
-                      506
-                    </div>
-                    <input
-                      type="text"
-                      {...register("cobrosTelefono")}
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
+                    <input type="text" {...register("cobrosTelefono")} disabled={!tieneCobros}
                       onChange={(e) => setValue("cobrosTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
-                      placeholder="88888888"
-                      maxLength={8}
-                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
-                    />
+                      placeholder="88888888" maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
                   </div>
                   {errors.cobrosTelefono && <span className="text-xs text-red-500">{errors.cobrosTelefono.message}</span>}
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Celular <span className="text-red-500">*</span></label>
+                  <label className="text-sm font-medium text-gray-700">WhatsApp <span className="text-xs text-slate-400">(Opcional)</span></label>
                   <div className="flex gap-2">
-                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
-                      506
-                    </div>
-                    <input
-                      type="text"
-                      {...register("cobrosCelular")}
-                      onChange={(e) => setValue("cobrosCelular", soloNumeros(e.target.value, 8), { shouldValidate: true })}
-                      placeholder="88888888"
-                      maxLength={8}
-                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
-                    />
+                    <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
+                    <input type="text" {...register("cobrosWhatsApp")} disabled={!tieneCobros}
+                      onChange={(e) => setValue("cobrosWhatsApp", soloNumeros(e.target.value, 8), { shouldValidate: true })}
+                      placeholder="88888888" maxLength={8}
+                      className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
                   </div>
-                  {errors.cobrosCelular && <span className="text-xs text-red-500">{errors.cobrosCelular.message}</span>}
                 </div>
               </div>
             </div>
