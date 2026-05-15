@@ -5,6 +5,9 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { proveedorSchema, ProveedorFormData } from "@/lib/validations";
 import UbicacionCR from "./UbicacionCR";
+import { Input } from "@/components/ui/input";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { ProgressBar } from "@/components/ui/progress-bar";
 
 type ActividadEconomica = {
   codigo: string;
@@ -32,6 +35,7 @@ export default function FormProveedor() {
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
   const [tieneFacturador, setTieneFacturador] = useState(false);
   const [tieneCobros, setTieneCobros] = useState(false);
+  const [progress, setProgress] = useState(0);
 
 
   const {
@@ -70,6 +74,24 @@ export default function FormProveedor() {
   const plazoPagoDiasValor = watch("plazoPagoDias");
   const esClienteValor = watch("esCliente");
   const esCredito = plazoPagoDiasValor && plazoPagoDiasValor !== "0";
+
+  const values = watch();
+  useEffect(() => {
+    let prog = 0;
+    if (datosHacienda) {
+      prog += 20;
+      const ubiOk = values.codigoProvincia && values.codigoCanton && values.codigoDistrito && values.codigoBarrio && (values.direccionExacta?.length || 0) >= 10;
+      if (ubiOk) prog += 20;
+      if (values.plazoPagoDias) prog += 20;
+      const ctas = values.cuentas || [];
+      const cuentasOk = ctas.length > 0 && ctas[0].banco && ctas[0].moneda && ctas[0].iban?.length === 20 && ctas[0].cuentaCorriente?.length > 0;
+      if (cuentasOk) prog += 20;
+      const contOk = (values.ventasNombre?.length || 0) >= 8 && values.ventasEmail?.includes("@") && (values.ventasTelefono?.length || 0) === 8 && values.correoComprobantes?.includes("@");
+      if (contOk) prog += 20;
+    }
+    setProgress(prog);
+  }, [datosHacienda, values]);
+
 
   useEffect(() => {
     if (esClienteValor === "No") {
@@ -241,7 +263,7 @@ export default function FormProveedor() {
             Número de Identificación
           </label>
           <div className="flex gap-2">
-            <input
+            <Input hasError={!!errorHacienda} 
               type="text"
               value={cedula}
               onChange={(e) => {
@@ -430,7 +452,7 @@ export default function FormProveedor() {
 
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Monto de Crédito Autorizado</label>
-                  <input
+                  <Input hasError={!!errors.montoCredito} 
                     type="text"
                     {...register("montoCredito")}
                     onChange={(e) => {
@@ -454,7 +476,7 @@ export default function FormProveedor() {
               <h4 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
                 Cuentas Bancarias para Pagos
               </h4>
-              
+
               {fields.map((field, index) => (
                 <div key={field.id} className="p-5 bg-slate-50/50 border border-slate-200 rounded-2xl space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
                   <div className="flex justify-between items-center">
@@ -482,11 +504,11 @@ export default function FormProveedor() {
                     {watch(`cuentas.${index}.banco`) === "Otros" && (
                       <div className="flex flex-col gap-1 animate-in zoom-in-95 duration-200">
                         <label className="text-sm font-medium text-gray-700">Nombre del Banco <span className="text-red-500">*</span></label>
-                        <input
+                        <Input hasError={!!errors.cuentas?.[index]?.otroBanco} 
                           type="text"
                           {...register(`cuentas.${index}.otroBanco`)}
                           placeholder="Nombre de la entidad"
-                          className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                          
                         />
                         {errors.cuentas?.[index]?.otroBanco && <span className="text-xs text-red-500">{errors.cuentas[index]?.otroBanco?.message}</span>}
                       </div>
@@ -507,7 +529,7 @@ export default function FormProveedor() {
                       <label className="text-sm font-medium text-gray-700">IBAN <span className="text-red-500">*</span></label>
                       <div className="flex gap-2">
                         <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">CR</div>
-                        <input
+                        <Input hasError={!!errors.cuentas?.[index]?.iban} 
                           type="text"
                           {...register(`cuentas.${index}.iban`)}
                           onChange={(e) => {
@@ -524,7 +546,7 @@ export default function FormProveedor() {
 
                     <div className="flex flex-col gap-1">
                       <label className="text-sm font-medium text-gray-700">Cuenta Corriente Asociada <span className="text-red-500">*</span></label>
-                      <input
+                      <Input hasError={!!errors.cuentas?.[index]?.cuentaCorriente} 
                         type="text"
                         {...register(`cuentas.${index}.cuentaCorriente`)}
                         onChange={(e) => {
@@ -572,18 +594,16 @@ export default function FormProveedor() {
                 </div>
               ))}
             </div>
-
             <div className="flex flex-col gap-1 mt-8">
               <label className="text-sm font-medium text-gray-700">Correo de envío de comprobantes de pago <span className="text-red-500">*</span></label>
-              <input
+              <Input hasError={!!errors.correoComprobantes} 
                 type="email"
                 {...register("correoComprobantes")}
                 placeholder="tesoreria@ejemplo.com"
-                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                
               />
               {errors.correoComprobantes && <span className="text-xs text-red-500">{errors.correoComprobantes.message}</span>}
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-100">
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-medium text-gray-700">¿Es cliente de Mercasa?</label>
@@ -601,11 +621,11 @@ export default function FormProveedor() {
               {esClienteValor === "Si" && (
                 <div className="flex flex-col gap-1 animate-in fade-in slide-in-from-top-2 duration-300">
                   <label className="text-sm font-medium text-gray-700">Email Factura Electrónica <span className="text-red-500">*</span></label>
-                  <input
+                  <Input hasError={!!errors.emailFactura} 
                     type="email"
                     {...register("emailFactura")}
                     placeholder="facturacion@ejemplo.com"
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                    
                   />
                   {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
                 </div>
@@ -633,7 +653,7 @@ export default function FormProveedor() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Nombre Completo <span className="text-red-500">*</span></label>
-                  <input
+                  <Input hasError={!!errors.ventasNombre} 
                     type="text"
                     {...register("ventasNombre")}
                     onChange={(e) => {
@@ -647,11 +667,11 @@ export default function FormProveedor() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Correo Electrónico <span className="text-red-500">*</span></label>
-                  <input
+                  <Input hasError={!!errors.ventasEmail} 
                     type="email"
                     {...register("ventasEmail")}
                     placeholder="ventas@ejemplo.com"
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                    
                   />
                   {errors.ventasEmail && <span className="text-xs text-red-500">{errors.ventasEmail.message}</span>}
                 </div>
@@ -661,7 +681,7 @@ export default function FormProveedor() {
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
                       506
                     </div>
-                    <input
+                    <Input hasError={!!errors.ventasTelefono} 
                       type="text"
                       {...register("ventasTelefono")}
                       onChange={(e) => setValue("ventasTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
@@ -678,7 +698,7 @@ export default function FormProveedor() {
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">
                       506
                     </div>
-                    <input
+                    <Input hasError={!!errors.ventasWhatsApp} 
                       type="text"
                       {...register("ventasWhatsApp")}
                       onChange={(e) => setValue("ventasWhatsApp", soloNumeros(e.target.value, 8), { shouldValidate: true })}
@@ -733,7 +753,7 @@ export default function FormProveedor() {
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-200 ${tieneFacturador ? "opacity-100" : "opacity-40 pointer-events-none select-none"}`}>
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Nombre Completo {tieneFacturador && <span className="text-red-500">*</span>}</label>
-                  <input type="text" {...register("facturadorNombre")} disabled={!tieneFacturador}
+                  <Input hasError={!!errors.facturadorNombre}  type="text" {...register("facturadorNombre")} disabled={!tieneFacturador}
                     onChange={(e) => { const v = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, ""); setValue("facturadorNombre", v, { shouldValidate: true }); }}
                     placeholder="Nombre y Apellidos"
                     className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
@@ -741,16 +761,16 @@ export default function FormProveedor() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Correo Electrónico {tieneFacturador && <span className="text-red-500">*</span>}</label>
-                  <input type="email" {...register("facturadorEmail")} disabled={!tieneFacturador}
+                  <Input hasError={!!errors.facturadorEmail}  type="email" {...register("facturadorEmail")} disabled={!tieneFacturador}
                     placeholder="facturador@ejemplo.com"
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
+                     />
                   {errors.facturadorEmail && <span className="text-xs text-red-500">{errors.facturadorEmail.message}</span>}
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Teléfono {tieneFacturador && <span className="text-red-500">*</span>}</label>
                   <div className="flex gap-2">
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
-                    <input type="text" {...register("facturadorTelefono")} disabled={!tieneFacturador}
+                    <Input hasError={!!errors.facturadorTelefono}  type="text" {...register("facturadorTelefono")} disabled={!tieneFacturador}
                       onChange={(e) => setValue("facturadorTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
                       placeholder="88888888" maxLength={8}
                       className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
@@ -761,7 +781,7 @@ export default function FormProveedor() {
                   <label className="text-sm font-medium text-gray-700">WhatsApp <span className="text-xs text-slate-400">(Opcional)</span></label>
                   <div className="flex gap-2">
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
-                    <input type="text" {...register("facturadorWhatsApp")} disabled={!tieneFacturador}
+                    <Input hasError={!!errors.facturadorWhatsApp}  type="text" {...register("facturadorWhatsApp")} disabled={!tieneFacturador}
                       onChange={(e) => setValue("facturadorWhatsApp", soloNumeros(e.target.value, 8), { shouldValidate: true })}
                       placeholder="88888888" maxLength={8}
                       className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
@@ -808,7 +828,7 @@ export default function FormProveedor() {
 
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Nombre Completo {tieneCobros && <span className="text-red-500">*</span>}</label>
-                  <input type="text" {...register("cobrosNombre")} disabled={!tieneCobros}
+                  <Input hasError={!!errors.cobrosNombre}  type="text" {...register("cobrosNombre")} disabled={!tieneCobros}
                     onChange={(e) => { const v = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]/g, ""); setValue("cobrosNombre", v, { shouldValidate: true }); }}
                     placeholder="Nombre y Apellidos"
                     className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
@@ -816,16 +836,16 @@ export default function FormProveedor() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Correo Electrónico {tieneCobros && <span className="text-red-500">*</span>}</label>
-                  <input type="email" {...register("cobrosEmail")} disabled={!tieneCobros}
+                  <Input hasError={!!errors.cobrosEmail}  type="email" {...register("cobrosEmail")} disabled={!tieneCobros}
                     placeholder="cobros@ejemplo.com"
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all disabled:bg-slate-100" />
+                     />
                   {errors.cobrosEmail && <span className="text-xs text-red-500">{errors.cobrosEmail.message}</span>}
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-700">Teléfono {tieneCobros && <span className="text-red-500">*</span>}</label>
                   <div className="flex gap-2">
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
-                    <input type="text" {...register("cobrosTelefono")} disabled={!tieneCobros}
+                    <Input hasError={!!errors.cobrosTelefono}  type="text" {...register("cobrosTelefono")} disabled={!tieneCobros}
                       onChange={(e) => setValue("cobrosTelefono", soloNumeros(e.target.value, 8), { shouldValidate: true })}
                       placeholder="88888888" maxLength={8}
                       className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
@@ -836,7 +856,7 @@ export default function FormProveedor() {
                   <label className="text-sm font-medium text-gray-700">WhatsApp <span className="text-xs text-slate-400">(Opcional)</span></label>
                   <div className="flex gap-2">
                     <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">506</div>
-                    <input type="text" {...register("cobrosWhatsApp")} disabled={!tieneCobros}
+                    <Input hasError={!!errors.cobrosWhatsApp}  type="text" {...register("cobrosWhatsApp")} disabled={!tieneCobros}
                       onChange={(e) => setValue("cobrosWhatsApp", soloNumeros(e.target.value, 8), { shouldValidate: true })}
                       placeholder="88888888" maxLength={8}
                       className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono disabled:bg-slate-100" />
@@ -849,13 +869,14 @@ export default function FormProveedor() {
 
         {/* Botón enviar */}
         {datosHacienda && (
-          <button
+          
+          <ShimmerButton
             type="submit"
             disabled={enviando}
-            className="bg-mercasa-green text-white py-4 rounded-xl font-bold text-lg hover:bg-mercasa-green-dark shadow-lg shadow-green-900/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+            className="mt-4 w-full"
           >
             {enviando ? "Procesando..." : "Enviar Información Actualizada"}
-          </button>
+          </ShimmerButton>
         )}
       </form>
     </>

@@ -3,8 +3,11 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50 py-12 px-4 relative">
-      <div className="max-w-2xl mx-auto">
+    <main className="min-h-screen bg-slate-50 bg-grid-slate-200 py-12 px-4 relative flex flex-col items-center">
+      {/* Máscara radial para el fondo Grid */}
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-slate-50 [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black_80%)]"></div>
+
+      <div className="max-w-2xl mx-auto relative z-10 w-full">
 
         {/* Banner decorativo superior */}
         <div className="w-full h-2 bg-mercasa-blue rounded-t-2xl shadow-sm"></div>
