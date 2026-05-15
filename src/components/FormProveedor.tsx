@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { proveedorSchema, ProveedorFormData } from "@/lib/validations";
 import UbicacionCR from "./UbicacionCR";
@@ -40,6 +40,7 @@ export default function FormProveedor() {
     setValue,
     getValues,
     watch,
+    control: fieldsControl,
     formState: { errors },
     reset,
   } = useForm<ProveedorFormData>({
@@ -54,8 +55,17 @@ export default function FormProveedor() {
       cobrosTelefono: "",
       cobrosWhatsApp: "",
       tieneActividad: false,
+      cuentas: [{ banco: "", moneda: "CRC", iban: "", cuentaCorriente: "" }],
+      correoComprobantes: "",
     },
   });
+
+  const { fields, append, remove } = useFieldArray({
+    control: fieldsControl,
+    name: "cuentas",
+  });
+
+  const control = fieldsControl; // Alias para consistencia si es necesario
 
   const plazoPagoDiasValor = watch("plazoPagoDias");
   const esClienteValor = watch("esCliente");
@@ -398,18 +408,6 @@ export default function FormProveedor() {
                 {errors.plazoPagoDias && <span className="text-xs text-red-500">{errors.plazoPagoDias.message}</span>}
               </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">¿Es cliente de Mercasa?</label>
-                <select
-                  {...register("esCliente")}
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
-                >
-                  <option value="">Seleccione una opción</option>
-                  <option value="Si">Sí, también compro productos</option>
-                  <option value="No">No, solo soy proveedor</option>
-                </select>
-                {errors.esCliente && <span className="text-xs text-red-500">{errors.esCliente.message}</span>}
-              </div>
             </div>
 
             {esCredito && (
@@ -445,18 +443,163 @@ export default function FormProveedor() {
               </div>
             )}
 
-            {esClienteValor === "Si" && (
-              <div className="flex flex-col gap-1 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                <label className="text-sm font-medium text-gray-700">Email Factura Electrónica <span className="text-red-500">*</span></label>
-                <input
-                  type="email"
-                  {...register("emailFactura")}
-                  placeholder="facturacion@ejemplo.com"
-                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-                />
-                {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
+            {/* Módulo de Cuentas Bancarias */}
+            <div className="mt-8 space-y-6">
+              <h4 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
+                Cuentas Bancarias para Pagos
+              </h4>
+              
+              {fields.map((field, index) => (
+                <div key={field.id} className="p-5 bg-slate-50/50 border border-slate-200 rounded-2xl space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-slate-400 uppercase">Cuenta #{index + 1}</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-medium text-gray-700">Banco <span className="text-red-500">*</span></label>
+                      <select
+                        {...register(`cuentas.${index}.banco`)}
+                        className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                      >
+                        <option value="">Seleccione un banco</option>
+                        <option value="Banco Nacional de Costa Rica (BN)">Banco Nacional (BN)</option>
+                        <option value="Banco de Costa Rica (BCR)">Banco de Costa Rica (BCR)</option>
+                        <option value="BAC Credomatic">BAC Credomatic</option>
+                        <option value="Banco Popular (BP)">Banco Popular (BP)</option>
+                        <option value="MUCAP">MUCAP</option>
+                        <option value="Otros">Otros (Especificar)</option>
+                      </select>
+                      {errors.cuentas?.[index]?.banco && <span className="text-xs text-red-500">{errors.cuentas[index]?.banco?.message}</span>}
+                    </div>
+
+                    {watch(`cuentas.${index}.banco`) === "Otros" && (
+                      <div className="flex flex-col gap-1 animate-in zoom-in-95 duration-200">
+                        <label className="text-sm font-medium text-gray-700">Nombre del Banco <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          {...register(`cuentas.${index}.otroBanco`)}
+                          placeholder="Nombre de la entidad"
+                          className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                        />
+                        {errors.cuentas?.[index]?.otroBanco && <span className="text-xs text-red-500">{errors.cuentas[index]?.otroBanco?.message}</span>}
+                      </div>
+                    )}
+
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-medium text-gray-700">Moneda <span className="text-red-500">*</span></label>
+                      <select
+                        {...register(`cuentas.${index}.moneda`)}
+                        className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                      >
+                        <option value="CRC">Colón (CRC)</option>
+                        <option value="USD">Dólar (USD)</option>
+                      </select>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-medium text-gray-700">IBAN <span className="text-red-500">*</span></label>
+                      <div className="flex gap-2">
+                        <div className="flex items-center px-3 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-500 font-mono select-none">CR</div>
+                        <input
+                          type="text"
+                          {...register(`cuentas.${index}.iban`)}
+                          onChange={(e) => {
+                            const val = e.target.value.replace(/\D/g, "").slice(0, 20);
+                            setValue(`cuentas.${index}.iban`, val, { shouldValidate: true });
+                          }}
+                          placeholder="20 dígitos numéricos"
+                          maxLength={20}
+                          className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                        />
+                      </div>
+                      {errors.cuentas?.[index]?.iban && <span className="text-xs text-red-500">{errors.cuentas[index]?.iban?.message}</span>}
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-medium text-gray-700">Cuenta Corriente Asociada <span className="text-red-500">*</span></label>
+                      <input
+                        type="text"
+                        {...register(`cuentas.${index}.cuentaCorriente`)}
+                        placeholder="Número de cuenta"
+                        className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                      />
+                      {errors.cuentas?.[index]?.cuentaCorriente && <span className="text-xs text-red-500">{errors.cuentas[index]?.cuentaCorriente?.message}</span>}
+                    </div>
+                  </div>
+
+                  {index === fields.length - 1 && index < 3 && (
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-sm text-gray-600 font-medium">¿Desea agregar otra cuenta bancaria?</span>
+                      <button
+                        type="button"
+                        onClick={() => append({ banco: "", moneda: "CRC", iban: "", cuentaCorriente: "" })}
+                        className="flex items-center gap-2 px-4 py-2 bg-slate-200 hover:bg-mercasa-blue hover:text-white text-slate-700 rounded-full text-xs font-bold transition-all"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                        Agregar otra
+                      </button>
+                    </div>
+                  )}
+
+                  {index > 0 && (
+                    <div className="flex justify-end">
+                      <button
+                        type="button"
+                        onClick={() => remove(index)}
+                        className="text-xs text-red-500 hover:text-red-700 font-medium flex items-center gap-1 transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        Eliminar esta cuenta
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-1 mt-8">
+              <label className="text-sm font-medium text-gray-700">Correo de envío de comprobantes de pago <span className="text-red-500">*</span></label>
+              <input
+                type="email"
+                {...register("correoComprobantes")}
+                placeholder="tesoreria@ejemplo.com"
+                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+              />
+              {errors.correoComprobantes && <span className="text-xs text-red-500">{errors.correoComprobantes.message}</span>}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-100">
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-medium text-gray-700">¿Es cliente de Mercasa?</label>
+                <select
+                  {...register("esCliente")}
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+                >
+                  <option value="">Seleccione una opción</option>
+                  <option value="Si">Sí, también compro productos</option>
+                  <option value="No">No, solo soy proveedor</option>
+                </select>
+                {errors.esCliente && <span className="text-xs text-red-500">{errors.esCliente.message}</span>}
               </div>
-            )}
+
+              {esClienteValor === "Si" && (
+                <div className="flex flex-col gap-1 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <label className="text-sm font-medium text-gray-700">Email Factura Electrónica <span className="text-red-500">*</span></label>
+                  <input
+                    type="email"
+                    {...register("emailFactura")}
+                    placeholder="facturacion@ejemplo.com"
+                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                  />
+                  {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
+                </div>
+              )}
+            </div>
           </div>
         )}
 

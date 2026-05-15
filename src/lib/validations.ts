@@ -35,6 +35,16 @@ export const proveedorSchema = z
     codigoBarrio: z.string().min(1, "Requerido"),
     direccionExacta: z.string().min(10, "Por favor ingrese una dirección detallada"),
     emailFactura: z.string().optional(),
+    correoComprobantes: z.string().email("Correo de comprobantes inválido"),
+
+    // ── Cuentas Bancarias ────────────────────────────────────────────────
+    cuentas: z.array(z.object({
+      banco: z.string().min(1, "Seleccione un banco"),
+      otroBanco: z.string().optional(),
+      moneda: z.string().min(1, "Seleccione moneda"),
+      iban: z.string().length(20, "Debe tener exactamente 20 dígitos"),
+      cuentaCorriente: z.string().min(1, "Requerido"),
+    })).min(1, "Debe agregar al menos una cuenta bancaria"),
 
     // ── Agente de Ventas (siempre requerido) ──────────────────────────────
     ventasNombre: z
@@ -60,6 +70,17 @@ export const proveedorSchema = z
     cobrosWhatsApp: optionalPhone,
   })
   .superRefine((data, ctx) => {
+    // Validación condicional: Cuentas Bancarias
+    data.cuentas.forEach((cuenta, index) => {
+      if (cuenta.banco === "Otros" && (!cuenta.otroBanco || cuenta.otroBanco.trim().length < 2)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Escriba el nombre del banco",
+          path: ["cuentas", index, "otroBanco"],
+        });
+      }
+    });
+
     // Validación condicional: Email Factura (solo si es cliente)
     if (data.esCliente === "Si") {
       if (!data.emailFactura || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.emailFactura)) {
