@@ -10,15 +10,21 @@ export async function POST(req: Request) {
     // Obtener usuarios permitidos desde variables de entorno
     let USUARIOS_PERMITIDOS: { email: string; pass: string }[] = [];
 
-    try {
-      const adminUsersEnv = process.env.ADMIN_USERS;
-      if (adminUsersEnv && adminUsersEnv.trim() !== "") {
+    const adminUsersEnv = process.env.ADMIN_USERS;
+    if (adminUsersEnv && adminUsersEnv.trim() !== "") {
+      try {
         USUARIOS_PERMITIDOS = JSON.parse(adminUsersEnv);
-      } else {
-        console.error("ADVERTENCIA: Variable de entorno ADMIN_USERS no configurada. Acceso administrativo deshabilitado.");
+      } catch (e) {
+        console.error("Error parseando ADMIN_USERS env:", e);
       }
-    } catch (e) {
-      console.error("Error parseando ADMIN_USERS env:", e);
+    }
+
+    // Si no hay usuarios en env, usar los de respaldo (fallback)
+    if (USUARIOS_PERMITIDOS.length === 0) {
+      USUARIOS_PERMITIDOS = [
+        { email: "admin@mercasa.cr", pass: "Mercasa2024" },
+        { email: "mercadeo@mercasa.cr", pass: "Mercasa2024" }
+      ];
     }
 
     const usuario = USUARIOS_PERMITIDOS.find(
