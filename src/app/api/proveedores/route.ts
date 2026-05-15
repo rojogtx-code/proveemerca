@@ -53,7 +53,9 @@ export async function POST(req: NextRequest) {
       cobros_ext_whatsapp: "506",
       moneda_credito: data.monedaCredito || null,
       monto_credito: data.montoCredito || null,
+      correo_comprobantes: data.correoComprobantes,
       es_proveedor: "Si",
+      es_cliente: data.esCliente,
       es_compania: data.tipoCedulaId === "02" ? "Si" : (data.tipoCedulaId === "01" ? "No" : null),
     };
 
@@ -66,13 +68,37 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, accion: "actualizado" });
     }
 
-    const { error } = await supabaseAdmin.from("proveedores").insert(payload);
+    const { data: nuevoProveedor, error } = await supabaseAdmin
+      .from("proveedores")
+      .insert(payload)
+      .select("id")
+      .single();
 
     if (error) {
       if (error.code === "23505") { // Unique violation
          return NextResponse.json({ error: "Ya existe un proveedor con esta cédula" }, { status: 400 });
       }
       throw error;
+    }
+
+    // 2. Insertar cuentas bancarias si existen
+    if (data.cuentas && data.cuentas.length > 0) {
+      const cuentasParaInsertar = data.cuentas.map((c: any, index: number) => ({
+        proveedor_id: nuevoProveedor.id,
+        banco_nombre: c.banco === "Otros" ? c.otroBanco : c.banco,
+        moneda: c.moneda,
+        iban: `CR${c.iban}`, // Guardamos el IBAN completo
+        cuenta_corriente: c.cuentaCorriente,
+        orden: index + 1
+      }));
+
+      const { error: errorCuentas } = await supabaseAdmin
+        .from("cuentas_bancarias")
+        .insert(cuentasParaInsertar);
+
+      if (errorCuentas) {
+        console.error("Error insertando cuentas:", errorCuentas);
+      }
     }
 
     return NextResponse.json({ ok: true, accion: "creado" });
