@@ -43,7 +43,7 @@ export const proveedorSchema = z
       otroBanco: z.string().optional(),
       moneda: z.string().min(1, "Seleccione moneda"),
       iban: z.string().length(20, "Debe tener exactamente 20 dígitos"),
-      cuentaCorriente: z.string().min(1, "Requerido"),
+      cuentaCorriente: z.string().max(25, "Máximo 25 caracteres").regex(/^\d+$/, "Solo números"),
     })).min(1, "Debe agregar al menos una cuenta bancaria"),
 
     // ── Agente de Ventas (siempre requerido) ──────────────────────────────

@@ -521,8 +521,13 @@ export default function FormProveedor() {
                       <input
                         type="text"
                         {...register(`cuentas.${index}.cuentaCorriente`)}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, "").slice(0, 25);
+                          setValue(`cuentas.${index}.cuentaCorriente`, val, { shouldValidate: true });
+                        }}
                         placeholder="Número de cuenta"
-                        className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
+                        maxLength={25}
+                        className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all font-mono"
                       />
                       {errors.cuentas?.[index]?.cuentaCorriente && <span className="text-xs text-red-500">{errors.cuentas[index]?.cuentaCorriente?.message}</span>}
                     </div>
