@@ -55,7 +55,6 @@ export async function POST(req: NextRequest) {
       monto_credito: data.montoCredito || null,
       correo_comprobantes: data.correoComprobantes,
       es_proveedor: "Si",
-      es_cliente: data.esCliente,
       es_compania: data.tipoCedulaId === "02" ? "Si" : (data.tipoCedulaId === "01" ? "No" : null),
     };
 
@@ -124,7 +123,7 @@ export async function GET() {
     // Usar supabaseAdmin para bypass de RLS (ya que cerramos lectura pública)
     const { data, error } = await supabaseAdmin
       .from("proveedores")
-      .select("*")
+      .select("*, cuentas_bancarias(*)")
       .order("created_at", { ascending: false });
 
     if (error) throw error;
