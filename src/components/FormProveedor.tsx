@@ -321,7 +321,7 @@ export default function FormProveedor() {
                       ?.filter((act) => act.estado === "A")
                       .map((act) => (
                         <option key={act.codigo} value={act.codigo}>
-                          {act.tipo === "P" ? "⭐ Principal" : "Secundaria"} — {act.codigo} · {act.descripcion}
+                          {act.codigo} · {act.descripcion}
                         </option>
                       ))}
                   </select>
