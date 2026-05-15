@@ -8,19 +8,21 @@ export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    // Validar contra la tabla usuarios_admin en Supabase
+    // Validar contra la función segura en Supabase (RPC)
     const { data: usuario, error: dbError } = await supabaseAdmin
-      .from("usuarios_admin")
-      .select("*")
-      .eq("email", email)
-      .eq("password", password)
-      .single();
+      .rpc("validar_admin", {
+        email_input: email,
+        password_input: password
+      });
 
     if (dbError) {
-      console.error("Error validando usuario admin:", dbError.message);
+      console.error("Error en validación segura:", dbError.message);
     }
 
-    if (usuario) {
+    // La función devuelve un array, tomamos el primer elemento si existe
+    const userFound = Array.isArray(usuario) ? usuario[0] : usuario;
+
+    if (userFound) {
 
       const cookieStore = await cookies();
       cookieStore.set("admin_session", "true", {
