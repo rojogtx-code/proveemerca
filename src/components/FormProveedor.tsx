@@ -58,7 +58,14 @@ export default function FormProveedor() {
   });
 
   const plazoPagoDiasValor = watch("plazoPagoDias");
+  const esClienteValor = watch("esCliente");
   const esCredito = plazoPagoDiasValor && plazoPagoDiasValor !== "0";
+
+  useEffect(() => {
+    if (esClienteValor === "No") {
+      setValue("emailFactura", "");
+    }
+  }, [esClienteValor, setValue]);
 
 
   const soloNumeros = (value: string, maxLen: number) =>
@@ -373,10 +380,18 @@ export default function FormProveedor() {
                 >
                   <option value="">Seleccione el plazo acordado</option>
                   <option value="0">Contado (0 días)</option>
+                  <option value="1">Crédito a 1 día</option>
+                  <option value="5">Crédito a 5 días</option>
+                  <option value="7">Crédito a 7 días</option>
+                  <option value="8">Crédito a 8 días</option>
                   <option value="15">Crédito a 15 días</option>
+                  <option value="22">Crédito a 22 días</option>
                   <option value="30">Crédito a 30 días</option>
                   <option value="45">Crédito a 45 días</option>
+                  <option value="50">Crédito a 50 días</option>
+                  <option value="55">Crédito a 55 días</option>
                   <option value="60">Crédito a 60 días</option>
+                  <option value="75">Crédito a 75 días</option>
                   <option value="90">Crédito a 90 días</option>
                   <option value="120">Crédito a 120 días</option>
                 </select>
@@ -430,16 +445,18 @@ export default function FormProveedor() {
               </div>
             )}
 
-            <div className="flex flex-col gap-1 mt-4">
-              <label className="text-sm font-medium text-gray-700">Email Factura Electrónica</label>
-              <input
-                type="email"
-                {...register("emailFactura")}
-                placeholder="facturacion@ejemplo.com"
-                className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
-              />
-              {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
-            </div>
+            {esClienteValor === "Si" && (
+              <div className="flex flex-col gap-1 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                <label className="text-sm font-medium text-gray-700">Email Factura Electrónica <span className="text-red-500">*</span></label>
+                <input
+                  type="email"
+                  {...register("emailFactura")}
+                  placeholder="facturacion@ejemplo.com"
+                  className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
+                />
+                {errors.emailFactura && <span className="text-xs text-red-500">{errors.emailFactura.message}</span>}
+              </div>
+            )}
           </div>
         )}
 

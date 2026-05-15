@@ -34,7 +34,7 @@ export const proveedorSchema = z
     barrio: z.string().min(1, "Seleccione un barrio"),
     codigoBarrio: z.string().min(1, "Requerido"),
     direccionExacta: z.string().min(10, "Por favor ingrese una dirección detallada"),
-    emailFactura: z.string().email("Correo electrónico de facturación inválido"),
+    emailFactura: z.string().optional(),
 
     // ── Agente de Ventas (siempre requerido) ──────────────────────────────
     ventasNombre: z
@@ -60,6 +60,17 @@ export const proveedorSchema = z
     cobrosWhatsApp: optionalPhone,
   })
   .superRefine((data, ctx) => {
+    // Validación condicional: Email Factura (solo si es cliente)
+    if (data.esCliente === "Si") {
+      if (!data.emailFactura || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.emailFactura)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Correo electrónico de facturación inválido",
+          path: ["emailFactura"],
+        });
+      }
+    }
+
     // Validación condicional: Facturador
     if (data.tieneFacturador) {
       if (!data.facturadorNombre || data.facturadorNombre.trim().length < 8) {
