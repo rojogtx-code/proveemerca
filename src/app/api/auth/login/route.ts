@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -7,31 +8,20 @@ export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    // Obtener usuarios permitidos desde variables de entorno
-    let USUARIOS_PERMITIDOS: { email: string; pass: string }[] = [];
+    // Validar contra la tabla usuarios_admin en Supabase
+    const { data: usuario, error: dbError } = await supabaseAdmin
+      .from("usuarios_admin")
+      .select("*")
+      .eq("email", email)
+      .eq("password", password)
+      .single();
 
-    const adminUsersEnv = process.env.ADMIN_USERS;
-    if (adminUsersEnv && adminUsersEnv.trim() !== "") {
-      try {
-        USUARIOS_PERMITIDOS = JSON.parse(adminUsersEnv);
-      } catch (e) {
-        console.error("Error parseando ADMIN_USERS env:", e);
-      }
+    if (dbError) {
+      console.error("Error validando usuario admin:", dbError.message);
     }
-
-    // Si no hay usuarios en env, usar los de respaldo (fallback)
-    if (USUARIOS_PERMITIDOS.length === 0) {
-      USUARIOS_PERMITIDOS = [
-        { email: "admin@mercasa.cr", pass: "Mercasa2024" },
-        { email: "mercadeo@mercasa.cr", pass: "Mercasa2024" }
-      ];
-    }
-
-    const usuario = USUARIOS_PERMITIDOS.find(
-      (u: any) => u.email === email && u.pass === password
-    );
 
     if (usuario) {
+
       const cookieStore = await cookies();
       cookieStore.set("admin_session", "true", {
         path: "/",
