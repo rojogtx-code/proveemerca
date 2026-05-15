@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase, supabaseAdmin } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import { proveedorSchema } from "@/lib/validations";
 import { cookies } from "next/headers";
 
@@ -82,6 +82,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Insertar cuentas bancarias si existen
     if (data.cuentas && data.cuentas.length > 0) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const cuentasParaInsertar = data.cuentas.map((c: any, index: number) => ({
         proveedor_id: nuevoProveedor.id,
         banco_nombre: c.banco === "Otros" ? c.otroBanco : c.banco,

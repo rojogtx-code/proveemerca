@@ -53,7 +53,7 @@ export default function AdminPage() {
         if (!data || !data.rows) {
           throw new Error(data?.error || "No se pudieron cargar los datos.");
         }
-        // Mapear objetos de Supabase a arreglos para mantener compatibilidad con la tabla
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const mappedRows = data.rows.map((p: any) => [
           p.id,
           new Date(p.created_at).toLocaleString("es-CR"),
@@ -80,6 +80,7 @@ export default function AdminPage() {
           p.monto_credito || "—",
           p.email_factura || "—",
           p.correo_comprobantes || "—",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (p.cuentas_bancarias || []).map((c: any) => `${c.banco_nombre} (${c.moneda}): ${c.iban}`).join(" | ") || "Sin cuentas",
           p.ventas_nombre,
           p.ventas_email,

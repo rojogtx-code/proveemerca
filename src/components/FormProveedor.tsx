@@ -42,7 +42,7 @@ export default function FormProveedor() {
     register,
     handleSubmit,
     setValue,
-    getValues,
+
     watch,
     control: fieldsControl,
     formState: { errors },
@@ -69,7 +69,7 @@ export default function FormProveedor() {
     name: "cuentas",
   });
 
-  const control = fieldsControl; // Alias para consistencia si es necesario
+
 
   const plazoPagoDiasValor = watch("plazoPagoDias");
   const esClienteValor = watch("esCliente");
@@ -215,6 +215,7 @@ export default function FormProveedor() {
 
   return (
     <>
+      <ProgressBar progress={progress} />
       {/* Modal de Confirmación Duplicado */}
       {mostrarConfirmacion && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">

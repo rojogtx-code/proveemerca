@@ -10,6 +10,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = (supabaseUrl && supabaseAnonKey) 
   ? createClient(supabaseUrl, supabaseAnonKey)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   : (null as any);
 
 // Cliente administrativo para bypass de RLS (solo usar en API routes)
