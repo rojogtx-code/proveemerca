@@ -344,6 +344,8 @@ export default function FormProveedor() {
           </>
         )}
 
+        {datosHacienda && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
+
         {/* Ubicación */}
         {datosHacienda && (
           <div className="flex flex-col gap-3">
@@ -373,6 +375,8 @@ export default function FormProveedor() {
             )}
           </div>
         )}
+
+        {datosHacienda && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
 
         {/* Condiciones Comerciales */}
         {datosHacienda && (
@@ -442,6 +446,8 @@ export default function FormProveedor() {
                 </div>
               </div>
             )}
+
+            <hr className="border-t border-mercasa-red my-8 opacity-50" />
 
             {/* Módulo de Cuentas Bancarias */}
             <div className="mt-8 space-y-6">
@@ -607,6 +613,8 @@ export default function FormProveedor() {
             </div>
           </div>
         )}
+
+        {datosHacienda && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
 
         {/* Información de Contacto */}
         {datosHacienda && (
