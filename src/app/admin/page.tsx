@@ -308,6 +308,48 @@ export default function AdminPage() {
           </button>
         </div>
 
+        {/* Panel de Estadísticas para la Vista de Validación */}
+        {vistaActiva === "validacion" && (
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="flex-1">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-semibold text-slate-500">Progreso de Validación</span>
+                <span className="text-sm font-bold text-mercasa-blue">
+                  {((filasValidacion.filter(f => f.estado_formulario === "Completado").length / Math.max(1, filasValidacion.length)) * 100).toFixed(1)}%
+                </span>
+              </div>
+              <div className="w-full bg-slate-100 h-3 rounded-full overflow-hidden border border-slate-200">
+                <div
+                  className="bg-gradient-to-r from-amber-500 to-emerald-500 h-full rounded-full transition-all duration-500 ease-out"
+                  style={{
+                    width: `${(filasValidacion.filter(f => f.estado_formulario === "Completado").length / Math.max(1, filasValidacion.length)) * 100}%`
+                  }}
+                ></div>
+              </div>
+            </div>
+            <div className="flex gap-4 sm:gap-8 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8">
+              <div className="text-center md:text-left">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Completados</p>
+                <p className="text-2xl font-bold text-emerald-600 mt-1">
+                  {filasValidacion.filter(f => f.estado_formulario === "Completado").length}
+                </p>
+              </div>
+              <div className="text-center md:text-left">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pendientes</p>
+                <p className="text-2xl font-bold text-amber-600 mt-1">
+                  {filasValidacion.filter(f => f.estado_formulario === "Pendiente").length}
+                </p>
+              </div>
+              <div className="text-center md:text-left">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total</p>
+                <p className="text-2xl font-bold text-slate-800 mt-1">
+                  {filasValidacion.length}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Tabla Condicional */}
         {vistaActiva === "detallados" ? (
           <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-200">
