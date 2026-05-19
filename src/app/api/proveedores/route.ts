@@ -58,50 +58,31 @@ export async function POST(req: NextRequest) {
       es_compania: data.tipoCedulaId === "02" ? "Si" : (data.tipoCedulaId === "01" ? "No" : null),
     };
 
-    if (body.actualizar) {
-      const { error } = await supabaseAdmin
-        .from("proveedores")
-        .upsert(payload, { onConflict: "cedula" });
+    // 2. Preparar las cuentas bancarias para el payload JSONB del RPC
+    const cuentasParaInsertar = data.cuentas ? data.cuentas.map((c: any, index: number) => ({
+      banco_nombre: c.banco === "Otros" ? c.otroBanco : c.banco,
+      moneda: c.moneda,
+      iban: `CR${c.iban}`, // Guardamos el IBAN completo
+      cuenta_corriente: c.cuentaCorriente || null,
+      orden: index + 1
+    })) : [];
 
-      if (error) throw error;
-      return NextResponse.json({ ok: true, accion: "actualizado" });
-    }
+    // 3. Ejecutar el registro completo a través de la función RPC transaccional
+    const { error: rpcError } = await supabaseAdmin.rpc("registrar_proveedor_completo", {
+      p_cedula: data.cedula,
+      p_nombre_proveedor: data.nombreProveedor,
+      p_datos_proveedor: payload,
+      p_cuentas_bancarias: cuentasParaInsertar
+    });
 
-    const { data: nuevoProveedor, error } = await supabaseAdmin
-      .from("proveedores")
-      .insert(payload)
-      .select("id")
-      .single();
-
-    if (error) {
-      if (error.code === "23505") { // Unique violation
-         return NextResponse.json({ error: "Ya existe un proveedor con esta cédula" }, { status: 400 });
+    if (rpcError) {
+      if (rpcError.code === "23505") { // Unique violation
+        return NextResponse.json({ error: "Ya existe un proveedor con esta cédula" }, { status: 400 });
       }
-      throw error;
+      throw rpcError;
     }
 
-    // 2. Insertar cuentas bancarias si existen
-    if (data.cuentas && data.cuentas.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const cuentasParaInsertar = data.cuentas.map((c: any, index: number) => ({
-        proveedor_id: nuevoProveedor.id,
-        banco_nombre: c.banco === "Otros" ? c.otroBanco : c.banco,
-        moneda: c.moneda,
-        iban: `CR${c.iban}`, // Guardamos el IBAN completo
-        cuenta_corriente: c.cuentaCorriente,
-        orden: index + 1
-      }));
-
-      const { error: errorCuentas } = await supabaseAdmin
-        .from("cuentas_bancarias")
-        .insert(cuentasParaInsertar);
-
-      if (errorCuentas) {
-        console.error("Error insertando cuentas:", errorCuentas);
-      }
-    }
-
-    return NextResponse.json({ ok: true, accion: "creado" });
+    return NextResponse.json({ ok: true, accion: body.actualizar ? "actualizado" : "creado" });
   } catch (error) {
     console.error("Error en POST /api/proveedores:", error);
     return NextResponse.json(
