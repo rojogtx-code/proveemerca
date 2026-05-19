@@ -42,17 +42,20 @@ export default function LoginPage() {
     <main className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
         
-        <div className="bg-mercasa-blue p-8 flex flex-col items-center">
-          <div className="relative w-48 h-16 mb-2">
+        {/* Banner decorativo superior */}
+        <div className="w-full h-2 bg-mercasa-blue"></div>
+        
+        <div className="bg-white p-8 flex flex-col items-center border-b border-slate-100">
+          <div className="relative w-48 h-20 mb-4 group transition-transform hover:scale-105">
              <Image
                 src="/logo.png"
                 alt="Logo Mercasa"
                 fill
-                className="object-contain invert brightness-0"
+                className="object-contain"
                 priority
               />
           </div>
-          <h2 className="text-white text-xl font-bold">Panel Administrativo</h2>
+          <h2 className="text-slate-800 text-xl font-bold">Panel Administrativo</h2>
         </div>
 
         <form onSubmit={handleAuth} className="p-8 space-y-6">
