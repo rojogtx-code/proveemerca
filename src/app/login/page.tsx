@@ -16,6 +16,24 @@ export default function LoginPage() {
     setLoading(true);
     setError("");
 
+    if (!email.trim()) {
+      setError("Por favor, ingrese su correo electrónico.");
+      setLoading(false);
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Por favor, ingrese un correo electrónico válido.");
+      setLoading(false);
+      return;
+    }
+
+    if (!password) {
+      setError("Por favor, ingrese su contraseña.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -58,7 +76,7 @@ export default function LoginPage() {
           <h2 className="text-slate-800 text-xl font-bold">Panel Administrativo</h2>
         </div>
 
-        <form onSubmit={handleAuth} className="p-8 space-y-6">
+        <form noValidate onSubmit={handleAuth} className="p-8 space-y-6">
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-4 rounded-xl text-center">
               {error}

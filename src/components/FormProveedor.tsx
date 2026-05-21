@@ -36,6 +36,7 @@ export default function FormProveedor() {
   const [tieneFacturador, setTieneFacturador] = useState(false);
   const [tieneCobros, setTieneCobros] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [mostrarTodo, setMostrarTodo] = useState(false);
 
 
   const {
@@ -184,6 +185,7 @@ export default function FormProveedor() {
       setMostrarConfirmacion(false);
       setTieneFacturador(false);
       setTieneCobros(false);
+      setMostrarTodo(false);
     } catch {
       alert("Ocurrió un error al enviar el formulario. Intente de nuevo.");
     } finally {
@@ -243,6 +245,7 @@ export default function FormProveedor() {
                     setDatosHacienda(null);
                     setCedula("");
                     setValue("cedula", "");
+                    setMostrarTodo(false);
                   }}
                   className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl transition-all active:scale-[0.98]"
                 >
@@ -256,7 +259,7 @@ export default function FormProveedor() {
 
       {/* Alerta Sin Actividad eliminada para permitir registro sin actividades */}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+      <form noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
         {/* Cédula */}
         <div className="flex flex-col gap-1">
@@ -272,6 +275,7 @@ export default function FormProveedor() {
                 setErrorHacienda("");
                 setDatosHacienda(null);
                 setExisteRegistro(false);
+                setMostrarTodo(false);
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -367,10 +371,38 @@ export default function FormProveedor() {
           </>
         )}
 
-        {datosHacienda && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
+        {datosHacienda && !mostrarTodo && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-slate-800 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4 duration-300">
+            <h3 className="font-bold text-lg text-slate-900 border-b border-yellow-200 pb-2">
+              Secciones que deberá completar:
+            </h3>
+            <ul className="list-disc list-inside space-y-2 text-sm">
+              <li><strong>Ubicación</strong></li>
+              <li><strong>Condiciones Comerciales</strong></li>
+              <li><strong>Cuentas Bancarias para Pagos</strong></li>
+              <li>
+                <strong>Información de Contacto</strong>:
+                <ol className="list-decimal list-inside ml-6 mt-1 space-y-1">
+                  <li><strong>Agente de Ventas</strong>: Persona encargada de la cuenta de Mercasa</li>
+                  <li><strong>Facturador</strong>: Persona encargada de la facturación <em>(Si aplica)</em></li>
+                  <li><strong>Cuentas por Cobrar</strong>: Persona o departamento que gestiona los pagos <em>(Si aplica)</em></li>
+                </ol>
+              </li>
+            </ul>
+            <button
+              type="button"
+              onClick={() => setMostrarTodo(true)}
+              className="mt-2 w-full bg-mercasa-blue hover:bg-mercasa-blue-dark text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98]"
+            >
+              Iniciar
+            </button>
+          </div>
+        )}
+
+        {datosHacienda && mostrarTodo && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
 
         {/* Ubicación */}
-        {datosHacienda && (
+        {datosHacienda && mostrarTodo && (
           <div className="flex flex-col gap-3">
             <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
               Ubicación
@@ -380,7 +412,7 @@ export default function FormProveedor() {
         )}
 
         {/* Dirección */}
-        {datosHacienda && (
+        {datosHacienda && mostrarTodo && (
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-700">
               Dirección Exacta
@@ -399,10 +431,10 @@ export default function FormProveedor() {
           </div>
         )}
 
-        {datosHacienda && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
+        {datosHacienda && mostrarTodo && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
 
         {/* Condiciones Comerciales */}
-        {datosHacienda && (
+        {datosHacienda && mostrarTodo && (
           <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">
             <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
               Condiciones Comerciales
@@ -635,10 +667,10 @@ export default function FormProveedor() {
           </div>
         )}
 
-        {datosHacienda && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
+        {datosHacienda && mostrarTodo && <hr className="border-t border-mercasa-red my-8 opacity-50" />}
 
         {/* Información de Contacto */}
-        {datosHacienda && (
+        {datosHacienda && mostrarTodo && (
           <div className="flex flex-col gap-6 pt-4 border-t border-slate-100">
             <h3 className="text-sm font-bold text-mercasa-blue uppercase tracking-wider border-b border-slate-100 pb-2">
               Información de Contacto
@@ -869,7 +901,7 @@ export default function FormProveedor() {
         )}
 
         {/* Botón enviar */}
-        {datosHacienda && (
+        {datosHacienda && mostrarTodo && (
           
           <ShimmerButton
             type="submit"
