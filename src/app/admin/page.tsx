@@ -123,37 +123,36 @@ export default function AdminPage() {
       .finally(() => setCargando(false));
   }, [router]);
 
-  const cargarValidacion = () => {
-    setCargandoValidacion(true);
-    fetch("/api/validacion-proveedores")
-      .then((res) => {
+  useEffect(() => {
+    if (vistaActiva !== "validacion") return;
+    let cancelado = false;
+    (async () => {
+      setCargandoValidacion(true);
+      try {
+        const res = await fetch("/api/validacion-proveedores");
         if (!res.ok) {
           if (res.status === 401) throw new Error("No autorizado. Redirigiendo...");
           throw new Error(`Error del servidor: ${res.status}`);
         }
-        return res.json();
-      })
-      .then((data) => {
+        const data = await res.json();
+        if (cancelado) return;
         if (!data || !data.rows) {
           throw new Error(data?.error || "No se pudieron cargar los datos.");
         }
         setFilasValidacion(data.rows);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Error cargando validación:", err);
-        if (err.message.includes("No autorizado")) {
+        if (err instanceof Error && err.message.includes("No autorizado")) {
           router.push("/login");
         }
-      })
-      .finally(() => setCargandoValidacion(false));
-  };
-
-  useEffect(() => {
-    if (vistaActiva === "validacion") {
-      cargarValidacion();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vistaActiva]);
+      } finally {
+        if (!cancelado) setCargandoValidacion(false);
+      }
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [vistaActiva, router]);
 
   function descargarCSV() {
     const csv = Papa.unparse({ fields: HEADERS, data: filas });
@@ -250,7 +249,7 @@ export default function AdminPage() {
               <>
                 <select
                   value={filtroEstado}
-                  onChange={(e) => setFiltroEstado(e.target.value as any)}
+                  onChange={(e) => setFiltroEstado(e.target.value as "Todos" | "Pendiente" | "Completado")}
                   className="border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue bg-white text-slate-600 font-semibold cursor-pointer"
                 >
                   <option value="Todos">Todos los Estados</option>

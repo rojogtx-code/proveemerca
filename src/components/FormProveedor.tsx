@@ -31,6 +31,7 @@ export default function FormProveedor() {
   const [errorHacienda, setErrorHacienda] = useState("");
   const [enviando, setEnviando] = useState(false);
   const [enviado, setEnviado] = useState(false);
+  const [datosConservados, setDatosConservados] = useState(false);
   const [existeRegistro, setExisteRegistro] = useState(false);
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
   const [tieneFacturador, setTieneFacturador] = useState(false);
@@ -186,11 +187,26 @@ export default function FormProveedor() {
       setTieneFacturador(false);
       setTieneCobros(false);
       setMostrarTodo(false);
+      setErrorHacienda("");
     } catch {
       alert("Ocurrió un error al enviar el formulario. Intente de nuevo.");
     } finally {
       setEnviando(false);
     }
+  }
+
+  function reiniciarFormulario() {
+    reset();
+    setCedula("");
+    setDatosHacienda(null);
+    setExisteRegistro(false);
+    setMostrarConfirmacion(false);
+    setTieneFacturador(false);
+    setTieneCobros(false);
+    setMostrarTodo(false);
+    setErrorHacienda("");
+    setEnviado(false);
+    setDatosConservados(false);
   }
 
   if (enviado) {
@@ -202,14 +218,30 @@ export default function FormProveedor() {
         </h2>
         <p className="text-gray-500 mb-6">Gracias por actualizar sus datos.</p>
         <button
-          onClick={() => {
-            setEnviado(false);
-            setTieneFacturador(false);
-            setTieneCobros(false);
-          }}
+          onClick={reiniciarFormulario}
           className="bg-mercasa-blue text-white px-8 py-3 rounded-xl hover:bg-mercasa-blue-dark shadow-lg shadow-blue-900/20 transition-all active:scale-95 font-medium"
         >
           Enviar otro registro
+        </button>
+      </div>
+    );
+  }
+
+  if (datosConservados) {
+    return (
+      <div className="text-center py-16">
+        <div className="text-5xl mb-4">📋</div>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          Información existente conservada
+        </h2>
+        <p className="text-gray-500 mb-6">
+          No se realizaron cambios. Sus datos previos siguen vigentes.
+        </p>
+        <button
+          onClick={reiniciarFormulario}
+          className="bg-mercasa-blue text-white px-8 py-3 rounded-xl hover:bg-mercasa-blue-dark shadow-lg shadow-blue-900/20 transition-all active:scale-95 font-medium"
+        >
+          Realizar otra consulta
         </button>
       </div>
     );
@@ -228,7 +260,7 @@ export default function FormProveedor() {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-2">Cédula ya ingresada</h3>
               <p className="text-slate-600 mb-6">
-                Ya tenemos un registro con esta identificación. ¿Deseas actualizar la información existente o mantener los datos actuales?
+                Ya tenemos un registro con esta identificación. ¿Qué desea hacer?
               </p>
               <div className="flex flex-col w-full gap-3">
                 <button
@@ -236,17 +268,21 @@ export default function FormProveedor() {
                   onClick={() => setMostrarConfirmacion(false)}
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-orange-200 active:scale-[0.98]"
                 >
-                  Actualizar los datos de nuevo
+                  Actualizar información
                 </button>
                 <button
                   type="button"
                   onClick={() => {
                     setMostrarConfirmacion(false);
-                    setDatosHacienda(null);
-                    setCedula("");
-                    setValue("cedula", "");
-                    setMostrarTodo(false);
+                    setDatosConservados(true);
                   }}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-emerald-200 active:scale-[0.98]"
+                >
+                  Mantener información actual
+                </button>
+                <button
+                  type="button"
+                  onClick={reiniciarFormulario}
                   className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl transition-all active:scale-[0.98]"
                 >
                   Cancelar
@@ -267,9 +303,10 @@ export default function FormProveedor() {
             Número de Identificación
           </label>
           <div className="flex gap-2">
-            <Input hasError={!!errorHacienda} 
+            <Input hasError={!!errorHacienda}
               type="text"
               value={cedula}
+              disabled={!!datosHacienda}
               onChange={(e) => {
                 setCedula(e.target.value.replace(/\D/g, ""));
                 setErrorHacienda("");
@@ -280,21 +317,31 @@ export default function FormProveedor() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
-                  buscarCedula();
+                  if (!datosHacienda) buscarCedula();
                 }
               }}
               placeholder="Ej: 3101123456"
               maxLength={12}
               className="flex-1 border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all"
             />
-            <button
-              type="button"
-              onClick={buscarCedula}
-              disabled={cedula.length < 9 || buscando}
-              className="bg-mercasa-blue text-white px-6 py-2 rounded-xl text-sm font-semibold hover:bg-mercasa-blue-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-95"
-            >
-              {buscando ? "..." : "Validar"}
-            </button>
+            {datosHacienda ? (
+              <button
+                type="button"
+                onClick={reiniciarFormulario}
+                className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-2 rounded-xl text-sm font-semibold transition-all border border-slate-200 active:scale-95"
+              >
+                Cambiar cédula
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={buscarCedula}
+                disabled={cedula.length < 9 || buscando}
+                className="bg-mercasa-blue text-white px-6 py-2 rounded-xl text-sm font-semibold hover:bg-mercasa-blue-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md active:scale-95"
+              >
+                {buscando ? "..." : "Validar"}
+              </button>
+            )}
           </div>
           {errorHacienda && (
             <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-sm text-red-700">

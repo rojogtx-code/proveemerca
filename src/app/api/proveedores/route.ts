@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     };
 
     // 2. Preparar las cuentas bancarias para el payload JSONB del RPC
-    const cuentasParaInsertar = data.cuentas ? data.cuentas.map((c: any, index: number) => ({
+    const cuentasParaInsertar = data.cuentas ? data.cuentas.map((c, index) => ({
       banco_nombre: c.banco === "Otros" ? c.otroBanco : c.banco,
       moneda: c.moneda,
       iban: `CR${c.iban}`, // Guardamos el IBAN completo

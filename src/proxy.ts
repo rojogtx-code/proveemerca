@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Rutas que requieren autenticación
@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-// Configurar en qué rutas se debe ejecutar el middleware
+// Configurar en qué rutas se debe ejecutar el proxy
 export const config = {
   matcher: ['/admin', '/admin/:path*'],
 };
