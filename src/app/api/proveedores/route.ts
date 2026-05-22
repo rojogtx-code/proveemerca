@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ZodError } from "zod";
 import { supabaseAdmin } from "@/lib/supabase";
 import { proveedorSchema } from "@/lib/validations";
 import { cookies } from "next/headers";
@@ -8,7 +9,9 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const data = proveedorSchema.parse(body);
+    // `actualizar` es metadata para el mensaje de respuesta; no forma parte del schema
+    const { actualizar, ...rest } = body ?? {};
+    const data = proveedorSchema.parse(rest);
 
     const payload = {
       cedula: data.cedula,
@@ -30,7 +33,9 @@ export async function POST(req: NextRequest) {
       barrio: data.barrio,
       codigo_barrio: data.codigoBarrio,
       direccion_exacta: data.direccionExacta,
-      email_factura: data.emailFactura,
+      // Normalizar a null cuando el campo está vacío (esCliente="No" o no aplica).
+      // Evita CHECK constraints / triggers de validación de email sobre cadenas vacías.
+      email_factura: data.esCliente === "Si" ? (data.emailFactura || null) : null,
       ventas_nombre: data.ventasNombre,
       ventas_email: data.ventasEmail,
       ventas_telefono: data.ventasTelefono,
@@ -59,7 +64,7 @@ export async function POST(req: NextRequest) {
     };
 
     // 2. Preparar las cuentas bancarias para el payload JSONB del RPC
-    const cuentasParaInsertar = data.cuentas ? data.cuentas.map((c: any, index: number) => ({
+    const cuentasParaInsertar = data.cuentas ? data.cuentas.map((c, index) => ({
       banco_nombre: c.banco === "Otros" ? c.otroBanco : c.banco,
       moneda: c.moneda,
       iban: `CR${c.iban}`, // Guardamos el IBAN completo
@@ -76,14 +81,32 @@ export async function POST(req: NextRequest) {
     });
 
     if (rpcError) {
+      console.error("Error RPC registrar_proveedor_completo:", {
+        code: rpcError.code,
+        message: rpcError.message,
+        details: rpcError.details,
+        hint: rpcError.hint,
+      });
       if (rpcError.code === "23505") { // Unique violation
         return NextResponse.json({ error: "Ya existe un proveedor con esta cédula" }, { status: 400 });
       }
-      throw rpcError;
+      return NextResponse.json(
+        { error: `Error al guardar los datos: ${rpcError.message}` },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ ok: true, accion: body.actualizar ? "actualizado" : "creado" });
+    return NextResponse.json({ ok: true, accion: actualizar ? "actualizado" : "creado" });
   } catch (error) {
+    if (error instanceof ZodError) {
+      console.error("Validación Zod fallida en POST /api/proveedores:", error.issues);
+      const firstIssue = error.issues[0];
+      const campo = firstIssue?.path?.join(".") || "datos";
+      return NextResponse.json(
+        { error: `Datos inválidos en "${campo}": ${firstIssue?.message ?? "valor incorrecto"}` },
+        { status: 400 }
+      );
+    }
     console.error("Error en POST /api/proveedores:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Error al guardar los datos" },
