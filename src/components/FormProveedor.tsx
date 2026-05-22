@@ -177,7 +177,16 @@ export default function FormProveedor() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Error al enviar");
+      if (!res.ok) {
+        let mensaje = "Ocurrió un error al enviar el formulario. Intente de nuevo.";
+        try {
+          const errData = await res.json();
+          if (errData?.error) mensaje = errData.error;
+        } catch {
+          // respuesta sin JSON, conservar mensaje genérico
+        }
+        throw new Error(mensaje);
+      }
       setEnviado(true);
       reset();
       setCedula("");
@@ -188,8 +197,8 @@ export default function FormProveedor() {
       setTieneCobros(false);
       setMostrarTodo(false);
       setErrorHacienda("");
-    } catch {
-      alert("Ocurrió un error al enviar el formulario. Intente de nuevo.");
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Ocurrió un error al enviar el formulario. Intente de nuevo.");
     } finally {
       setEnviando(false);
     }
