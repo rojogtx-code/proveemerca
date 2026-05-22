@@ -70,6 +70,26 @@ export const proveedorSchema = z
     cobrosWhatsApp: optionalPhone,
   })
   .superRefine((data, ctx) => {
+    // Validación condicional: Actividad Económica
+    // Si Hacienda reporta actividades (tieneActividad === true), el usuario
+    // debe seleccionar una. Si no hay actividades, se permite continuar sin ella.
+    if (data.tieneActividad) {
+      if (!data.codActividadEconomica || data.codActividadEconomica.trim() === "") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Seleccione una actividad económica",
+          path: ["codActividadEconomica"],
+        });
+      }
+      if (!data.actEconomicaPrincipal || data.actEconomicaPrincipal.trim() === "") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Seleccione una actividad económica",
+          path: ["actEconomicaPrincipal"],
+        });
+      }
+    }
+
     // Validación condicional: Cuentas Bancarias
     data.cuentas.forEach((cuenta, index) => {
       if (cuenta.banco === "Otros" && (!cuenta.otroBanco || cuenta.otroBanco.trim().length < 2)) {

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 type Fila = string[];
+type Dir = "asc" | "desc";
 
 const HEADERS = [
   "id", "fecha_registro", "tipo_cedula_id", "tipo_cedula_nombre", "es_compania", "cedula",
@@ -18,6 +19,60 @@ const HEADERS = [
   "tiene_cobros", "cobros_nombre", "cobros_email", "cobros_telefono", "cobros_whatsapp",
   "es_cliente", "es_proveedor"
 ];
+
+// Columnas que deben tratarse como fecha al ordenar (la celda guarda ISO,
+// el render aplica toLocaleString("es-CR")).
+const FECHA_COLS = new Set<number>([1]);
+// Columnas que deben tratarse como número al ordenar (ids y códigos).
+const NUMERIC_COLS = new Set<number>([0, 2, 7, 8, 10, 12, 14, 16, 20]);
+
+function esVacio(v: unknown): boolean {
+  if (v === null || v === undefined) return true;
+  const s = String(v).trim();
+  return s === "" || s === "—";
+}
+
+// Compara dos valores; los vacíos siempre van al final, independientemente del sentido.
+function comparar(a: unknown, b: unknown, dir: Dir, tipo: "fecha" | "numero" | "texto"): number {
+  const aVacio = esVacio(a);
+  const bVacio = esVacio(b);
+  if (aVacio && bVacio) return 0;
+  if (aVacio) return 1;
+  if (bVacio) return -1;
+
+  let cmp = 0;
+  if (tipo === "fecha") {
+    const da = new Date(String(a)).getTime();
+    const db = new Date(String(b)).getTime();
+    if (Number.isNaN(da) && Number.isNaN(db)) cmp = 0;
+    else if (Number.isNaN(da)) cmp = 1;
+    else if (Number.isNaN(db)) cmp = -1;
+    else cmp = da - db;
+  } else if (tipo === "numero") {
+    const na = Number(a);
+    const nb = Number(b);
+    if (Number.isFinite(na) && Number.isFinite(nb)) cmp = na - nb;
+    else cmp = String(a).localeCompare(String(b), "es", { numeric: true });
+  } else {
+    cmp = String(a).localeCompare(String(b), "es", { sensitivity: "base", numeric: true });
+  }
+  return dir === "asc" ? cmp : -cmp;
+}
+
+function formatearFecha(iso: string): string {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? iso : d.toLocaleString("es-CR");
+}
+
+function IndicadorOrden({ activo, dir }: { activo: boolean; dir: Dir | null }) {
+  if (!activo) {
+    return <span className="ml-1 opacity-40 select-none" aria-hidden>↕</span>;
+  }
+  return (
+    <span className="ml-1 select-none" aria-hidden>{dir === "asc" ? "↑" : "↓"}</span>
+  );
+}
 
 export default function AdminPage() {
   const [filas, setFilas] = useState<Fila[]>([]);
@@ -38,6 +93,26 @@ export default function AdminPage() {
   const [cargandoValidacion, setCargandoValidacion] = useState(false);
   const [busquedaValidacion, setBusquedaValidacion] = useState("");
   const [filtroEstado, setFiltroEstado] = useState<"Todos" | "Pendiente" | "Completado">("Todos");
+
+  // Estado de ordenamiento por columna (3 estados: ninguno -> asc -> desc -> ninguno).
+  const [sortDetallados, setSortDetallados] = useState<{ col: number; dir: Dir } | null>(null);
+  const [sortValidacion, setSortValidacion] = useState<{ col: keyof ValidacionFila; dir: Dir } | null>(null);
+
+  function alternarSortDetallados(col: number) {
+    setSortDetallados((prev) => {
+      if (!prev || prev.col !== col) return { col, dir: "asc" };
+      if (prev.dir === "asc") return { col, dir: "desc" };
+      return null;
+    });
+  }
+
+  function alternarSortValidacion(col: keyof ValidacionFila) {
+    setSortValidacion((prev) => {
+      if (!prev || prev.col !== col) return { col, dir: "asc" };
+      if (prev.dir === "asc") return { col, dir: "desc" };
+      return null;
+    });
+  }
 
   const handleLogout = async () => {
     try {
@@ -69,7 +144,8 @@ export default function AdminPage() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const mappedRows = data.rows.map((p: any) => [
           p.id,
-          new Date(p.created_at).toLocaleString("es-CR"),
+          // ISO crudo para permitir ordenamiento por fecha; se formatea al renderizar.
+          p.created_at ?? "",
           p.tipo_cedula_id,
           p.tipo_cedula_nombre,
           p.es_compania,
@@ -155,7 +231,12 @@ export default function AdminPage() {
   }, [vistaActiva, router]);
 
   function descargarCSV() {
-    const csv = Papa.unparse({ fields: HEADERS, data: filas });
+    // Para el CSV usamos las filas ya filtradas y ordenadas, y formateamos
+    // las columnas de fecha al formato es-CR.
+    const dataExport = filasFiltradas.map((fila) =>
+      fila.map((celda, j) => (FECHA_COLS.has(j) ? formatearFecha(String(celda ?? "")) : celda))
+    );
+    const csv = Papa.unparse({ fields: HEADERS, data: dataExport });
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -185,18 +266,31 @@ export default function AdminPage() {
     URL.revokeObjectURL(url);
   }
 
-  const filasFiltradas = filas.filter((fila) =>
-    fila.some((celda) =>
-      String(celda || "").toLowerCase().includes(busqueda.toLowerCase())
-    )
+  const qDetallados = busqueda.toLowerCase();
+  const filasBuscadas = filas.filter((fila) =>
+    fila.some((celda, j) => {
+      // En la columna de fecha el valor guardado es ISO; al buscar usamos
+      // el formato visible para que el usuario encuentre por "22/5/2026".
+      const visible = FECHA_COLS.has(j) ? formatearFecha(String(celda ?? "")) : String(celda ?? "");
+      return visible.toLowerCase().includes(qDetallados);
+    })
   );
+  const filasFiltradas = sortDetallados
+    ? [...filasBuscadas].sort((a, b) => {
+        const { col, dir } = sortDetallados;
+        const tipo: "fecha" | "numero" | "texto" = FECHA_COLS.has(col)
+          ? "fecha"
+          : NUMERIC_COLS.has(col)
+          ? "numero"
+          : "texto";
+        return comparar(a[col], b[col], dir, tipo);
+      })
+    : filasBuscadas;
 
-  const filasValidacionFiltradas = filasValidacion.filter((f) => {
-    // 1. Filtrar por estado
+  const filasValidacionBase = filasValidacion.filter((f) => {
     if (filtroEstado !== "Todos" && f.estado_formulario !== filtroEstado) {
       return false;
     }
-    // 2. Filtrar por búsqueda (nombre o cédula)
     if (busquedaValidacion.trim() !== "") {
       const query = busquedaValidacion.toLowerCase();
       return (
@@ -206,6 +300,14 @@ export default function AdminPage() {
     }
     return true;
   });
+  const filasValidacionFiltradas = sortValidacion
+    ? [...filasValidacionBase].sort((a, b) => {
+        const { col, dir } = sortValidacion;
+        const tipo: "fecha" | "numero" | "texto" =
+          col === "updated_at" ? "fecha" : col === "cedula" ? "numero" : "texto";
+        return comparar(a[col], b[col], dir, tipo);
+      })
+    : filasValidacionBase;
 
   return (
     <main className="min-h-screen bg-slate-50 py-10 px-4">
@@ -363,14 +465,28 @@ export default function AdminPage() {
                 <table className="w-full text-sm">
                   <thead className="bg-mercasa-blue text-white text-xs uppercase tracking-wider">
                     <tr>
-                      {HEADERS.map((h) => (
-                        <th
-                          key={h}
-                          className="px-6 py-4 text-left font-bold whitespace-nowrap"
-                        >
-                          {h}
-                        </th>
-                      ))}
+                      {HEADERS.map((h, j) => {
+                        const activo = sortDetallados?.col === j;
+                        const dir = activo ? sortDetallados!.dir : null;
+                        return (
+                          <th
+                            key={h}
+                            scope="col"
+                            aria-sort={activo ? (dir === "asc" ? "ascending" : "descending") : "none"}
+                            className="px-6 py-4 text-left font-bold whitespace-nowrap"
+                          >
+                            <button
+                              type="button"
+                              onClick={() => alternarSortDetallados(j)}
+                              title="Ordenar por esta columna"
+                              className="inline-flex items-center gap-1 cursor-pointer hover:text-white/80 transition-colors uppercase"
+                            >
+                              <span>{h}</span>
+                              <IndicadorOrden activo={activo} dir={dir} />
+                            </button>
+                          </th>
+                        );
+                      })}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -379,14 +495,20 @@ export default function AdminPage() {
                         key={i}
                         className="hover:bg-slate-50 transition-colors"
                       >
-                        {HEADERS.map((_, j) => (
-                          <td
-                            key={j}
-                            className="px-6 py-4 text-slate-600 whitespace-nowrap"
-                          >
-                            {fila[j] ?? "—"}
-                          </td>
-                        ))}
+                        {HEADERS.map((_, j) => {
+                          const valor = fila[j];
+                          const visible = FECHA_COLS.has(j)
+                            ? formatearFecha(String(valor ?? ""))
+                            : (valor ?? "—");
+                          return (
+                            <td
+                              key={j}
+                              className="px-6 py-4 text-slate-600 whitespace-nowrap"
+                            >
+                              {visible}
+                            </td>
+                          );
+                        })}
                       </tr>
                     ))}
                   </tbody>
@@ -407,10 +529,33 @@ export default function AdminPage() {
                 <table className="w-full text-sm">
                   <thead className="bg-slate-100 text-slate-700 text-xs uppercase tracking-wider border-b border-slate-200">
                     <tr>
-                      <th className="px-6 py-4 text-left font-bold whitespace-nowrap">Cédula</th>
-                      <th className="px-6 py-4 text-left font-bold whitespace-nowrap">Nombre / Razón Social</th>
-                      <th className="px-6 py-4 text-left font-bold whitespace-nowrap">Estado</th>
-                      <th className="px-6 py-4 text-left font-bold whitespace-nowrap">Fecha de Actualización</th>
+                      {([
+                        { key: "cedula", label: "Cédula" },
+                        { key: "nombre", label: "Nombre / Razón Social" },
+                        { key: "estado_formulario", label: "Estado" },
+                        { key: "updated_at", label: "Fecha de Actualización" },
+                      ] as { key: keyof ValidacionFila; label: string }[]).map(({ key, label }) => {
+                        const activo = sortValidacion?.col === key;
+                        const dir = activo ? sortValidacion!.dir : null;
+                        return (
+                          <th
+                            key={key}
+                            scope="col"
+                            aria-sort={activo ? (dir === "asc" ? "ascending" : "descending") : "none"}
+                            className="px-6 py-4 text-left font-bold whitespace-nowrap"
+                          >
+                            <button
+                              type="button"
+                              onClick={() => alternarSortValidacion(key)}
+                              title="Ordenar por esta columna"
+                              className="inline-flex items-center gap-1 cursor-pointer hover:text-slate-900 transition-colors uppercase"
+                            >
+                              <span>{label}</span>
+                              <IndicadorOrden activo={activo} dir={dir} />
+                            </button>
+                          </th>
+                        );
+                      })}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">

@@ -395,19 +395,26 @@ export default function FormProveedor() {
               {/* Actividad económica - solo si tiene actividades */}
               {datosHacienda.actividades && datosHacienda.actividades.length > 0 && (
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Actividad Económica Principal</label>
+                  <label className="text-sm font-medium text-gray-700">
+                    Actividad Económica Principal <span className="text-red-500">*</span>
+                  </label>
                   <select
+                    value={watch("codActividadEconomica") || ""}
                     onChange={(e) => {
                       const selected = datosHacienda.actividades.find(a => a.codigo === e.target.value);
                       if (selected) {
-                        setValue("codActividadEconomica", selected.codigo);
-                        setValue("actEconomicaPrincipal", selected.descripcion);
+                        setValue("codActividadEconomica", selected.codigo, { shouldValidate: true });
+                        setValue("actEconomicaPrincipal", selected.descripcion, { shouldValidate: true });
                       } else {
-                        setValue("codActividadEconomica", "");
-                        setValue("actEconomicaPrincipal", "");
+                        setValue("codActividadEconomica", "", { shouldValidate: true });
+                        setValue("actEconomicaPrincipal", "", { shouldValidate: true });
                       }
                     }}
-                    className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
+                    className={`border bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none ${
+                      errors.codActividadEconomica || errors.actEconomicaPrincipal
+                        ? "border-red-400 bg-red-50/50"
+                        : "border-slate-300"
+                    }`}
                   >
                     <option value="">Seleccione una actividad</option>
                     {datosHacienda.actividades
@@ -418,7 +425,11 @@ export default function FormProveedor() {
                         </option>
                       ))}
                   </select>
-                  {errors.actEconomicaPrincipal && <span className="text-xs text-red-500">{errors.actEconomicaPrincipal.message}</span>}
+                  {(errors.codActividadEconomica || errors.actEconomicaPrincipal) && (
+                    <span className="text-xs text-red-500">
+                      {errors.codActividadEconomica?.message || errors.actEconomicaPrincipal?.message}
+                    </span>
+                  )}
                 </div>
               )}
 
