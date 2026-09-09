@@ -69,19 +69,19 @@ function telefono(numero: string | null, ext: string | null): string {
 function Campo({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col">
-      <span className="text-[8px] font-bold text-slate-500 uppercase tracking-wide">{label}</span>
-      <span className="text-[10px] text-slate-800 break-words">{value}</span>
+      <span className="text-[7px] font-bold text-slate-500 uppercase tracking-wide">{label}</span>
+      <span className="text-[9px] text-slate-800 break-words leading-tight">{value}</span>
     </div>
   );
 }
 
 function Seccion({ titulo, children }: { titulo: string; children: React.ReactNode }) {
   return (
-    <div className="print:break-inside-avoid mb-2.5">
-      <div className="bg-mercasa-blue text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-t">
+    <div className="print:break-inside-avoid mb-1.5">
+      <div className="bg-mercasa-blue text-white text-[8.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-t">
         {titulo}
       </div>
-      <div className="border border-t-0 border-slate-200 rounded-b p-2 grid grid-cols-3 gap-x-3 gap-y-1.5">
+      <div className="border border-t-0 border-slate-200 rounded-b px-1.5 py-1 grid grid-cols-3 gap-x-3 gap-y-1">
         {children}
       </div>
     </div>
@@ -187,7 +187,7 @@ export default function GenerarPDF() {
       {/* Ficha imprimible: oculta en pantalla, visible solo al imprimir */}
       {proveedor && (
         <div className="hidden print:block text-slate-900">
-          <div className="flex items-center justify-between border-b-2 border-mercasa-blue pb-2 mb-3">
+          <div className="flex items-center justify-between border-b-2 border-mercasa-blue pb-1 mb-2">
             <h1 className="text-base font-bold">Ficha de Proveedor — Mercasa</h1>
             <span className="text-[9px] text-slate-500">Generado el {new Date().toLocaleString("es-CR")}</span>
           </div>
