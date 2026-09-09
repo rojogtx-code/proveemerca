@@ -1,4 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
+import { verifySessionToken } from '@/lib/session';
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -6,12 +7,15 @@ export function proxy(request: NextRequest) {
   // Rutas que requieren autenticación
   if (pathname.startsWith('/admin')) {
     const session = request.cookies.get('admin_session');
+    const payload = verifySessionToken(session?.value);
 
-    if (!session) {
-      // Si no hay sesión, redirigir al login
+    if (!payload) {
+      // Si no hay sesión válida, redirigir al login y limpiar cualquier cookie inválida/forjada
       const url = request.nextUrl.clone();
       url.pathname = '/login';
-      return NextResponse.redirect(url);
+      const response = NextResponse.redirect(url);
+      response.cookies.delete('admin_session');
+      return response;
     }
   }
 
