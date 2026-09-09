@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 import { cookies } from "next/headers";
+import { verifySessionToken } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
@@ -9,8 +10,9 @@ export async function GET() {
     // 1. Validar sesión en el servidor
     const cookieStore = await cookies();
     const session = cookieStore.get("admin_session");
+    const payload = verifySessionToken(session?.value);
 
-    if (!session) {
+    if (!payload) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 

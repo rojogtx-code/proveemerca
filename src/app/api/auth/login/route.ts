@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { supabaseAdmin } from "@/lib/supabase";
+import { createSessionToken } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
@@ -23,9 +24,10 @@ export async function POST(req: Request) {
     const userFound = Array.isArray(usuario) ? usuario[0] : usuario;
 
     if (userFound) {
+      const token = createSessionToken({ sub: userFound.id, email: userFound.email });
 
       const cookieStore = await cookies();
-      cookieStore.set("admin_session", "true", {
+      cookieStore.set("admin_session", token, {
         path: "/",
         maxAge: 86400,
         sameSite: "lax",
