@@ -102,6 +102,7 @@ export const proveedorSchema = z
     });
 
     // Validación condicional: Moneda del Crédito (solo si el plazo no es "Contado")
+    console.log("DEBUG_SUPERREFINE", "plazoPagoDias=", JSON.stringify(data.plazoPagoDias), "monedaCredito=", JSON.stringify(data.monedaCredito));
     if (data.plazoPagoDias && data.plazoPagoDias !== "0") {
       if (!data.monedaCredito || data.monedaCredito.trim() === "") {
         ctx.addIssue({
