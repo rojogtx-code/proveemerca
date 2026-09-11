@@ -75,13 +75,13 @@ function Campo({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Seccion({ titulo, children }: { titulo: string; children: React.ReactNode }) {
+function Seccion({ titulo, children, gridCols = "grid-cols-3" }: { titulo: string; children: React.ReactNode; gridCols?: string }) {
   return (
     <div className="print:break-inside-avoid mb-1.5">
       <div className="bg-mercasa-blue text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-t">
         {titulo}
       </div>
-      <div className="border border-t-0 border-slate-200 rounded-b px-2 py-1 grid grid-cols-3 gap-x-4 gap-y-1">
+      <div className={`border border-t-0 border-slate-200 rounded-b px-2 py-1 grid ${gridCols} gap-x-4 gap-y-1`}>
         {children}
       </div>
     </div>
@@ -98,17 +98,13 @@ function Ficha({ proveedor }: { proveedor: Proveedor }) {
 
       <Seccion titulo="Identificación">
         <Campo label="Cédula" value={val(proveedor.cedula)} />
+        <Campo label="Nombre / Razón Social" value={val(proveedor.nombre_proveedor)} />
         <Campo label="Tipo" value={val(proveedor.tipo_cedula_nombre)} />
-        <div className="col-span-3">
-          <Campo label="Nombre / Razón Social" value={val(proveedor.nombre_proveedor)} />
-        </div>
       </Seccion>
 
-      <Seccion titulo="Actividad Económica">
+      <Seccion titulo="Actividad Económica" gridCols="grid-cols-[90px_1fr]">
         <Campo label="Código" value={val(proveedor.cod_actividad_economica)} />
-        <div className="col-span-3">
-          <Campo label="Descripción" value={val(proveedor.act_economica_principal)} />
-        </div>
+        <Campo label="Descripción" value={val(proveedor.act_economica_principal)} />
       </Seccion>
 
       <Seccion titulo="Ubicación">
@@ -129,7 +125,7 @@ function Ficha({ proveedor }: { proveedor: Proveedor }) {
         <Campo label="Correo Comprobantes" value={val(proveedor.correo_comprobantes)} />
       </Seccion>
 
-      <Seccion titulo="Contacto de Ventas">
+      <Seccion titulo="Contacto de Ventas" gridCols="grid-cols-4">
         <Campo label="Nombre" value={val(proveedor.ventas_nombre)} />
         <Campo label="Email" value={val(proveedor.ventas_email)} />
         <Campo label="Teléfono" value={telefono(proveedor.ventas_telefono, proveedor.ventas_ext_telefono)} />
@@ -137,7 +133,7 @@ function Ficha({ proveedor }: { proveedor: Proveedor }) {
       </Seccion>
 
       {proveedor.tiene_facturador && (
-        <Seccion titulo="Contacto de Facturación">
+        <Seccion titulo="Contacto de Facturación" gridCols="grid-cols-4">
           <Campo label="Nombre" value={val(proveedor.facturador_nombre)} />
           <Campo label="Email" value={val(proveedor.facturador_email)} />
           <Campo label="Teléfono" value={telefono(proveedor.facturador_telefono, proveedor.facturador_ext_telefono)} />
@@ -146,7 +142,7 @@ function Ficha({ proveedor }: { proveedor: Proveedor }) {
       )}
 
       {proveedor.tiene_cobros && (
-        <Seccion titulo="Contacto de Cobros">
+        <Seccion titulo="Contacto de Cobros" gridCols="grid-cols-4">
           <Campo label="Nombre" value={val(proveedor.cobros_nombre)} />
           <Campo label="Email" value={val(proveedor.cobros_email)} />
           <Campo label="Teléfono" value={telefono(proveedor.cobros_telefono, proveedor.cobros_ext_telefono)} />
