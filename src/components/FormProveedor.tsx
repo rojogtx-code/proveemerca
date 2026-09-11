@@ -304,7 +304,7 @@ export default function FormProveedor() {
 
       {/* Alerta Sin Actividad eliminada para permitir registro sin actividades */}
 
-      <form noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+      <form noValidate onSubmit={handleSubmit(onSubmit, (errs) => console.log("DEBUG_VALIDATION_ERRORS", JSON.stringify(errs)))} className="flex flex-col gap-6">
 
         {/* Cédula */}
         <div className="flex flex-col gap-1">
