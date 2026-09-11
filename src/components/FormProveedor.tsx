@@ -44,7 +44,7 @@ export default function FormProveedor() {
     register,
     handleSubmit,
     setValue,
-
+    setError,
     watch,
     control: fieldsControl,
     formState: { errors },
@@ -165,6 +165,14 @@ export default function FormProveedor() {
   }
 
   async function onSubmit(data: ProveedorFormData) {
+    // Requisito condicional: moneda del crédito obligatoria cuando el plazo
+    // no es "Contado". No se valida en el schema zod (ver nota en
+    // validations.ts) porque los issues de superRefine no llegan a
+    // formState.errors con las versiones actuales de zod/@hookform/resolvers.
+    if (data.plazoPagoDias && data.plazoPagoDias !== "0" && (!data.monedaCredito || data.monedaCredito.trim() === "")) {
+      setError("monedaCredito", { type: "manual", message: "Seleccione la moneda del crédito" });
+      return;
+    }
     await enviarDatos(data);
   }
 
@@ -509,7 +517,9 @@ export default function FormProveedor() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-700">Plazo de Pago</label>
+                <label className="text-sm font-medium text-gray-700">
+                  Plazo de Pago <span className="text-red-500">*</span>
+                </label>
                 <select
                   {...register("plazoPagoDias")}
                   className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
@@ -539,7 +549,9 @@ export default function FormProveedor() {
             {esCredito && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-medium text-gray-700">Moneda del Crédito</label>
+                  <label className="text-sm font-medium text-gray-700">
+                    Moneda del Crédito <span className="text-red-500">*</span>
+                  </label>
                   <select
                     {...register("monedaCredito")}
                     className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-mercasa-blue transition-all appearance-none"
@@ -548,6 +560,7 @@ export default function FormProveedor() {
                     <option value="CRC">Colones (CRC)</option>
                     <option value="USD">Dólares (USD)</option>
                   </select>
+                  {errors.monedaCredito && <span className="text-xs text-red-500">{errors.monedaCredito.message}</span>}
                 </div>
 
                 <div className="flex flex-col gap-1">
