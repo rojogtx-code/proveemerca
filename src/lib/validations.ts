@@ -101,17 +101,18 @@ export const proveedorSchema = z
       }
     });
 
-    // Validación condicional: Moneda del Crédito (solo si el plazo no es "Contado")
-    console.log("DEBUG_SUPERREFINE", "plazoPagoDias=", JSON.stringify(data.plazoPagoDias), "monedaCredito=", JSON.stringify(data.monedaCredito));
-    if (data.plazoPagoDias && data.plazoPagoDias !== "0") {
-      if (!data.monedaCredito || data.monedaCredito.trim() === "") {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Seleccione la moneda del crédito",
-          path: ["monedaCredito"],
-        });
-      }
-    }
+    // Nota: el requisito de moneda del crédito (obligatoria cuando el plazo no es
+    // "Contado") NO se valida aquí con superRefine. En este proyecto, con esta
+    // combinación de versiones de zod (^4.3.6) y @hookform/resolvers (^5.2.2),
+    // los issues generados dentro de superRefine no llegan a formState.errors
+    // en el navegador cuando el objeto ya tiene otros campos con errores base
+    // (confirmado con pruebas end-to-end: el resolver de @hookform/resolvers
+    // llama a zod/v4/core parseAsync y el callback de superRefine nunca se
+    // invoca en ese caso, aunque en Node/tsx aislado sí se ejecuta correctamente).
+    // Por eso esta regla se aplica de forma manual en FormProveedor.tsx (onSubmit)
+    // con setError(), que es independiente de este pipeline. Si en el futuro se
+    // actualizan estas dependencias, vale la pena revisar si superRefine ya
+    // funciona de forma confiable y simplificar moviendo la regla de vuelta aquí.
 
     // Validación condicional: Email Factura (solo si es cliente)
     if (data.esCliente === "Si") {

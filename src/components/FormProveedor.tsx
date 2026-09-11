@@ -44,7 +44,7 @@ export default function FormProveedor() {
     register,
     handleSubmit,
     setValue,
-
+    setError,
     watch,
     control: fieldsControl,
     formState: { errors },
@@ -165,6 +165,14 @@ export default function FormProveedor() {
   }
 
   async function onSubmit(data: ProveedorFormData) {
+    // Requisito condicional: moneda del crédito obligatoria cuando el plazo
+    // no es "Contado". No se valida en el schema zod (ver nota en
+    // validations.ts) porque los issues de superRefine no llegan a
+    // formState.errors con las versiones actuales de zod/@hookform/resolvers.
+    if (data.plazoPagoDias && data.plazoPagoDias !== "0" && (!data.monedaCredito || data.monedaCredito.trim() === "")) {
+      setError("monedaCredito", { type: "manual", message: "Seleccione la moneda del crédito" });
+      return;
+    }
     await enviarDatos(data);
   }
 
@@ -304,7 +312,7 @@ export default function FormProveedor() {
 
       {/* Alerta Sin Actividad eliminada para permitir registro sin actividades */}
 
-      <form noValidate onSubmit={handleSubmit(onSubmit, (errs) => console.log("DEBUG_VALIDATION_ERRORS_KEYS", Object.keys(errs).join(","), "monedaCredito=", errs.monedaCredito?.message, "plazoPagoDias=", errs.plazoPagoDias?.message))} className="flex flex-col gap-6">
+      <form noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
         {/* Cédula */}
         <div className="flex flex-col gap-1">
