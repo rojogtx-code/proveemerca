@@ -69,21 +69,115 @@ function telefono(numero: string | null, ext: string | null): string {
 function Campo({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col">
-      <span className="text-[7px] font-bold text-slate-500 uppercase tracking-wide">{label}</span>
-      <span className="text-[9px] text-slate-800 break-words leading-tight">{value}</span>
+      <span className="text-[8px] font-bold text-slate-500 uppercase tracking-wide">{label}</span>
+      <span className="text-[11px] text-slate-800 break-words leading-tight">{value}</span>
     </div>
   );
 }
 
 function Seccion({ titulo, children }: { titulo: string; children: React.ReactNode }) {
   return (
-    <div className="print:break-inside-avoid mb-1.5">
-      <div className="bg-mercasa-blue text-white text-[8.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-t">
+    <div className="print:break-inside-avoid mb-2">
+      <div className="bg-mercasa-blue text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-t">
         {titulo}
       </div>
-      <div className="border border-t-0 border-slate-200 rounded-b px-1.5 py-1 grid grid-cols-3 gap-x-3 gap-y-1">
+      <div className="border border-t-0 border-slate-200 rounded-b px-2 py-1.5 grid grid-cols-3 gap-x-4 gap-y-1.5">
         {children}
       </div>
+    </div>
+  );
+}
+
+function Ficha({ proveedor }: { proveedor: Proveedor }) {
+  return (
+    <div className="text-slate-900">
+      <div className="flex items-center justify-between border-b-2 border-mercasa-blue pb-1 mb-2">
+        <h1 className="text-lg font-bold">Ficha de Proveedor — Mercasa</h1>
+        <span className="text-[10px] text-slate-500">Generado el {new Date().toLocaleString("es-CR")}</span>
+      </div>
+
+      <Seccion titulo="Identificación">
+        <Campo label="Cédula" value={val(proveedor.cedula)} />
+        <Campo label="Tipo" value={val(proveedor.tipo_cedula_nombre)} />
+        <Campo label="Es Compañía" value={val(proveedor.es_compania)} />
+        <div className="col-span-3">
+          <Campo label="Nombre / Razón Social" value={val(proveedor.nombre_proveedor)} />
+        </div>
+        <Campo label="Es Cliente" value={val(proveedor.es_cliente)} />
+      </Seccion>
+
+      <Seccion titulo="Actividad Económica">
+        <Campo label="Código" value={val(proveedor.cod_actividad_economica)} />
+        <Campo label="Tiene Actividad" value={proveedor.tiene_actividad ? "Sí" : "No"} />
+        <div className="col-span-3">
+          <Campo label="Descripción" value={val(proveedor.act_economica_principal)} />
+        </div>
+      </Seccion>
+
+      <Seccion titulo="Ubicación">
+        <Campo label="Provincia" value={val(proveedor.provincia)} />
+        <Campo label="Cantón" value={val(proveedor.canton)} />
+        <Campo label="Distrito" value={val(proveedor.distrito)} />
+        <Campo label="Barrio" value={val(proveedor.barrio)} />
+        <div className="col-span-2">
+          <Campo label="Dirección Exacta" value={val(proveedor.direccion_exacta)} />
+        </div>
+      </Seccion>
+
+      <Seccion titulo="Condiciones Comerciales">
+        <Campo label="Forma de Pago" value={val(proveedor.forma_pago)} />
+        <Campo label="Plazo" value={val(proveedor.plazo_pago_dias)} />
+        <Campo label="Moneda Crédito" value={val(proveedor.moneda_credito)} />
+        <Campo label="Monto Crédito" value={val(proveedor.monto_credito)} />
+        <Campo label="Email Factura" value={val(proveedor.email_factura)} />
+        <Campo label="Correo Comprobantes" value={val(proveedor.correo_comprobantes)} />
+      </Seccion>
+
+      <Seccion titulo="Contacto de Ventas">
+        <Campo label="Nombre" value={val(proveedor.ventas_nombre)} />
+        <Campo label="Email" value={val(proveedor.ventas_email)} />
+        <Campo label="Teléfono" value={telefono(proveedor.ventas_telefono, proveedor.ventas_ext_telefono)} />
+        <Campo label="WhatsApp" value={telefono(proveedor.ventas_whatsapp, proveedor.ventas_ext_whatsapp)} />
+      </Seccion>
+
+      {proveedor.tiene_facturador && (
+        <Seccion titulo="Contacto de Facturación">
+          <Campo label="Nombre" value={val(proveedor.facturador_nombre)} />
+          <Campo label="Email" value={val(proveedor.facturador_email)} />
+          <Campo label="Teléfono" value={telefono(proveedor.facturador_telefono, proveedor.facturador_ext_telefono)} />
+          <Campo label="WhatsApp" value={telefono(proveedor.facturador_whatsapp, proveedor.facturador_ext_whatsapp)} />
+        </Seccion>
+      )}
+
+      {proveedor.tiene_cobros && (
+        <Seccion titulo="Contacto de Cobros">
+          <Campo label="Nombre" value={val(proveedor.cobros_nombre)} />
+          <Campo label="Email" value={val(proveedor.cobros_email)} />
+          <Campo label="Teléfono" value={telefono(proveedor.cobros_telefono, proveedor.cobros_ext_telefono)} />
+          <Campo label="WhatsApp" value={telefono(proveedor.cobros_whatsapp, proveedor.cobros_ext_whatsapp)} />
+        </Seccion>
+      )}
+
+      <Seccion titulo="Cuentas Bancarias">
+        {!proveedor.cuentas_bancarias || proveedor.cuentas_bancarias.length === 0 ? (
+          <div className="col-span-3 text-[11px] text-slate-500">Sin cuentas bancarias registradas.</div>
+        ) : (
+          [...proveedor.cuentas_bancarias]
+            .sort((a, b) => a.orden - b.orden)
+            .map((c) => (
+              <div className="col-span-3" key={c.id}>
+                <Campo
+                  label={`Cuenta ${c.orden}`}
+                  value={`${val(c.banco_nombre)} (${val(c.moneda)}) — IBAN: ${val(c.iban)}${c.cuenta_corriente ? ` — Cta. Corriente: ${c.cuenta_corriente}` : ""}`}
+                />
+              </div>
+            ))
+        )}
+      </Seccion>
+
+      <p className="text-[9px] text-slate-400 mt-2">
+        Documento generado automáticamente desde el panel administrativo de Mercasa.
+      </p>
     </div>
   );
 }
@@ -131,7 +225,7 @@ export default function GenerarPDF() {
     <div>
       {/* Controles de búsqueda: no se imprimen */}
       <div className="print:hidden bg-white rounded-2xl shadow-md border border-slate-200 p-6">
-        <form onSubmit={buscar} className="flex flex-wrap items-end gap-3 mb-6">
+        <form onSubmit={buscar} className="flex flex-wrap items-end gap-3">
           <div className="flex-1 min-w-[240px]">
             <label htmlFor="cedula-pdf" className="block text-xs font-semibold text-slate-500 mb-1">
               Número de cédula del proveedor
@@ -156,124 +250,32 @@ export default function GenerarPDF() {
         </form>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3 mb-4">
+          <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3 mt-4">
             {error}
           </div>
         )}
 
         {proveedor && (
-          <div className="border border-slate-200 rounded-xl p-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Proveedor encontrado</p>
-                <p className="text-lg font-bold text-slate-800">{val(proveedor.nombre_proveedor)}</p>
-                <p className="text-sm text-slate-500">Cédula: {val(proveedor.cedula)} · {val(proveedor.tipo_cedula_nombre)}</p>
-              </div>
-              <button
-                onClick={() => window.print()}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-                Generar PDF
-              </button>
-            </div>
-            <p className="text-xs text-slate-400 mt-3">
-              Se abrirá el diálogo de impresión de tu navegador — elige &quot;Guardar como PDF&quot; como destino para descargar la ficha.
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mt-4 pt-4 border-t border-slate-100">
+            <p className="text-sm text-slate-500">
+              Revisa los datos del proveedor abajo. Si todo está correcto, genera el PDF.
             </p>
+            <button
+              onClick={() => window.print()}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap shrink-0"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Generar PDF
+            </button>
           </div>
         )}
       </div>
 
-      {/* Ficha imprimible: oculta en pantalla, visible solo al imprimir */}
+      {/* Previsualización: visible en pantalla para verificar los datos, y es la misma
+          vista que se imprime (@media print oculta todo lo demás vía print:hidden). */}
       {proveedor && (
-        <div className="hidden print:block text-slate-900">
-          <div className="flex items-center justify-between border-b-2 border-mercasa-blue pb-1 mb-2">
-            <h1 className="text-base font-bold">Ficha de Proveedor — Mercasa</h1>
-            <span className="text-[9px] text-slate-500">Generado el {new Date().toLocaleString("es-CR")}</span>
-          </div>
-
-          <Seccion titulo="Identificación">
-            <Campo label="Cédula" value={val(proveedor.cedula)} />
-            <Campo label="Tipo" value={val(proveedor.tipo_cedula_nombre)} />
-            <Campo label="Es Compañía" value={val(proveedor.es_compania)} />
-            <div className="col-span-3">
-              <Campo label="Nombre / Razón Social" value={val(proveedor.nombre_proveedor)} />
-            </div>
-            <Campo label="Es Cliente" value={val(proveedor.es_cliente)} />
-          </Seccion>
-
-          <Seccion titulo="Actividad Económica">
-            <Campo label="Código" value={val(proveedor.cod_actividad_economica)} />
-            <Campo label="Tiene Actividad" value={proveedor.tiene_actividad ? "Sí" : "No"} />
-            <div className="col-span-3">
-              <Campo label="Descripción" value={val(proveedor.act_economica_principal)} />
-            </div>
-          </Seccion>
-
-          <Seccion titulo="Ubicación">
-            <Campo label="Provincia" value={val(proveedor.provincia)} />
-            <Campo label="Cantón" value={val(proveedor.canton)} />
-            <Campo label="Distrito" value={val(proveedor.distrito)} />
-            <Campo label="Barrio" value={val(proveedor.barrio)} />
-            <div className="col-span-2">
-              <Campo label="Dirección Exacta" value={val(proveedor.direccion_exacta)} />
-            </div>
-          </Seccion>
-
-          <Seccion titulo="Condiciones Comerciales">
-            <Campo label="Forma de Pago" value={val(proveedor.forma_pago)} />
-            <Campo label="Plazo" value={val(proveedor.plazo_pago_dias)} />
-            <Campo label="Moneda Crédito" value={val(proveedor.moneda_credito)} />
-            <Campo label="Monto Crédito" value={val(proveedor.monto_credito)} />
-            <Campo label="Email Factura" value={val(proveedor.email_factura)} />
-            <Campo label="Correo Comprobantes" value={val(proveedor.correo_comprobantes)} />
-          </Seccion>
-
-          <Seccion titulo="Contacto de Ventas">
-            <Campo label="Nombre" value={val(proveedor.ventas_nombre)} />
-            <Campo label="Email" value={val(proveedor.ventas_email)} />
-            <Campo label="Teléfono" value={telefono(proveedor.ventas_telefono, proveedor.ventas_ext_telefono)} />
-            <Campo label="WhatsApp" value={telefono(proveedor.ventas_whatsapp, proveedor.ventas_ext_whatsapp)} />
-          </Seccion>
-
-          {proveedor.tiene_facturador && (
-            <Seccion titulo="Contacto de Facturación">
-              <Campo label="Nombre" value={val(proveedor.facturador_nombre)} />
-              <Campo label="Email" value={val(proveedor.facturador_email)} />
-              <Campo label="Teléfono" value={telefono(proveedor.facturador_telefono, proveedor.facturador_ext_telefono)} />
-              <Campo label="WhatsApp" value={telefono(proveedor.facturador_whatsapp, proveedor.facturador_ext_whatsapp)} />
-            </Seccion>
-          )}
-
-          {proveedor.tiene_cobros && (
-            <Seccion titulo="Contacto de Cobros">
-              <Campo label="Nombre" value={val(proveedor.cobros_nombre)} />
-              <Campo label="Email" value={val(proveedor.cobros_email)} />
-              <Campo label="Teléfono" value={telefono(proveedor.cobros_telefono, proveedor.cobros_ext_telefono)} />
-              <Campo label="WhatsApp" value={telefono(proveedor.cobros_whatsapp, proveedor.cobros_ext_whatsapp)} />
-            </Seccion>
-          )}
-
-          <Seccion titulo="Cuentas Bancarias">
-            {!proveedor.cuentas_bancarias || proveedor.cuentas_bancarias.length === 0 ? (
-              <div className="col-span-3 text-[10px] text-slate-500">Sin cuentas bancarias registradas.</div>
-            ) : (
-              [...proveedor.cuentas_bancarias]
-                .sort((a, b) => a.orden - b.orden)
-                .map((c) => (
-                  <div className="col-span-3" key={c.id}>
-                    <Campo
-                      label={`Cuenta ${c.orden}`}
-                      value={`${val(c.banco_nombre)} (${val(c.moneda)}) — IBAN: ${val(c.iban)}${c.cuenta_corriente ? ` — Cta. Corriente: ${c.cuenta_corriente}` : ""}`}
-                    />
-                  </div>
-                ))
-            )}
-          </Seccion>
-
-          <p className="text-[8px] text-slate-400 mt-2">
-            Documento generado automáticamente desde el panel administrativo de Mercasa.
-          </p>
+        <div className="mt-6 print:mt-0 bg-white border border-slate-200 rounded-2xl shadow-md p-6 print:border-0 print:shadow-none print:rounded-none print:p-0">
+          <Ficha proveedor={proveedor} />
         </div>
       )}
     </div>

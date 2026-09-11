@@ -101,6 +101,17 @@ export const proveedorSchema = z
       }
     });
 
+    // Validación condicional: Moneda del Crédito (solo si el plazo no es "Contado")
+    if (data.plazoPagoDias && data.plazoPagoDias !== "0") {
+      if (!data.monedaCredito || data.monedaCredito.trim() === "") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Seleccione la moneda del crédito",
+          path: ["monedaCredito"],
+        });
+      }
+    }
+
     // Validación condicional: Email Factura (solo si es cliente)
     if (data.esCliente === "Si") {
       if (!data.emailFactura || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.emailFactura)) {
