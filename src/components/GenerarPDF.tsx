@@ -99,16 +99,13 @@ function Ficha({ proveedor }: { proveedor: Proveedor }) {
       <Seccion titulo="Identificación">
         <Campo label="Cédula" value={val(proveedor.cedula)} />
         <Campo label="Tipo" value={val(proveedor.tipo_cedula_nombre)} />
-        <Campo label="Es Compañía" value={val(proveedor.es_compania)} />
         <div className="col-span-3">
           <Campo label="Nombre / Razón Social" value={val(proveedor.nombre_proveedor)} />
         </div>
-        <Campo label="Es Cliente" value={val(proveedor.es_cliente)} />
       </Seccion>
 
       <Seccion titulo="Actividad Económica">
         <Campo label="Código" value={val(proveedor.cod_actividad_economica)} />
-        <Campo label="Tiene Actividad" value={proveedor.tiene_actividad ? "Sí" : "No"} />
         <div className="col-span-3">
           <Campo label="Descripción" value={val(proveedor.act_economica_principal)} />
         </div>
@@ -129,7 +126,6 @@ function Ficha({ proveedor }: { proveedor: Proveedor }) {
         <Campo label="Plazo" value={val(proveedor.plazo_pago_dias)} />
         <Campo label="Moneda Crédito" value={val(proveedor.moneda_credito)} />
         <Campo label="Monto Crédito" value={val(proveedor.monto_credito)} />
-        <Campo label="Email Factura" value={val(proveedor.email_factura)} />
         <Campo label="Correo Comprobantes" value={val(proveedor.correo_comprobantes)} />
       </Seccion>
 
